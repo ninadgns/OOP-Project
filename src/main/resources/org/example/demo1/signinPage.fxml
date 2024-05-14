@@ -39,18 +39,18 @@
                   <Font name="System Bold" size="27.0" />
                </font>
             </Text>
-            <TextField layoutX="85.0" layoutY="160.0" prefHeight="27.0" prefWidth="213.0" promptText="Email" styleClass="login-email" stylesheets="@styles.css">
+            <TextField fx:id="enterEmailToSignIn" layoutX="85.0" layoutY="160.0" prefHeight="27.0" prefWidth="213.0" promptText="Email" styleClass="login-email" stylesheets="@styles.css">
                <font>
                   <Font size="12.0" />
                </font>
             </TextField>
-            <TextField layoutX="85.0" layoutY="200.0" prefHeight="27.0" prefWidth="213.0" promptText="Password" styleClass="login-email" stylesheets="@styles.css">
+            <TextField fx:id="enterPwdToSignIn" layoutX="85.0" layoutY="200.0" prefHeight="27.0" prefWidth="213.0" promptText="Password" styleClass="login-email" stylesheets="@styles.css">
                <font>
                   <Font size="12.0" />
                </font>
             </TextField>
-            <Button layoutX="125.0" layoutY="269.0" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Sign In" />
-            <Label layoutX="121.0" layoutY="238.0" styleClass="strikethrough" stylesheets="@styles.css" text="Forgot your Password?" textFill="#6f6f6f" />
+            <Button fx:id="signInBtnToSignIn" layoutX="125.0" layoutY="269.0" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Sign In" />
+            <Label fx:id="forgotPwd" layoutX="121.0" layoutY="238.0" styleClass="strikethrough" stylesheets="@styles.css" text="Forgot your Password?" textFill="#6f6f6f" />
          </children>
       </AnchorPane>
    </left>

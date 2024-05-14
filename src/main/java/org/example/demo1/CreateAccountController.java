@@ -6,8 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
@@ -18,6 +17,18 @@ import java.io.File;
 import java.io.IOException;
 
 public class CreateAccountController {
+    public TextField fname;
+    public Button signUpBtn;
+    public TextField email;
+    public TextField lname;
+    public TextField pwd;
+    public DatePicker dob;
+    public TextField confirmPwd;
+    public TextField phoneNo;
+    public Button gotoSignInBtn;
+    public RadioButton isCustomerRadio;
+    public ToggleGroup isCustomerToggle;
+    public RadioButton isHotelManagerRadio;
     @FXML
     private Label choosePhotoLabel;
     @FXML

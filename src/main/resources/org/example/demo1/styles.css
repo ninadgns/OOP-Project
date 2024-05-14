@@ -24,6 +24,7 @@
 .formImage{
 
 }
+
 .mechat{
     -fx-background-color: #036d97;
     -fx-text-fill: white;
@@ -113,6 +114,11 @@
 
 .searchbar{
     -fx-background-color: #242f3d;
+    -fx-background-radius: 50px;
+}
+.homeSearchBar{
+    -fx-background-color: white;
+    -fx-text-fill: #535353;
     -fx-background-radius: 50px;
 }
 .sendtext{
