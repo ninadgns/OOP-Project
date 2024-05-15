@@ -3,6 +3,7 @@ package org.example.demo1;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart.Data;
 import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
 
@@ -27,7 +28,10 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
 
         DatabaseClient.initiate();
-        DatabaseClient.runSQL("select id, content from notes");
+        // DatabaseClient.runSQL("select id, content from notes");
+        // DatabaseClient.runSQL("insert into notes (id, content) values (3, 'chirodin tomar akash')");
+        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+        
         launch();
     }
 }

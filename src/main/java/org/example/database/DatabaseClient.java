@@ -13,7 +13,7 @@ public class DatabaseClient {
     static Connection conn;
     static Statement stmt;
 
-    public static    void initiate() {
+    public static void initiate() {
         try {
             conn = DriverManager.getConnection(
                     "jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:6543/postgres?user=postgres.iaffaaaqyxfouhtxibey&password=amarsonarbangla");
@@ -22,6 +22,19 @@ public class DatabaseClient {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void update(String tableName, String fields, String values)
+    {
+        String sql = "insert into "+tableName+"("+fields+") Values ("+values+")";
+        System.out.println(sql);
+        try{
+            conn.createStatement().executeUpdate(sql);
+        
+        }catch(Exception e)
+        {
             e.printStackTrace();
         }
     }
