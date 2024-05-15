@@ -4,13 +4,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.database.DatabaseClient;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class HelloApplication extends Application {
 
@@ -28,27 +25,9 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        try (
-                Connection conn = DriverManager.getConnection(
-                        "jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:6543/postgres?user=postgres.iaffaaaqyxfouhtxibey&password=amarsonarbangla");) {
-            if (conn != null) {
-                System.out.println("Database connected successfully...");
-                String sql = "SELECT id, content FROM notes";
-                try (Statement stmt = conn.createStatement();
-                        ResultSet rs = stmt.executeQuery(sql)) {
-                    // Iterate over the result set and print the rows
-                    while (rs.next()) {
-                        int id = rs.getInt("id");
-                        String content = rs.getString("content");
-                        System.out.println("ID: " + id + ", Content: " + content);
-                    }
-                    System.out.println("db query successfull");
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
+        DatabaseClient.initiate();
+        DatabaseClient.runSQL("select id, content from notes");
         launch();
     }
 }
