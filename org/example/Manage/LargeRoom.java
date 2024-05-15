@@ -13,7 +13,13 @@ public class LargeRoom extends Room {
     }
 
     public String getDescription() {
-        return "Large Room";
+        StringBuilder str = new StringBuilder();
+        str.append("Large Room (").append(super.getBedSize())
+                .append(",Allowed Persons ")
+                .append(getAllowedPerson()).append(", ")
+                .append(super.getSQFT()).append(" sqft").append(")");
+
+        return str.toString();
     }
 
 }

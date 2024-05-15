@@ -15,6 +15,6 @@ public class Kitchen extends HouseDecorator {
     }
 
     public int getCost() {
-        return 60 + house.getCost();
+        return 90 + house.getCost();
     }
 }

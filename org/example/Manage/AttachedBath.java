@@ -15,6 +15,6 @@ public class AttachedBath extends RoomDecorator {
     }
 
     public int getCost() {
-        return 40 + room.getCost();
+        return 50 + room.getCost();
     }
 }

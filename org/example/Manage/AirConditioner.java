@@ -15,6 +15,6 @@ public class AirConditioner extends RoomDecorator {
     }
 
     public int getCost() {
-        return 150 + room.getCost();
+        return 200 + room.getCost();
     }
 }

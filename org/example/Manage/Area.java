@@ -1,8 +1,10 @@
 package org.example.Manage;
 
 import java.util.*;
+import java.util.regex.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 public class Area {
     private String districtName;
     private ArrayList<Hotel> hotelLists;
@@ -31,8 +33,14 @@ public class Area {
     }
 
     public ArrayList<Hotel> vacantHotels(String checkin, String checkout) {
-        this.vacantHotelList = new ArrayList<>();
 
+        if (checkin.isEmpty() || checkout.isEmpty()
+                || !checkin.matches("\\d{2} \\b[a-zA-Z]{3}+ \\d{4}")
+                || !checkout.matches("\\d{2} \\b[a-zA-Z]{3}+ \\d{4}")) {
+            this.vacantHotelList = this.hotelLists;
+            return getVacantHotelList();
+        }
+        this.vacantHotelList = new ArrayList<>();
         String[] CheckIn = checkin.split(" ");
         String[] CheckOut = checkin.split(" ");
         int chInDay = Integer.parseInt(CheckIn[0]);
@@ -53,23 +61,25 @@ public class Area {
         for (int k = 0; k < hotelLists.size(); k++) {
             boolean vacant = true;
             Hotel hotel = hotelLists.get(k);
+            if (hotel != null) {
+                for (Map.Entry<Client, CheckInandOut> entry : hotel.getBookings().entrySet()) {
+                    CheckInandOut booked = entry.getValue();
 
-            for (Map.Entry<CheckInandOut, Client> entry : hotel.getBookings().entrySet()) {
-                CheckInandOut booked = entry.getKey();
-                if ((booked.checkinMon == chInMon && booked.checkinDay <= chInDay) ||
-                        (booked.checkoutMon == chInMon && booked.checkoutDay > chInDay)) {
-                    vacant = false;
-                    break;
+                    if ((booked.checkinMon == chInMon && booked.checkinDay <= chInDay) ||
+                            (booked.checkoutMon == chInMon && booked.checkoutDay > chInDay)) {
+                        vacant = false;
+                        break;
+                    }
+                    if ((booked.checkinMon == chOutMon && booked.checkinDay < chOutDay) ||
+                            (booked.checkoutMon == chOutMon && booked.checkoutDay >= chOutDay)) {
+                        vacant = false;
+                        break;
+                    }
                 }
-                if ((booked.checkinMon == chOutMon && booked.checkinDay < chOutDay) ||
-                        (booked.checkoutMon == chOutMon && booked.checkoutDay >= chOutDay)) {
-                    vacant = false;
-                    break;
-                }
-            }
 
-            if (vacant) {
-                this.vacantHotelList.add(hotel);
+                if (vacant) {
+                    this.vacantHotelList.add(hotel);
+                }
             }
         }
 
@@ -77,6 +87,7 @@ public class Area {
     }
 
     public ArrayList<Hotel> getHotelOfOneType(String type) {
+
         this.hotelListOfOneType = new ArrayList<>();
         for (int k = 0; k < vacantHotelList.size(); k++) {
             Hotel hotel = vacantHotelList.get(k);

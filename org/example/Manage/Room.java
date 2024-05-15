@@ -9,9 +9,9 @@ public abstract class Room {
 
     public abstract String getDescription();
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    // public void setDescription(String description) {
+    // this.description = description;
+    // }
 
     public void setAllowedPerson(int allowedPerson) {
         this.allowedPersons = allowedPerson;
@@ -42,8 +42,3 @@ public abstract class Room {
 abstract class RoomDecorator extends Room {
 
 }
-
-
-
-
-

@@ -9,12 +9,17 @@ public class SingleRoom extends Room {
     }
 
     public int getCost() {
-        int cost = 150 + (int) (super.getSQFT() * 15);
+        int cost = 100 + (int) (super.getSQFT() * 15);
         return cost;
     }
 
     public String getDescription() {
-        return "Single Room";
+        StringBuilder str = new StringBuilder();
+        str.append("Single Room (").append(super.getBedSize())
+                .append(",Allowed Persons ")
+                .append(getAllowedPerson()).append(", ")
+                .append(super.getSQFT()).append(" sqft").append(")");
+        return str.toString();
     }
 
 }

@@ -15,6 +15,6 @@ public class Garage extends HouseDecorator {
     }
 
     public int getCost() {
-        return 70 + house.getCost();
+        return 90 + house.getCost();
     }
 }

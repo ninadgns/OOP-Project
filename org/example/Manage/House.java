@@ -16,7 +16,7 @@ class Facilities extends House {
     }
 
     public int getCost() {
-        return 60;
+        return 70;
     }
 }
 

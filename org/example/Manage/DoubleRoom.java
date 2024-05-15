@@ -13,7 +13,12 @@ public class DoubleRoom extends Room {
     }
 
     public String getDescription() {
-        return "Double Room";
+        StringBuilder str = new StringBuilder();
+        str.append("Double Room (").append(super.getBedSize())
+                .append(",Allowed Persons ")
+                .append(getAllowedPerson()).append(", ")
+                .append(super.getSQFT()).append(" sqft").append(")");
+        return str.toString();
     }
 
 }
