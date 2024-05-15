@@ -5,6 +5,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.sql.ResultSetMetaData;
 
 /**
  * DatabaseClient
@@ -26,32 +31,65 @@ public class DatabaseClient {
         }
     }
 
-    public static void update(String tableName, String fields, String values)
-    {
-        String sql = "insert into "+tableName+"("+fields+") Values ("+values+")";
+    public static List<Map<String, Object>> fetch(String tableName) {
+        String sql = "select * from " + tableName;
         System.out.println(sql);
-        try{
+        ResultSet rs = runSQL(sql);
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        try {
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();
+
+            while (rs.next()) {
+                // Each row will be a map
+                Map<String, Object> row = new HashMap<>(columnCount);
+
+                for (int i = 1; i <= columnCount; i++) {
+                    // Get the column name
+                    String colName = rsmd.getColumnName(i);
+                    // Get the value
+                    Object colVal = rs.getObject(i);
+                    // Add to map
+                    row.put(colName, colVal);
+                }
+
+                // Add the row to the result
+                resultList.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
+
+    }
+
+    public static void insert(String tableName, String fields, String values) {
+        String sql = "insert into " + tableName + "(" + fields + ") Values (" + values + ")";
+        System.out.println(sql);
+        try {
             conn.createStatement().executeUpdate(sql);
-        
-        }catch(Exception e)
-        {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void runSQL(String sql) {
+    public static ResultSet runSQL(String sql) {
+        ResultSet rs = null;
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String content = rs.getString("content");
-                System.out.println("ID: " + id + ", Content: " + content);
-            }
+            rs = stmt.executeQuery(sql);
+            // while (rs.next()) {
+            // int id = rs.getInt("id");
+            // String content = rs.getString("content");
+            // System.out.println("ID: " + id + ", Content: " + content);
+            // }
             System.out.println("db query successfull");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return rs;
     }
 
 }
