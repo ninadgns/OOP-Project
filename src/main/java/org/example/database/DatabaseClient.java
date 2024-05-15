@@ -1,5 +1,9 @@
 package org.example.database;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -10,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.sql.ResultSetMetaData;
+import java.io.File;
+import java.util.Base64;
 
 /**
  * DatabaseClient
@@ -48,8 +54,40 @@ public class DatabaseClient {
         return rs;
     }
 
+    public static String fileToString(File file) throws IOException {
+        // Read the file into a byte array
+        byte[] fileBytes;
+        try (FileInputStream inputStream = new FileInputStream(file)) {
+            ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                byteStream.write(buffer, 0, bytesRead);
+            }
+            fileBytes = byteStream.toByteArray();
+        }
+
+        // Encode the byte array to Base64 string
+        return Base64.getEncoder().encodeToString(fileBytes);
+    }
+
+public static File stringToFile(String encodedString) throws IOException {
+        // Decode the Base64 string to byte array
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+
+        // Create a temporary file to store the decoded image
+        File tempFile = File.createTempFile("decoded_image", ".jpg");
+        try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
+            outputStream.write(decodedBytes);
+        }
+
+        // Return the File object representing the decoded image file
+        return tempFile;
+    }
+
+
     public static List<Map<String, Object>> resultSetToArray(ResultSet rs) throws SQLException {
-        // Get the metadata
+        
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
 
@@ -116,5 +154,4 @@ public class DatabaseClient {
         }
     }
 
-   
 }
