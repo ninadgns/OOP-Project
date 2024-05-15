@@ -1,5 +1,15 @@
 package org.example.demo1.otherClasses;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import org.example.database.DatabaseClient;
+
+import java.io.IOException;
+
 public class Account {
     public void setFname(String fname) {
         this.fname = fname;
@@ -62,7 +72,7 @@ public class Account {
         return fullName;
     }
 
-    public boolean isCustomer() {
+    public boolean getIsCustomer() {
         return isCustomer;
     }
 
@@ -90,13 +100,21 @@ public class Account {
         return password;
     }
 
-    String fullName;
-    boolean isCustomer;
-    String dateOfBirth;
-    String proFilePhoto;
-    String phoneNumber;
-    String email;
-    String address;
-    String password;
+    private String fullName;
+    private boolean isCustomer;
+    private String dateOfBirth;
+    private String proFilePhoto;
+    private String phoneNumber;
+    private String email;
+    private String address;
+    private String password;
 
+    public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
+        String allInfoTogether =  "'"+account.getFullName()+"'"+", "+"'"+account.getPhoneNumber()+"'"+", "+"'"+account.getEmail()+"'"+", "+"'Ami Address'"+", "+"'"+account.getPassword()+"'"+", "+"'"+account.getDateOfBirth()+"'"+", "+"'"+account.getIsCustomer()+"'"+", 'Ami Sobi'";
+        DatabaseClient.update(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto", allInfoTogether);
+//        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+        System.out.println("Push Hoise");
+
+    }
 }
+
