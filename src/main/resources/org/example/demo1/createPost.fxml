@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.CreateAccountController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.CreateAccountController">
    <right>
       <ScrollPane hbarPolicy="NEVER" prefHeight="503.0" prefWidth="373.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>
-            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="373.0">
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="373.0">
                <Text layoutX="28.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Post" textAlignment="CENTER" wrappingWidth="317.1969757080078">
                   <font>
                      <Font name="System Bold" size="28.0" />
@@ -30,7 +30,6 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
-               <Button fx:id="postBtn" layoutX="124.0" layoutY="574.0" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Post" />
                <TextField fx:id="email" layoutX="29.0" layoutY="405.0" prefHeight="27.0" prefWidth="328.0" promptText="Email" styleClass="login-email" stylesheets="@styles.css">
                   <font>
                      <Font size="12.0" />
@@ -97,6 +96,7 @@
                            <RadioButton fx:id="rGym" mnemonicParsing="false" text="Gym" />
                            <RadioButton fx:id="rPlayground" mnemonicParsing="false" text="Playground" />
                            <RadioButton fx:id="rFood" mnemonicParsing="false" text="Food" />
+                           <RadioButton fx:id="rAC" mnemonicParsing="false" text="AC" />
                         </children>
                      </HBox>
                   </children>
@@ -106,7 +106,7 @@
                      <Font name="System Bold" size="13.0" />
                   </font>
                </Label>
-               <VBox fx:id="photoVbox" layoutX="28.0" layoutY="514.0" prefHeight="38.0" prefWidth="326.0">
+               <VBox fx:id="photoVbox" layoutX="28.0" layoutY="514.0" prefHeight="38.0" prefWidth="326.0" spacing="7.0">
                   <children>
                      <HBox fx:id="photoHbox" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
@@ -121,11 +121,77 @@
                            </Label>
                         </children>
                      </HBox>
+                     <HBox fx:id="photoHbox1" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn11" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel11" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox fx:id="photoHbox2" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn12" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel12" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox fx:id="photoHbox3" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn13" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel13" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox fx:id="photoHbox4" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn14" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel14" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox fx:id="photoHbox5" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn15" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel15" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
                   </children>
                   <padding>
-                     <Insets top="17.0" />
+                     <Insets top="15.0" />
                   </padding>
                </VBox>
+               <Button fx:id="postBtn" layoutX="124.0" layoutY="740.0" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Post" />
             </AnchorPane>
          </content>
       </ScrollPane>
