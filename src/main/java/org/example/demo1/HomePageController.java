@@ -38,4 +38,5 @@ public class HomePageController {
         homePageVbox.getChildren().add(hBox);
 
     }
+
 }
