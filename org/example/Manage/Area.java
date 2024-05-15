@@ -1,4 +1,4 @@
-package org.manage;
+package org.example.Manage;
 
 import java.util.*;
 import java.util.stream.Collectors;

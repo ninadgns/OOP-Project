@@ -1,4 +1,4 @@
-package org.manage;
+package org.example.Manage;
 
 public class Villa extends Hotel {
     Villa(String address) {

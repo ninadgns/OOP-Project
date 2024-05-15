@@ -1,4 +1,4 @@
-package org.manage;
+package org.example.Manage;
 
 public class Cabin extends Hotel {
     Cabin(String address) {

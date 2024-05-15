@@ -1,4 +1,4 @@
-package org.manage;
+package org.example.Manage;
 
 class AFrames extends Hotel {
     AFrames(String address) {
