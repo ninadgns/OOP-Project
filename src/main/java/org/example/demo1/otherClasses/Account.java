@@ -108,10 +108,10 @@ public class Account {
     private String email;
     private String address;
     private String password;
-
+    private Account loggedIn;
     public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
         String allInfoTogether =  "'"+account.getFullName()+"'"+", "+"'"+account.getPhoneNumber()+"'"+", "+"'"+account.getEmail()+"'"+", "+"'Ami Address'"+", "+"'"+account.getPassword()+"'"+", "+"'"+account.getDateOfBirth()+"'"+", "+"'"+account.getIsCustomer()+"'"+", 'Ami Sobi'";
-        DatabaseClient.update(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto", allInfoTogether);
+        DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto", allInfoTogether);
 //        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
         System.out.println("Push Hoise");
 

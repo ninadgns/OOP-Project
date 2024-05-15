@@ -6,10 +6,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.example.database.DatabaseClient;
 
 import java.io.IOException;
 
@@ -43,11 +45,40 @@ public class SignInPageController {
             e.printStackTrace();
         }
     }
+    public void auth() throws Exception{
+        var table = DatabaseClient.fetch("accountinfo");
+        boolean f = false;
+        for(var row: table){
+            if(row.get("email").equals(enterEmailToSignIn.getText())){
+                if(!row.get("password").equals(enterPwdToSignIn.getText())){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Wrong Password");
+                    alert.setContentText("Enter Correct Password");
+                    alert.show();
+                    throw new Exception("Wrong Password");
+                }
+                else {
+                    f = true;
+                    break;
+                }
+            }
+        }
+        if(!f){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Email Not Found");
+            alert.setContentText("Create An Account To Login");
+            alert.show();
+            throw new Exception("Email Not Found");
+        }
 
+    }
     public void handleSignInBtnToSignIn(ActionEvent actionEvent) throws IOException {
 
 
         try {
+            auth();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
             Parent root = loader.load();
 
@@ -58,7 +89,8 @@ public class SignInPageController {
             scene = new Scene(root);
             stage.setScene(scene);
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
+
 }

@@ -31,10 +31,11 @@ public class HelloApplication extends Application {
         // DatabaseClient.runSQL("select id, content from notes");
         // DatabaseClient.runSQL("insert into notes (id, content) values (3, 'chirodin tomar akash')");
         // DatabaseClient.insert("notes", "id, content", "5, 'o ma fagune tor'");
-        var a = DatabaseClient.fetch("accountinfo");
-        for (var row : a) {
-            System.out.println(row.get("email"));
-        }
+//        var a = DatabaseClient.fetch("accountinfo");
+//        for (var row : a) {
+//            System.out.println(row.get("email"));
+//
+//        }
         
         launch();
     }
