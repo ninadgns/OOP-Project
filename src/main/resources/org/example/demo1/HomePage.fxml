@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -22,7 +23,7 @@
                <children>
                   <ImageView fx:id="amiLogo" fitHeight="61.0" fitWidth="100.0" layoutX="7.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../Documents/28267842_7.png" />
+                        <Image url="@homePage/28267842_7.png" />
                      </image>
                   </ImageView>
                </children>
@@ -36,12 +37,12 @@
                <children>
                   <ImageView fx:id="settingsButton" fitHeight="30.0" fitWidth="30.0" layoutX="31.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../Documents/pngegg.png" />
+                        <Image url="@homePage/pngegg.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="profileChobiEbongButton" fitHeight="39.0" fitWidth="39.0" layoutX="70.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../Documents/4402438.png" />
+                        <Image url="@homePage/4402438.png" />
                      </image>
                   </ImageView>
                </children>
@@ -57,6 +58,7 @@
                   <HBox alignment="CENTER" prefHeight="60.0" prefWidth="584.0">
                      <children>
                         <Button fx:id="tipDeoBtn" mnemonicParsing="false" onAction="#handleTipDeo" text="Tip Deo" textAlignment="CENTER" />
+                        <Label fx:id="emneiLabel" />
                      </children></HBox>
                </children>
             </VBox>

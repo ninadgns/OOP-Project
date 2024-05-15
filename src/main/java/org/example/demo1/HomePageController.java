@@ -4,17 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class HomePageController {
+    public Label emneiLabel;
     @FXML
     private VBox homePageVbox;
     @FXML
     private Button tipDeoBtn;
-
+    public void setLabelData(String s){
+        emneiLabel.setText(s);
+    }
     public void handleTipDeo(ActionEvent actionEvent) {
         Rectangle rectangle = new Rectangle(200, 200);
         homePageVbox.setPadding(new Insets(5));
