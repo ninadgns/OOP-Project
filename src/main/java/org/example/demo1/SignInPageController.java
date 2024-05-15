@@ -34,15 +34,6 @@ public class SignInPageController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("createAccountPage.fxml"));
             Parent root = loader.load();
-
-            // Get the controller of Scene2 and pass the data
-//            HomePageController homePageController = loader.getController();
-//            homePageController.setLabelData(enterEmailToSignIn.getText());
-
-//            Stage stage = (Stage) gotoCreateAccountBtn.getScene().getWindow();
-//            stage.setScene(new Scene(root));
-
-//            Parent root = FXMLLoader.load(getClass().getResource("createAccountPage.fxml"));
             stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
