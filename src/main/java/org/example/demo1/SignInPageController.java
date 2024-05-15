@@ -45,11 +45,12 @@ public class SignInPageController {
     }
 
     public void handleSignInBtnToSignIn(ActionEvent actionEvent) throws IOException {
+
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
             Parent root = loader.load();
 
-            // Get the controller of Scene2 and pass the data
             HomePageController homePageController = loader.getController();
             homePageController.setLabelData(enterEmailToSignIn.getText());
             System.out.println(enterEmailToSignIn.getText());

@@ -102,6 +102,7 @@ public class CreateAccountController {
         account.setPassword(pwd.getText());
         account.setCustomer(isCustomerRadio.isSelected());
         account.setDateOfBirth(dob.getValue().toString());
+        account.setPhoneNumber(phoneNo.getText());
         exceptionGiver();
         }
         catch(Exception e){
@@ -114,7 +115,13 @@ public class CreateAccountController {
         System.out.println(isCustomerRadio.isSelected());
 
         if(pwd.getText().equals(confirmPwd.getText())){
-
+            try {
+                Account.dbTeAccountPathai(account, "accountinfo", actionEvent);
+                System.out.println("Account cholegese");
+                handleGotoSignIn(actionEvent);
+            }catch (Exception e){
+                System.out.println("Error Paisi:\n"+e);
+            }
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);

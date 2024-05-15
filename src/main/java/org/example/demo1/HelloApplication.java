@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        System.out.println("javafx.runtime.version: " + System.getProperties().get("javafx.runtime.version"));
+//        System.out.println("javafx.runtime.version: " + System.getProperties().get("javafx.runtime.version"));
 
     }
 
@@ -30,7 +30,7 @@ public class HelloApplication extends Application {
         DatabaseClient.initiate();
         // DatabaseClient.runSQL("select id, content from notes");
         // DatabaseClient.runSQL("insert into notes (id, content) values (3, 'chirodin tomar akash')");
-        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+//        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
         
         launch();
     }
