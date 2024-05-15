@@ -31,50 +31,6 @@ public class DatabaseClient {
         }
     }
 
-    public static List<Map<String, Object>> fetch(String tableName) {
-        String sql = "select * from " + tableName;
-        System.out.println(sql);
-        ResultSet rs = runSQL(sql);
-        List<Map<String, Object>> resultList = new ArrayList<>();
-        try {
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();
-
-            while (rs.next()) {
-                // Each row will be a map
-                Map<String, Object> row = new HashMap<>(columnCount);
-
-                for (int i = 1; i <= columnCount; i++) {
-                    // Get the column name
-                    String colName = rsmd.getColumnName(i);
-                    // Get the value
-                    Object colVal = rs.getObject(i);
-                    // Add to map
-                    row.put(colName, colVal);
-                }
-
-                // Add the row to the result
-                resultList.add(row);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return resultList;
-
-    }
-
-    public static void insert(String tableName, String fields, String values) {
-        String sql = "insert into " + tableName + "(" + fields + ") Values (" + values + ")";
-        System.out.println(sql);
-        try {
-            conn.createStatement().executeUpdate(sql);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public static ResultSet runSQL(String sql) {
         ResultSet rs = null;
         try {
@@ -92,4 +48,73 @@ public class DatabaseClient {
         return rs;
     }
 
+    public static List<Map<String, Object>> resultSetToArray(ResultSet rs) throws SQLException {
+        // Get the metadata
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+
+        // Prepare the result
+        List<Map<String, Object>> resultList = new ArrayList<>();
+
+        while (rs.next()) {
+            // Each row will be a map
+            Map<String, Object> row = new HashMap<>(columnCount);
+
+            for (int i = 1; i <= columnCount; i++) {
+                // Get the column name
+                String colName = rsmd.getColumnName(i);
+                // Get the value
+                Object colVal = rs.getObject(i);
+                // Add to map
+                row.put(colName, colVal);
+            }
+
+            // Add the row to the result
+            resultList.add(row);
+        }
+
+        return resultList;
+    }
+
+    public static List<Map<String, Object>> fetch(String tableName) {
+        String sql = "select * from " + tableName;
+        System.out.println(sql);
+        ResultSet rs = runSQL(sql);
+        List<Map<String, Object>> rl = null;
+        try {
+            rl = resultSetToArray(rs);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return rl;
+
+    }
+
+    public static List<Map<String, Object>> fetchWhere(String tableName, String whereClause) {
+        ResultSet rs = null;
+        List<Map<String, Object>> rl = null;
+        try {
+            String sql = "SELECT * FROM " + tableName + " WHERE " + whereClause;
+            Statement stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            rl = resultSetToArray(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rl;
+    }
+
+    public static void insert(String tableName, String fields, String values) {
+        String sql = "insert into " + tableName + "(" + fields + ") Values (" + values + ")";
+        System.out.println(sql);
+        try {
+            conn.createStatement().executeUpdate(sql);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+   
 }

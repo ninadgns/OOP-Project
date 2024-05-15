@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart.Data;
 import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
+import org.example.database.Tables;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -29,13 +30,21 @@ public class HelloApplication extends Application {
 
         DatabaseClient.initiate();
         // DatabaseClient.runSQL("select id, content from notes");
-        // DatabaseClient.runSQL("insert into notes (id, content) values (3, 'chirodin tomar akash')");
+
         // DatabaseClient.insert("notes", "id, content", "5, 'o ma fagune tor'");
-        var a = DatabaseClient.fetch("accountinfo");
-        for (var row : a) {
-            System.out.println(row.get("email"));
-        }
+
+        // var a = DatabaseClient.fetch("accountinfo");
+        // for (var row : a) {
+        //     System.out.println(row.get("email"));
+        // }
         
+        var a = DatabaseClient.fetchWhere(Tables.ACCOUNTINFO, "email = 'fghj'");
+        for (var row : a) {
+            for (var entry : row.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+        }
+
         launch();
     }
 }
