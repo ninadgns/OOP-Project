@@ -2,16 +2,17 @@ package org.example.Manage;
 
 public abstract class Room {
     private String bedSize, description;
-    private int allowedPersons;
+    private int allowedPersons,cost;
     private double sqFt;
 
     public abstract int getCost();
 
     public abstract String getDescription();
 
-    // public void setDescription(String description) {
-    // this.description = description;
-    // }
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
 
     public void setAllowedPerson(int allowedPerson) {
         this.allowedPersons = allowedPerson;

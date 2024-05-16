@@ -21,12 +21,17 @@ public class HotelSystem {
         room3 = new Balcony(room3);
         room3 = new AirConditioner(room3);
 
-        House house = new Facilities();
+        CommonSpace commonSpace1 = new OutdoorSpace();
+        commonSpace1 = new Yard(commonSpace1);
+        commonSpace1 = new Garage(commonSpace1);
+        commonSpace1 = new SwimmingPool(commonSpace1);
+        commonSpace1 = new Patio(commonSpace1);
 
-        house = new Lawn(house);
-        house = new Garage(house);
-        house = new SwimmingPool(house);
-        house = new Kitchen(house);
+        CommonSpace commonSpace2 = new IndoorSpace();
+        commonSpace2 = new Kitchen(commonSpace2);
+        commonSpace2 = new Lounge(commonSpace2);
+
+        CommonSpace house = new House(commonSpace2, commonSpace1);
         hotel.setOtherFacility(house);
 
         hotel.addRoom(room1);
@@ -37,7 +42,7 @@ public class HotelSystem {
 
         System.out.println(management.getAreabyName("Saint Martin").getDistrictName());
         System.out.println(management.getAreabyName("Sajek").getDistrictName() + "\n");
-        area.vacantHotels("", "");
+        //area.vacantHotels("", "");
         System.out.println(area.getHotelOfOneType("Villa").get(0).getAddress() + "\n");
 
         System.out.println(hotel.getType());
@@ -48,7 +53,7 @@ public class HotelSystem {
         System.out.println(hotel.getCostPerNight() + "\n");
 
         System.out.println(hotel.getRoomDetails() + "\n");
-        System.out.println(hotel.getHouseDetails() + "\n");
+        System.out.println(hotel.getComSpaceDetails() + "\n");
         System.out.println(hotel.getSpecifications());
     }
 
@@ -59,25 +64,25 @@ public class HotelSystem {
         Room room1 = new SingleRoom(10.2 * 9.1);
         room1 = new Balcony(room1);
 
-        Room room2 = new DoubleRoom(12.5 * 12);
-        room2 = new AirConditioner(room2);
-        room2 = new AttachedBath(room2);
-
-        Room room3 = new LargeRoom(15 * 12);
-        room3 = new AttachedBath(room3);
-        room3 = new Balcony(room3);
-        room3 = new AirConditioner(room3);
-
-        House house = new Facilities();
-        house = new Kitchen(house);
-        house = new Lawn(house);
-        house = new Garage(house);
-        house = new SwimmingPool(house);
-
-        hotel.setOtherFacility(house);
-        hotel.addRoom(room1);
-        hotel.addRoom(room2);
-        hotel.addRoom(room3);
+//        Room room2 = new DoubleRoom(12.5 * 12);
+//        room2 = new AirConditioner(room2);
+//        room2 = new AttachedBath(room2);
+//
+//        Room room3 = new LargeRoom(15 * 12);
+//        room3 = new AttachedBath(room3);
+//        room3 = new Balcony(room3);
+//        room3 = new AirConditioner(room3);
+//
+//        House house = new Facilities();
+//        house = new Kitchen(house);
+//        house = new Yard(house);
+//        house = new Garage(house);
+//        house = new SwimmingPool(house);
+//
+//        hotel.setOtherFacility(house);
+//        hotel.addRoom(room1);
+//        hotel.addRoom(room2);
+//        hotel.addRoom(room3);
 
         return hotel;
     }

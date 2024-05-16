@@ -2,7 +2,7 @@ package org.example.Manage;
 
 public class Client {
     private String name, emailAddress;
-    private int identificationNo, phoneNo;
+   // private String phoneNo;
 
     public void setName(String name) {
         this.name = name;
@@ -12,13 +12,9 @@ public class Client {
         this.emailAddress = email;
     }
 
-    public void setphoneNo(int phoneNo) {
-        this.phoneNo = phoneNo;
-    }
-
-    public void setNIDNo(int nidNo) {
-        this.identificationNo = nidNo;
-    }
+   // public void setphoneNo(String phoneNo) {
+    //    this.phoneNo = phoneNo;
+   // }
 
     public String getName() {
         return this.name;
@@ -28,11 +24,7 @@ public class Client {
         return this.emailAddress;
     }
 
-    public int getphoneNo(int phoneNo) {
-        return this.phoneNo;
-    }
-
-    public int getNIDNo() {
-        return this.identificationNo;
-    }
+   // public String getphoneNo(int phoneNo) {
+       // return this.phoneNo;
+   // }
 }

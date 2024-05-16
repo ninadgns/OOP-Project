@@ -1,25 +1,25 @@
 package org.example.Manage;
 
-public abstract class House {
-    private String description;
-    private int cost;
+public class House implements CommonSpace {
 
-    public abstract String getDescription();
+    private CommonSpace indoorSpace;
+    private CommonSpace outdoorSpace;
 
-    public abstract int getCost();
+    public House(CommonSpace indoorSpace, CommonSpace outdoorSpace) {
+        this.indoorSpace = indoorSpace;
+        this.outdoorSpace = outdoorSpace;
+    }
 
-}
-
-class Facilities extends House {
+    @Override
     public String getDescription() {
-        return "Facilities:";
+        StringBuilder str = new StringBuilder();
+        str.append(indoorSpace.getDescription()).append("\n");
+        str.append(outdoorSpace.getDescription()).append("\n");
+        return str.toString();
     }
 
+    @Override
     public int getCost() {
-        return 70;
+        return indoorSpace.getCost() + outdoorSpace.getCost();
     }
-}
-
-abstract class HouseDecorator extends House {
-
 }

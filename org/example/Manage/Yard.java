@@ -1,18 +1,18 @@
 package org.example.Manage;
 
-public class SwimmingPool extends OutdoorDecorator {
-    public SwimmingPool(CommonSpace decoOutdoorSpace) {
+public class Yard extends OutdoorDecorator {
+    public Yard(CommonSpace decoOutdoorSpace) {
         super(decoOutdoorSpace);
     }
 
     public String getDescription() {
         StringBuilder str = new StringBuilder();
-        str.append(super.getDescription()).append(" Swimming Pool,");
+        str.append(super.getDescription()).append(" Lawn,");
 
         return str.toString();
     }
 
     public int getCost() {
-        return 150 + super.getCost();
+        return 100 + super.getCost();
     }
 }
