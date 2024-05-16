@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.CreateAccountController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.createPostController">
    <right>
       <ScrollPane hbarPolicy="NEVER" prefHeight="503.0" prefWidth="373.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>
@@ -110,7 +110,7 @@
                   <children>
                      <HBox fx:id="photoHbox" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
-                           <Button fx:id="choosePhotoBtn1" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Button fx:id="choosePhotoBtn1" mnemonicParsing="false" onAction="#handleChoosePhoto1" text="Thumbnail Photo " />
                            <Label fx:id="choosePhotoLabel1" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
@@ -123,7 +123,7 @@
                      </HBox>
                      <HBox fx:id="photoHbox1" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
-                           <Button fx:id="choosePhotoBtn11" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Button fx:id="choosePhotoBtn2" mnemonicParsing="false" onAction="#handleChoosePhoto2" text="Thumbnail Photo " />
                            <Label fx:id="choosePhotoLabel11" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
@@ -136,7 +136,7 @@
                      </HBox>
                      <HBox fx:id="photoHbox2" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
-                           <Button fx:id="choosePhotoBtn12" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Button fx:id="choosePhotoBtn3" mnemonicParsing="false" onAction="#handleChoosePhoto3" text="Thumbnail Photo " />
                            <Label fx:id="choosePhotoLabel12" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
@@ -149,7 +149,7 @@
                      </HBox>
                      <HBox fx:id="photoHbox3" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
-                           <Button fx:id="choosePhotoBtn13" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Button fx:id="choosePhotoBtn4" mnemonicParsing="false" onAction="#handleChoosePhoto4" text="Thumbnail Photo " />
                            <Label fx:id="choosePhotoLabel13" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
@@ -162,7 +162,7 @@
                      </HBox>
                      <HBox fx:id="photoHbox4" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
-                           <Button fx:id="choosePhotoBtn14" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Button fx:id="choosePhotoBtn5" mnemonicParsing="false" onAction="#handleChoosePhoto5" text="Thumbnail Photo " />
                            <Label fx:id="choosePhotoLabel14" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
@@ -175,7 +175,7 @@
                      </HBox>
                      <HBox fx:id="photoHbox5" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
-                           <Button fx:id="choosePhotoBtn15" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Thumbnail Photo " />
+                           <Button fx:id="choosePhotoBtn6" mnemonicParsing="false" onAction="#handleChoosePhoto6" text="Thumbnail Photo " />
                            <Label fx:id="choosePhotoLabel15" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
@@ -209,7 +209,7 @@
                   <Font name="Ubuntu Regular" size="14.0" />
                </font>
             </Text>
-            <Button fx:id="gotoSignInBtn" layoutX="58.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleGotoSignIn" styleClass="login-signup" stylesheets="@styles.css" text="Go Back" />
+            <Button fx:id="goBackBtn" layoutX="58.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleGoBack" styleClass="login-signup" stylesheets="@styles.css" text="Go Back" />
             <Text fill="WHITE" layoutX="1.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Your Hotel" textAlignment="CENTER" wrappingWidth="250.39697265625">
                <font>
                   <Font name="System Bold" size="27.0" />

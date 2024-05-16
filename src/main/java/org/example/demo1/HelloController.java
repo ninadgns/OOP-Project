@@ -67,7 +67,7 @@ public class HelloController {
         text.getStyleClass().add("mechat");
         text.setMaxWidth(185);
         text.setWrapText(true);
-        text.setLayoutX(150);
+        text.setLayoutX(15);
         double messageHeight = Math.ceil(messageText.getText().length() * FONT_SIZE / 185);
         text.setLayoutY(180 + (ct + 1) * 40);
         bgVbox.getChildren().add(text);

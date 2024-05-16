@@ -2,16 +2,31 @@ package org.example.demo1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import org.example.database.DatabaseClient;
+import org.example.demo1.otherClasses.Account;
 
-public class HomePageForCustomerController {
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class HomePageForCustomerController implements Initializable {
+//    HomePageForCustomerController(){
+//        super();
+//    }
     public Label emneiLabel;
+    @FXML
+    private static ImageView profileChobiEbongButton;
     @FXML
     private VBox homePageVbox;
     @FXML
@@ -39,4 +54,16 @@ public class HomePageForCustomerController {
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        File file = null;
+        try {
+            file = DatabaseClient.stringToFile(Account.loggedIn.getProFilePhoto());
+            Image image = new Image(file.toURI().toString());
+            profileChobiEbongButton.setImage(image); // Set image to the existing ImageView instance
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        
+    }
 }
