@@ -1,14 +1,10 @@
 package org.example.demo1.otherClasses;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Account {
     public void setFname(String fname) {
@@ -108,13 +104,23 @@ public class Account {
     private String email;
     private String address;
     private String password;
-    private Account loggedIn;
+    public static Account loggedIn = new Account();
     public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
         String allInfoTogether =  "'"+account.getFullName()+"'"+", "+"'"+account.getPhoneNumber()+"'"+", "+"'"+account.getEmail()+"'"+", "+"'Ami Address'"+", "+"'"+account.getPassword()+"'"+", "+"'"+account.getDateOfBirth()+"'"+", "+"'"+account.getIsCustomer()+"'"+", 'Ami Sobi'";
         DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto", allInfoTogether);
 //        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
         System.out.println("Push Hoise");
 
+    }
+    public static void reTrieveAccount(Map<String, Object> f) throws IOException {
+        loggedIn.setFullName(f.get("name").toString());
+        loggedIn.setEmail(f.get("email").toString());
+        loggedIn.setAddress(f.get("address").toString());
+        loggedIn.setPassword(f.get("password").toString());
+        loggedIn.setPhoneNumber(f.get("phoneno").toString());
+        loggedIn.setDateOfBirth(f.get("dateofbirth").toString());
+        loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
+        loggedIn.setProFilePhoto(f.get("profilephoto").toString());
     }
 }
 

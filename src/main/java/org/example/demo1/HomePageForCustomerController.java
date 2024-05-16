@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class HomePageController {
+public class HomePageForCustomerController {
     public Label emneiLabel;
     @FXML
     private VBox homePageVbox;

@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
+import org.example.demo1.otherClasses.Account;
+import org.example.demo1.otherClasses.Client;
+import org.example.demo1.otherClasses.Customer;
+import org.example.demo1.otherClasses.HotelManager;
 
 import java.io.IOException;
 
@@ -30,7 +34,7 @@ public class SignInPageController {
     private Stage stage;
     @FXML
     private Scene scene;
-
+    private boolean isCustomer;
 
     public void handleGotoCreateAccount(ActionEvent actionEvent) throws IOException {
         try {
@@ -59,7 +63,10 @@ public class SignInPageController {
                     throw new Exception("Wrong Password");
                 }
                 else {
+                    isCustomer = row.get("iscustomer").equals("true");
                     f = true;
+                    System.out.println("hehe");
+                    Account.reTrieveAccount(row);
                     break;
                 }
             }
@@ -79,17 +86,20 @@ public class SignInPageController {
 
         try {
             auth();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
-            Parent root = loader.load();
-
-            HomePageController homePageController = loader.getController();
-            homePageController.setLabelData(enterEmailToSignIn.getText());
-            System.out.println(enterEmailToSignIn.getText());
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
+            Client client = (Account.loggedIn.getIsCustomer())? (new Customer()):(new HotelManager());
+            System.out.println(33);
+            client.setPage(actionEvent, getClass());
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePageForHotelManger.fxml"));
+//            Parent root = loader.load();
+//
+//            HomePageController homePageController = loader.getController();
+//            homePageController.setLabelData(enterEmailToSignIn.getText());
+//            System.out.println(enterEmailToSignIn.getText());
+//            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+//            scene = new Scene(root);
+//            stage.setScene(scene);
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
     }
 

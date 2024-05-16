@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForHotelManagerController">
+   <top>
+      <HBox prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
+         <children>
+            <AnchorPane prefHeight="53.0" prefWidth="96.0" styleClass="transparent" stylesheets="@styles.css">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <children>
+                  <ImageView fx:id="amiLogo" fitHeight="61.0" fitWidth="100.0" layoutX="7.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/28267842_7.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="53.0" prefWidth="366.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="33.0" prefWidth="376.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="4.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="115.0" styleClass="transparent" stylesheets="@styles.css">
+               <children>
+                  <ImageView fx:id="settingsButton" fitHeight="30.0" fitWidth="30.0" layoutX="31.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/pngegg.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="profileChobiEbongButton" fitHeight="39.0" fitWidth="39.0" layoutX="70.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/4402438.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane prefHeight="365.0" prefWidth="600.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="homePageVbox" prefHeight="342.0" prefWidth="584.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="584.0">
+                     <children>
+                        <Button fx:id="tipDeoBtn" mnemonicParsing="false" onAction="#handleTipDeo" text="Tip Deo" textAlignment="CENTER" />
+                        <Label fx:id="emneiLabel" />
+                     </children></HBox>
+               </children>
+            </VBox>
+         </content>
+         <!-- Anchor the center section to all sides -->
+         <AnchorPane.topAnchor>0.0</AnchorPane.topAnchor>
+         <AnchorPane.bottomAnchor>0.0</AnchorPane.bottomAnchor>
+         <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+         <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
+      </ScrollPane>
+   </center>
+</BorderPane>
