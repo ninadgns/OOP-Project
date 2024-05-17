@@ -1,15 +1,11 @@
 package org.example.demo1;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
-
-import java.util.Vector;
 
 public class HelloController {
     final double FONT_SIZE = 7.115384615;

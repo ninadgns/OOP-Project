@@ -1,18 +1,21 @@
 package org.example.Manage;
 
+import java.util.ArrayList;
+
 public abstract class Room {
     private String bedSize, description;
-    private int allowedPersons,cost;
-   // private double sqFt;
+    private int allowedPersons, cost;
+
+    // private double sqFt;
 
     public abstract int getCost();
 
-    public abstract String getDescription();
+    // public abstract String getDescription();
+    public abstract ArrayList<String> getAmenities();
 
     public void setCost(int cost) {
         this.cost = cost;
     }
-
 
     public void setAllowedPerson(int allowedPerson) {
         this.allowedPersons = allowedPerson;
@@ -29,14 +32,6 @@ public abstract class Room {
     public void setBedSize(String bedSize) {
         this.bedSize = bedSize;
     }
-
-  //  public double getSQFT() {
-   //     return this.sqFt;
-  //  }
-
-   // public void setSQFT(double sqft) {
-       // this.sqFt = sqft;
-  //  }
 
 }
 
