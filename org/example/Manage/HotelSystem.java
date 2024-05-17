@@ -9,14 +9,14 @@ public class HotelSystem {
         Area area = management.getAreabyName("Saint Martin");
         Hotel hotel = new Villa("6/D, ABC, Sakail");
 
-        Room room1 = new SingleRoom(10.2 * 9.1);
+        Room room1 = new SingleRoom();
         room1 = new Balcony(room1);
 
-        Room room2 = new DoubleRoom(12.5 * 12);
+        Room room2 = new DoubleRoom();
         room2 = new AirConditioner(room2);
         room2 = new AttachedBath(room2);
 
-        Room room3 = new LargeRoom(15 * 12);
+        Room room3 = new LargeRoom();
         room3 = new AttachedBath(room3);
         room3 = new Balcony(room3);
         room3 = new AirConditioner(room3);
@@ -61,7 +61,7 @@ public class HotelSystem {
         // int id = scanner.nextInt();
         Hotel hotel = new Villa("6/D, ABC, Sakail");
 
-        Room room1 = new SingleRoom(10.2 * 9.1);
+        Room room1 = new SingleRoom();
         room1 = new Balcony(room1);
 
 //        Room room2 = new DoubleRoom(12.5 * 12);
