@@ -3,7 +3,7 @@ package org.example.Manage;
 public abstract class Room {
     private String bedSize, description;
     private int allowedPersons,cost;
-    private double sqFt;
+   // private double sqFt;
 
     public abstract int getCost();
 
@@ -30,13 +30,13 @@ public abstract class Room {
         this.bedSize = bedSize;
     }
 
-    public double getSQFT() {
-        return this.sqFt;
-    }
+  //  public double getSQFT() {
+   //     return this.sqFt;
+  //  }
 
-    public void setSQFT(double sqft) {
-        this.sqFt = sqft;
-    }
+   // public void setSQFT(double sqft) {
+       // this.sqFt = sqft;
+  //  }
 
 }
 

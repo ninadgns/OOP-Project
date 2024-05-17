@@ -1,13 +1,13 @@
 package org.example.Manage;
 
-public class Kitchen extends IndoorDecorator {
+public class Dining extends IndoorDecorator {
 
-    public Kitchen(CommonSpace decoIndoorSpace) {
+    public Dining(CommonSpace decoIndoorSpace) {
         super(decoIndoorSpace);
-     }
+    }
     public String getDescription() {
         StringBuilder str = new StringBuilder();
-        str.append(super.getDescription()).append(" Kitchen,");
+        str.append(super.getDescription()).append(" Dining Space,");
 
         return str.toString();
     }

@@ -8,38 +8,61 @@ public class CheckInandOut {
     private boolean payment = false;
     private String[] dateOfCheckIn;
     private String[] dateOfCheckOut;
-    protected int checkinDay, checkoutDay,checkinMon, checkoutMon,checkinYear,checkoutYear;
+    protected int checkinYear,checkoutYear,checkinDate,checkoutDate;
     //private final String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
          //   "Aug", "Sep", "Oct", "Nov", "Dec" };
     private final int[] days = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     CheckInandOut(String checkin, String checkout) {
         if (checkin.isEmpty() || checkout.isEmpty()
-                || !checkin.matches("\\d{2} \\d{2} \\d{4}")
-                || !checkout.matches("\\d{2} \\d{2} \\d{4}")) {
+                || !checkin.matches("\\d{4}\\d{2}\\d{2}")
+                || !checkout.matches("\\d{4}\\d{2}\\d{2}")) {
             this.checkin = null;
             this.checkout = null;
         }
+        checkinDate = Integer.parseInt(checkin);
+        checkoutDate = Integer.parseInt(checkout);
+        int diff=checkoutDate-checkinDate;
+        // int monthDiff=(diff%10000)/100;
+//        try{
+//        if(diff<=0){
+//            throws Exception e;
+//        }
+//        }
+//        catch(Exception e){
+//            e.printStackTrace();
+//        }
         this.checkin = checkin;
         this.checkout = checkout;
-        dateOfCheckIn = this.checkin.split(" ");
-        dateOfCheckOut = this.checkout.split(" ");
     }
 
-    public void setTotalDays() {
-        checkinDay = Integer.parseInt(dateOfCheckIn[0]);
-        checkoutDay = Integer.parseInt(dateOfCheckOut[0]);
-        checkinMon = Integer.parseInt(dateOfCheckIn[1]);
-        checkoutMon = Integer.parseInt(dateOfCheckOut[1]);
-        checkinYear = Integer.parseInt(dateOfCheckIn[2]);
-        checkoutYear = Integer.parseInt(dateOfCheckOut[2]);
-
-        if (checkinMon == checkoutMon) {
-            this.totalDays = checkoutDay - checkinDay;
-        } else if(checkinYear == checkoutYear) {
-            this.totalDays = days[checkinMon-1] - checkinDay + checkoutDay;
-            for (int i = (checkinMon + 1) % 12; i < checkoutMon; i++) {
-                this.totalDays += days[i % 12];
+    public void setTotalDays(){
+        checkinDate = Integer.parseInt(checkin);
+        checkoutDate = Integer.parseInt(checkout);
+        int diff=checkoutDate-checkinDate;
+        if (diff<=50) {
+            this.totalDays = checkoutDate - checkinDate;
+        } else {
+          int  checkinMon=(checkinDate%10000)/100;
+          int  checkoutMon=(checkoutDate%10000)/100;
+          int  checkinDay=(checkinDate%100);
+          int checkoutDay=(checkoutDate%100);
+            if((checkinDate/10000) == (checkoutDate/10000)) {
+                this.totalDays = days[checkinMon-1] - checkinDay + checkoutDay;
+                for (int i = (checkinMon + 1) % 12; i < checkoutMon; i++) {
+                    this.totalDays += days[i % 12];
+                }
+            }
+            else{
+                int yearDiff=diff/10000;
+                this.totalDays=yearDiff*365;
+                for (int i = 0; i < checkoutMon-1; i++) {
+                    this.totalDays += days[i % 12];
+                }
+                for (int i = checkinMon; i < 12; i++) {
+                    this.totalDays += days[i % 12];
+                }
+                this.totalDays += days[checkinMon-1] - checkinDay + checkoutDay;
             }
         }
     }

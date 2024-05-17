@@ -10,6 +10,8 @@ public abstract class Hotel {
     private String type;
     private ArrayList<Room> rooms = new ArrayList<>();
     private CommonSpace commonSpace;
+    private double sqft;
+
     private int costPerNight, costForRooms, costForOtherFacilities;
 
     public void addBookings(Client client, CheckInandOut checkInandOut) {
@@ -111,39 +113,40 @@ public abstract class Hotel {
     public boolean vacantHotels(String checkin, String checkout) {
 
         if (checkin.isEmpty() || checkout.isEmpty()
-                || !checkin.matches("\\d{2} \\d{2} \\d{4}")
-                || !checkout.matches("\\d{2} \\d{2} \\d{4}")) {
+                || !checkin.matches("\\d{4}\\d{2}\\d{2}")
+                || !checkout.matches("\\d{4}\\d{2}\\d{2}")) {
             return true;
         }
-        String[] CheckIn = checkin.split(" ");
-        String[] CheckOut = checkin.split(" ");
-
-        int chInDay = Integer.parseInt(CheckIn[0]);
-        int chOutDay = Integer.parseInt(CheckOut[0]);
-        int chInMon = Integer.parseInt(CheckIn[1]);
-        int chOutMon = Integer.parseInt(CheckOut[1]);
-        int chInYear = Integer.parseInt(CheckIn[2]);
-        int chOutYear = Integer.parseInt(CheckOut[2]);
+//        String[] CheckIn = checkin.split(" ");
+//        String[] CheckOut = checkin.split(" ");
+//
+//        int chInDay = Integer.parseInt(CheckIn[0]);
+//        int chOutDay = Integer.parseInt(CheckOut[0]);
+//        int chInMon = Integer.parseInt(CheckIn[1]);
+//        int chOutMon = Integer.parseInt(CheckOut[1]);
+//        int chInYear = Integer.parseInt(CheckIn[2]);
+//        int chOutYear = Integer.parseInt(CheckOut[2]);
 
 
 //        final String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
 //                "Aug", "Sep", "Oct", "Nov", "Dec" };
+        int givenCheckinDate = Integer.parseInt(checkin);
+        int givenCheckoutDate = Integer.parseInt(checkout);
 
         boolean vacant = true;
 
         for (Map.Entry<Client, CheckInandOut> entry : this.getBookings().entrySet()) {
             CheckInandOut booked = entry.getValue();
-            if(booked.checkinYear == chInYear || booked.checkoutYear == chOutYear){
-               if ((booked.checkinMon == chInMon && booked.checkinDay <= chInDay) ||
-                    (booked.checkoutMon == chInMon && booked.checkoutDay > chInDay)) {
+            if(booked.checkinDate < givenCheckoutDate && booked.checkinDate > givenCheckinDate){
+//               if ((booked.checkinMon == chInMon && booked.checkinDay <= chInDay) ||
+//                    (booked.checkoutMon == chInMon && booked.checkoutDay > chInDay)) {
                  vacant = false;
                  break;
-              }
-               if ((booked.checkinMon == chOutMon && booked.checkinDay < chOutDay) ||
-                    (booked.checkoutMon == chOutMon && booked.checkoutDay >= chOutDay)) {
-                 vacant = false;
+            }
+            if(booked.checkoutDate < givenCheckoutDate && booked.checkoutDate > givenCheckinDate){
+               vacant = false;
                  break;
-              }
+
             }
         }
         return vacant;
