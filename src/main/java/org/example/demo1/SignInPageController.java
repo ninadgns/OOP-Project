@@ -11,6 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import org.example.chat.Chat;
+import org.example.chat.Message;
 import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 import org.example.demo1.otherClasses.Client;
@@ -89,6 +92,12 @@ public class SignInPageController {
             Client client = (Account.loggedIn.getIsCustomer())? (new Customer()):(new HotelManager());
             System.out.println(33);
             client.setPage(actionEvent, getClass());
+            Chat chat = new Chat(8);
+            var chatErMessage = chat.getNewMessages();
+            for (Message message :chatErMessage  ) {
+                System.out.println(message.content);
+                
+            }
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePageForHotelManger.fxml"));
 //            Parent root = loader.load();
 //

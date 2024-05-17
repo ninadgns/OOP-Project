@@ -15,7 +15,6 @@ public class Account {
         this.lname = lname;
     }
 
-
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
@@ -104,15 +103,24 @@ public class Account {
     private String email;
     private String address;
     private String password;
+    public int id;
     public static Account loggedIn = new Account();
+
     public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
-        String allInfoTogether =  "'"+account.getFullName()+"'"+", "+"'"+account.getPhoneNumber()+"'"+", "+"'"+account.getEmail()+"'"+", "+"'Ami Address'"+", "+"'"+account.getPassword()+"'"+", "+"'"+account.getDateOfBirth()+"'"+", "+"'"+account.getIsCustomer()+"'"+", 'Ami Sobi'";
-        DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto", allInfoTogether);
-//        DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+        String allInfoTogether = "'" + account.getFullName() + "'" + ", " + "'" + account.getPhoneNumber() + "'" + ", "
+                + "'" + account.getEmail() + "'" + ", " + "'Ami Address'" + ", " + "'" + account.getPassword() + "'"
+                + ", " + "'" + account.getDateOfBirth() + "'" + ", " + "'" + account.getIsCustomer() + "'"
+                + ", 'Ami Sobi'";
+        DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto",
+                allInfoTogether);
+        // DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
         System.out.println("Push Hoise");
 
     }
+
     public static void reTrieveAccount(Map<String, Object> f) throws IOException {
+
+        loggedIn.id = Integer.parseInt(f.get("id").toString());
         loggedIn.setFullName(f.get("name").toString());
         loggedIn.setEmail(f.get("email").toString());
         loggedIn.setAddress(f.get("address").toString());
@@ -123,4 +131,3 @@ public class Account {
         loggedIn.setProFilePhoto(f.get("profilephoto").toString());
     }
 }
-
