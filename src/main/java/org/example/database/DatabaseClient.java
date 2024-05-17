@@ -106,6 +106,7 @@ public static Image stringToImage(String encodedString) throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
             outputStream.write(decodedBytes);
         }
+        
         // Return the File object representing the decoded image file
         return new Image(tempFile.toURI().toString());
     }
