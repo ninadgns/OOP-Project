@@ -11,6 +11,7 @@ import org.example.demo1.SignInPageController;
 import java.io.IOException;
 
 public class Customer implements Client {
+
     @Override
     public void setPage(ActionEvent actionEvent, Class<? extends SignInPageController> aClass) throws IOException {
         FXMLLoader loader = new FXMLLoader(aClass.getResource("HomePageForCustomer.fxml"));
