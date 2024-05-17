@@ -19,7 +19,7 @@ abstract class OutdoorDecorator implements CommonSpace {
     }
 
     public ArrayList<String> getAmenities() {
-        return this.getAmenities();
+        return this.decoOutdoorSpace.getAmenities();
     }
 
     // public String getDescription() {

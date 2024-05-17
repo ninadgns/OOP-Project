@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.example.Manage.Hotel;
+import org.example.demo1.otherClasses.Account;
+
 import java.sql.ResultSetMetaData;
 import java.io.File;
 import java.util.Base64;
@@ -23,8 +27,8 @@ import javafx.scene.image.Image;
  * DatabaseClient
  */
 public class DatabaseClient {
-    static Connection conn;
-    static Statement stmt;
+   public static Connection conn;
+    public static Statement stmt;
 
     public static void initiate() {
         try {
@@ -32,6 +36,10 @@ public class DatabaseClient {
                     "jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:6543/postgres?user=postgres.iaffaaaqyxfouhtxibey&password=amarsonarbangla");
             if (conn != null) {
                 System.err.println("Database connnected successfully");
+                 var rs  = DatabaseClient.runSQL("select max(id) from hotels");
+                 rs.next();
+                 Hotel.lastHotelID = rs.getInt("max");
+
             }
 
         } catch (Exception e) {
@@ -49,7 +57,7 @@ public class DatabaseClient {
             // String content = rs.getString("content");
             // System.out.println("ID: " + id + ", Content: " + content);
             // }
-            System.out.println("db query successfull");
+            System.out.println("db query successful");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -73,6 +81,22 @@ public class DatabaseClient {
         return Base64.getEncoder().encodeToString(fileBytes);
     }
 
+    public static void saveFile(String base64String) {
+        
+        // Loading the Base64 encoded image
+        byte[] imageBytes = Base64.getDecoder().decode(base64String);
+
+        try {
+            FileOutputStream fos = new FileOutputStream("output.jpg");
+            fos.write(imageBytes);
+            fos.close();
+            System.out.println("chobi saved");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 public static Image stringToImage(String encodedString) throws IOException {
         // Decode the Base64 string to byte array
         byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
@@ -86,9 +110,8 @@ public static Image stringToImage(String encodedString) throws IOException {
         return new Image(tempFile.toURI().toString());
     }
 
-
     public static List<Map<String, Object>> resultSetToArray(ResultSet rs) throws SQLException {
-        
+
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
 

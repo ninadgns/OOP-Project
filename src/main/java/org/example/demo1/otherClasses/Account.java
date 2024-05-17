@@ -138,18 +138,16 @@ public class Account {
 
     public static void dbTeHotelPathai() {
         for (Room room : rooms) {
-            var facilities = new ArrayList<String>(room.getAmenities().subList(3, room.getAmenities().size()))
-                    .toString();
-            List<String> list = Arrays.asList(
-                    String.valueOf(Hotel.lastHotelID),
+            var facilities = new ArrayList<String>(room.getAmenities().subList(3, room.getAmenities().size()));
+            String result = "'" + String.join("', '", facilities) + "'";
 
-                    room.getAmenities().get(0),
-                    // room.getAmenities().get(1),
-                    // room.getAmenities().get(2),
-                    facilities.toString());
-            String allInfoTogether = "'" + String.join("', '", list) + "'";
-            System.out.println(allInfoTogether);
-            DatabaseClient.insert(Tables.ROOMS, "hotelid, type, amenities", allInfoTogether);
+            try {
+                DatabaseClient.conn.createStatement()
+                        .executeUpdate("insert into rooms (hotelid, type, amenities) values (" + Hotel.lastHotelID
+                                + ", '" + room.getAmenities().get(0) + "', ARRAY[" + result + "])");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         List<String> list = Arrays.asList(
                 String.valueOf(Hotel.lastHotelID),
@@ -160,6 +158,8 @@ public class Account {
                 String.valueOf(hotel.getFloorSpace()),
                 String.valueOf(hotel.getCostPerNight()),
                 hotel.getAdditionalDescription(),
+                '"' + String.join("\",\"", hotel.getIndoorAmenities()) + '"',
+                '"' + String.join("\",\"", hotel.getOutdoorAmenities()) + '"',
                 "sobinai",
                 "sobinai",
                 "sobinai",
@@ -177,7 +177,7 @@ public class Account {
         // + "sobinai" + "', '" + "sobinai" + "', '" + "sobinai'";
 
         DatabaseClient.insert("hotels",
-                "id, type, name, address, district, floorspace, costpernight, additionaldescription, image1, image2, image3, image4",
+                "id, type, name, address, district, floorspace, costpernight, additionaldescription, indoorspace, outdoorspace, image1, image2, image3, image4",
                 allInfoTogether);
         // DatabaseClient.insert("hotels",
         // "id, type, name, address, district, sqft, pernightcost, indoorspace,

@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.ArrayList;
 
 public abstract class Hotel {
-    public static int lastHotelID = 4;
+    public static int lastHotelID;
     private int hotelID;
     private String address;
     private String district;
@@ -42,6 +42,7 @@ public abstract class Hotel {
     public String getDistrict() {
         return district;
     }
+
     public ArrayList<String> getOutdoorAmenities() {
         return this.house.outdoorSpace.getAmenities();
     }
@@ -127,7 +128,9 @@ public abstract class Hotel {
         calculateCostForOtherFacilities();
         return this.costForOtherFacilities;
     }
+
     public void writeRoomDetails() {
+
         StringBuilder str = new StringBuilder();
         // String str = "";
         for (int k = 0; k < rooms.size(); k++) {
