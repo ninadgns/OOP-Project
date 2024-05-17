@@ -1,16 +1,22 @@
 package org.example.Manage;
 
+import java.util.ArrayList;
+
 public class Lounge extends IndoorDecorator {
 
     public Lounge(CommonSpace decoIndoorSpace) {
         super(decoIndoorSpace);
      }
      
-    public String getDescription() {
-        StringBuilder str = new StringBuilder();
-        str.append(super.getDescription()).append(" Lounge,");
+    public ArrayList<String> getAmenities() {
+        var a = new ArrayList<>(super.getAmenities());
+        a.add("Lounge");
+        return a;
 
-        return str.toString();
+        // StringBuilder str = new StringBuilder();
+        // str.append(super.getDescription()).append(" Kitchen,");
+        // return str.toString();
+
     }
 
     public int getCost() {

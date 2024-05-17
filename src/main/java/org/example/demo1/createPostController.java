@@ -5,7 +5,6 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -13,9 +12,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.Manage.*;
 import org.example.demo1.otherClasses.Account;
-import org.example.Manage.CommonSpace.*;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -89,7 +85,7 @@ public class createPostController implements Initializable {
     private Button goBackBtn;
     @FXML
     private ChoiceBox<String> choiceBox;
-    String[] bedroomNo = {"1", "2", "3"};
+    String[] bedroomNo = { "1", "2", "3" };
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -103,8 +99,9 @@ public class createPostController implements Initializable {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("bedroomPopup.fxml"));
                 Scene scene = new Scene(fxmlLoader.load());
-                scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
-//                Parent root = (Parent)
+                scene.getStylesheets()
+                        .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+                // Parent root = (Parent)
                 Stage stage = new Stage();
                 stage.setTitle("Hello!");
                 stage.setX(500 + i * 100);
@@ -144,14 +141,18 @@ public class createPostController implements Initializable {
 
     public void handlePostBtn(ActionEvent actionEvent) {
         if (rCabin.isSelected()) {
-            Account.hotel = new Cabin(address.getText(), district.getText(), hotelName.getText(), Double.parseDouble(totalSqft.getText()));
+            Account.hotel = new Cabin(address.getText(), district.getText(), hotelName.getText(),
+                    Double.parseDouble(totalSqft.getText()));
         } else if (rCottage.isSelected()) {
-            Account.hotel = new Cottage(address.getText(), district.getText(), hotelName.getText(), Double.parseDouble(totalSqft.getText()));
+            Account.hotel = new Cottage(address.getText(), district.getText(), hotelName.getText(),
+                    Double.parseDouble(totalSqft.getText()));
 
         } else if (rAFrames.isSelected()) {
-            Account.hotel = new AFrames(address.getText(), district.getText(), hotelName.getText(), Double.parseDouble(totalSqft.getText()));
+            Account.hotel = new AFrames(address.getText(), district.getText(), hotelName.getText(),
+                    Double.parseDouble(totalSqft.getText()));
         } else if (rVilla.isSelected()) {
-            Account.hotel = new Villa(address.getText(), district.getText(), hotelName.getText(), Double.parseDouble(totalSqft.getText()));
+            Account.hotel = new Villa(address.getText(), district.getText(), hotelName.getText(),
+                    Double.parseDouble(totalSqft.getText()));
         }
         CommonSpace indoor = new IndoorSpace();
         CommonSpace outdoor = new OutdoorSpace();
@@ -167,13 +168,13 @@ public class createPostController implements Initializable {
         if (rSwim.isSelected()) {
             outdoor = new SwimmingPool(outdoor);
         }
-        if(rKitchen.isSelected()){
+        if (rKitchen.isSelected()) {
             indoor = new Kitchen(indoor);
         }
-        if(rLounge.isSelected()){
+        if (rLounge.isSelected()) {
             indoor = new Lounge(indoor);
         }
-        if(rDining.isSelected()){
+        if (rDining.isSelected()) {
             indoor = new Dining(indoor);
         }
 
@@ -181,6 +182,8 @@ public class createPostController implements Initializable {
 
         Account.hotel.setAdditionalDescription(longDescription.getText());
         Account.hotel.setRoomList(Account.rooms);
+        Hotel.lastHotelID++;
+        Account.hotel.setHotelID(Hotel.lastHotelID);
         Account.dbTeHotelPathai();
     }
 }

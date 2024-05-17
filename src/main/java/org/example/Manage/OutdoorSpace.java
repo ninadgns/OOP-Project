@@ -1,8 +1,14 @@
 package org.example.Manage;
 
+import java.util.ArrayList;
+
 public class OutdoorSpace implements CommonSpace {
     public String getDescription() {
-        return "Outdoor Spaces:";
+        return "";
+    }
+
+    public ArrayList<String> getAmenities() {
+        return new ArrayList<String>();
     }
 
     public int getCost() {

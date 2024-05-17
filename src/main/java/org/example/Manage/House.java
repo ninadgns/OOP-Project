@@ -1,5 +1,7 @@
 package org.example.Manage;
 
+import java.util.ArrayList;
+
 public class House implements CommonSpace {
 
     protected CommonSpace indoorSpace;
@@ -10,12 +12,20 @@ public class House implements CommonSpace {
         this.outdoorSpace = outdoorSpace;
     }
 
+    // @Override
+    // public String getDescription() {
+    // StringBuilder str = new StringBuilder();
+    // str.append(indoorSpace.getDescription()).append("\n");
+    // str.append(outdoorSpace.getDescription()).append("\n");
+    // return str.toString();
+    // }
+
     @Override
-    public String getDescription() {
-        StringBuilder str = new StringBuilder();
-        str.append(indoorSpace.getDescription()).append("\n");
-        str.append(outdoorSpace.getDescription()).append("\n");
-        return str.toString();
+    public ArrayList<String> getAmenities() {
+        var a = new ArrayList<String>();
+        a.addAll(indoorSpace.getAmenities());
+        a.addAll(outdoorSpace.getAmenities());
+        return a;
     }
 
     @Override

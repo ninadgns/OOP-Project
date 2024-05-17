@@ -1,15 +1,21 @@
 package org.example.Manage;
 
+import java.util.ArrayList;
+
 public class Yard extends OutdoorDecorator {
     public Yard(CommonSpace decoOutdoorSpace) {
         super(decoOutdoorSpace);
     }
 
-    public String getDescription() {
-        StringBuilder str = new StringBuilder();
-        str.append(super.getDescription()).append(" Lawn,");
+    public ArrayList<String> getAmenities() {
+        var a = new ArrayList<>(super.getAmenities());
+        a.add("Lawn");
+        return a;
 
-        return str.toString();
+        // StringBuilder str = new StringBuilder();
+        // str.append(super.getDescription()).append(" Lawn,");
+        // return str.toString();
+
     }
 
     public int getCost() {

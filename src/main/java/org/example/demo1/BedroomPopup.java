@@ -40,6 +40,7 @@ public class BedroomPopup {
         }else {
             room = new LargeRoom();
         }
+        
         if(rac.isSelected()){
             room = new AirConditioner(room);
         }
