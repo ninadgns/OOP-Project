@@ -2,7 +2,7 @@ package org.example.Manage;
 
 public class SingleRoom extends Room {
 
-    SingleRoom() {
+    public SingleRoom() {
         super.setBedSize("Single Bed");
         super.setAllowedPerson(1);
        // super.setSQFT(sqft);

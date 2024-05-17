@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="566.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.createPostController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.createPostController">
    <right>
       <ScrollPane hbarPolicy="NEVER" prefHeight="503.0" prefWidth="373.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>
@@ -32,7 +32,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
-               <TextField fx:id="shortLocation" layoutX="29.0" layoutY="167.0" prefHeight="27.0" prefWidth="320.0" promptText="Address" styleClass="login-email" stylesheets="@styles.css">
+               <TextField fx:id="address" layoutX="29.0" layoutY="167.0" prefHeight="27.0" prefWidth="320.0" promptText="Address" styleClass="login-email" stylesheets="@styles.css">
                   <font>
                      <Font size="12.0" />
                   </font>
@@ -42,7 +42,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
-               <TextField fx:id="pricePerNight" layoutX="29.0" layoutY="208.0" prefHeight="27.0" prefWidth="320.0" promptText="Total Sqft" styleClass="login-email" stylesheets="@styles.css">
+               <TextField fx:id="totalSqft" layoutX="29.0" layoutY="208.0" prefHeight="27.0" prefWidth="320.0" promptText="Total Sqft" styleClass="login-email" stylesheets="@styles.css">
                   <font>
                      <Font size="12.0" />
                   </font>
@@ -51,9 +51,9 @@
                   <children>
                      <HBox prefHeight="20.0" prefWidth="272.0" spacing="7.0">
                         <children>
-                           <RadioButton fx:id="rWifi" mnemonicParsing="false" text="Yard" />
-                           <RadioButton fx:id="rGolf" mnemonicParsing="false" text="Patio" />
-                           <RadioButton fx:id="rBar" mnemonicParsing="false" text="Garage" />
+                           <RadioButton fx:id="rYard" mnemonicParsing="false" text="Yard" />
+                           <RadioButton fx:id="rPatio" mnemonicParsing="false" text="Patio" />
+                           <RadioButton fx:id="rGarage" mnemonicParsing="false" text="Garage" />
                         </children>
                      </HBox>
                      <HBox prefHeight="14.0" prefWidth="272.0" spacing="7.0">
@@ -86,7 +86,7 @@
                      <HBox fx:id="photoHbox1" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
                            <Button fx:id="choosePhotoBtn2" mnemonicParsing="false" onAction="#handleChoosePhoto2" text="Thumbnail Photo " />
-                           <Label fx:id="choosePhotoLabel11" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                           <Label fx:id="choosePhotoLabel2" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
                               </padding>
@@ -99,7 +99,7 @@
                      <HBox fx:id="photoHbox2" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
                            <Button fx:id="choosePhotoBtn3" mnemonicParsing="false" onAction="#handleChoosePhoto3" text="Thumbnail Photo " />
-                           <Label fx:id="choosePhotoLabel12" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                           <Label fx:id="choosePhotoLabel3" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
                               </padding>
@@ -112,7 +112,7 @@
                      <HBox fx:id="photoHbox3" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
                            <Button fx:id="choosePhotoBtn4" mnemonicParsing="false" onAction="#handleChoosePhoto4" text="Thumbnail Photo " />
-                           <Label fx:id="choosePhotoLabel13" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                           <Label fx:id="choosePhotoLabel4" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
                               </padding>
@@ -125,7 +125,7 @@
                      <HBox fx:id="photoHbox4" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
                            <Button fx:id="choosePhotoBtn5" mnemonicParsing="false" onAction="#handleChoosePhoto5" text="Thumbnail Photo " />
-                           <Label fx:id="choosePhotoLabel14" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                           <Label fx:id="choosePhotoLabel5" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
                               </padding>
@@ -138,7 +138,7 @@
                      <HBox fx:id="photoHbox5" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
                         <children>
                            <Button fx:id="choosePhotoBtn6" mnemonicParsing="false" onAction="#handleChoosePhoto6" text="Thumbnail Photo " />
-                           <Label fx:id="choosePhotoLabel15" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                           <Label fx:id="choosePhotoLabel6" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
                               <padding>
                                  <Insets left="5.0" />
                               </padding>
@@ -153,19 +153,19 @@
                      <Insets top="15.0" />
                   </padding>
                </VBox>
-               <Button fx:id="postBtn" layoutX="124.0" layoutY="740.0" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Post" />
+               <Button fx:id="postBtn" layoutX="124.0" layoutY="740.0" mnemonicParsing="false" onAction="#handlePostBtn" styleClass="login-signin" stylesheets="@styles.css" text="Post" />
                <VBox layoutX="31.0" layoutY="297.0" prefHeight="26.0" prefWidth="315.0" spacing="3.0">
                   <children>
                      <HBox prefHeight="19.0" prefWidth="324.0" spacing="7.0">
                         <children>
-                           <RadioButton fx:id="rWifi1" mnemonicParsing="false" text="Cabin">
+                           <RadioButton fx:id="rCabin" mnemonicParsing="false" selected="true" text="Cabin">
                               <toggleGroup>
                                  <ToggleGroup fx:id="hotelType" />
                               </toggleGroup>
                            </RadioButton>
-                           <RadioButton fx:id="rBar1" mnemonicParsing="false" text="Cottage" toggleGroup="$hotelType" />
-                           <RadioButton fx:id="rGym1" mnemonicParsing="false" text="AFrames" toggleGroup="$hotelType" />
-                           <RadioButton fx:id="rGym11" mnemonicParsing="false" prefHeight="18.0" prefWidth="49.0" text="Villa" toggleGroup="$hotelType" />
+                           <RadioButton fx:id="rCottage" mnemonicParsing="false" text="Cottage" toggleGroup="$hotelType" />
+                           <RadioButton fx:id="rAFrames" mnemonicParsing="false" text="AFrames" toggleGroup="$hotelType" />
+                           <RadioButton fx:id="rVilla" mnemonicParsing="false" prefHeight="18.0" prefWidth="49.0" text="Villa" toggleGroup="$hotelType" />
                         </children>
                      </HBox>
                   </children>
@@ -184,9 +184,9 @@
                   <children>
                      <HBox prefHeight="20.0" prefWidth="272.0" spacing="7.0">
                         <children>
-                           <RadioButton fx:id="rWifi2" mnemonicParsing="false" text="Kitchen" />
-                           <RadioButton fx:id="rGolf1" mnemonicParsing="false" text="Lounge" />
-                           <RadioButton fx:id="rBar2" mnemonicParsing="false" text="Dining" />
+                           <RadioButton fx:id="rKitchen" mnemonicParsing="false" text="Kitchen" />
+                           <RadioButton fx:id="rLounge" mnemonicParsing="false" text="Lounge" />
+                           <RadioButton fx:id="rDining" mnemonicParsing="false" text="Dining" />
                         </children>
                      </HBox>
                   </children>
@@ -196,7 +196,7 @@
                      <Font name="System Bold" size="13.0" />
                   </font>
                </Label>
-               <TextField fx:id="shortLocation1" layoutX="29.0" layoutY="130.0" prefHeight="27.0" prefWidth="320.0" promptText="District" styleClass="login-email" stylesheets="@styles.css">
+               <TextField fx:id="district" layoutX="29.0" layoutY="130.0" prefHeight="27.0" prefWidth="320.0" promptText="District" styleClass="login-email" stylesheets="@styles.css">
                   <font>
                      <Font size="12.0" />
                   </font>

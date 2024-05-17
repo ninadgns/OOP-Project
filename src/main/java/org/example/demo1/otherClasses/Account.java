@@ -1,9 +1,12 @@
 package org.example.demo1.otherClasses;
 
 import javafx.event.ActionEvent;
+import org.example.Manage.Hotel;
+import org.example.Manage.Room;
 import org.example.database.DatabaseClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Account {
@@ -105,6 +108,9 @@ public class Account {
     private String address;
     private String password;
     public static Account loggedIn = new Account();
+    public static Hotel hotel;
+    public static ArrayList<Room> rooms = new ArrayList<>();
+
     public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
         String allInfoTogether =  "'"+account.getFullName()+"'"+", "+"'"+account.getPhoneNumber()+"'"+", "+"'"+account.getEmail()+"'"+", "+"'Ami Address'"+", "+"'"+account.getPassword()+"'"+", "+"'"+account.getDateOfBirth()+"'"+", "+"'"+account.getIsCustomer()+"'"+", "+"'"+account.getProFilePhoto()+"'";
         DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto", allInfoTogether);
@@ -122,5 +128,11 @@ public class Account {
         loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
         loggedIn.setProFilePhoto(f.get("profilephoto").toString());
     }
+    public  static void dbTeHotelPathai(){
+        String allInfoTogether = "'"+hotel.getType()+"', '"+hotel.getName()+"', '"+hotel.getAddress()+"', '"+hotel.getDistrict()+"', '"+hotel.getSqft()+"', '"+hotel.getCostPerNight()+"', '"+hotel.getIndoorDescription()+"', '"+hotel.getOutdoorDescription()+"', '"+hotel.getAdditionalDescription()+"', '"+hotel.getRoomDescription(0)+"', '"+hotel.getRoomDescription(1)+"', '"+hotel.getRoomDescription(2)+"', '"+"sobinai"+"', '"+"sobinai"+"', '"+"sobinai"+"', '"+"sobinai'";
+
+        DatabaseClient.insert("hotels", "type, name, address, district, sqft, pernightcost, indoorspace, outdoorspace, additionaldescription, room1, room2, room3, image1, image2, image3, image4 ", allInfoTogether);
+    }
+
 }
 

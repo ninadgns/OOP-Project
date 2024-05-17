@@ -2,8 +2,8 @@ package org.example.Manage;
 
 public class House implements CommonSpace {
 
-    private CommonSpace indoorSpace;
-    private CommonSpace outdoorSpace;
+    protected CommonSpace indoorSpace;
+    protected CommonSpace outdoorSpace;
 
     public House(CommonSpace indoorSpace, CommonSpace outdoorSpace) {
         this.indoorSpace = indoorSpace;

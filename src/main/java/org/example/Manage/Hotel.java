@@ -1,18 +1,72 @@
 package org.example.Manage;
 
+import org.example.demo1.otherClasses.Account;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public abstract class Hotel {
-    private String address, roomDetails, comSpaceDetails, specifications;
+    private String address;
+
+
+
+    private String district;
+    private String roomDetails;
+    private String comSpaceDetails;
+    private String specifications;
+
+    private String additionalDescription;
+
+    private String name;
     private HashMap<Client, CheckInandOut> bookings = new HashMap<>();
     private String type;
     private ArrayList<Room> rooms = new ArrayList<>();
-    private CommonSpace commonSpace;
-    private double sqft;
-
+//    private CommonSpace indoorSpace, outdoorSpace;
+    private House house;
     private int costPerNight, costForRooms, costForOtherFacilities;
+
+
+    private double sqft;
+    public String getRoomDescription(int i){
+        if(rooms.size()<=i) return "room nai";
+        var f =this.rooms.get(i);
+        return f.getDescription();
+    }
+    public String getDistrict() {
+        return district;
+    }
+    public String getOutdoorDescription(){
+        return this.house.outdoorSpace.getDescription();
+    }
+    public String getIndoorDescription(){
+        return this.house.indoorSpace.getDescription();
+    }
+    public String getAdditionalDescription() {
+        return additionalDescription;
+    }
+
+    public void setAdditionalDescription(String additionalDescription) {
+        this.additionalDescription = additionalDescription;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public double getSqft() {
+        return sqft;
+    }
+
+    public void setSqft(double sqft) {
+        this.sqft = sqft;
+    }
 
     public void addBookings(Client client, CheckInandOut checkInandOut) {
         bookings.put(client, checkInandOut);
@@ -34,10 +88,12 @@ public abstract class Hotel {
         this.type = type;
     }
 
-    public void setOtherFacility(CommonSpace commonSpace) {
-        this.commonSpace =commonSpace;
+    public void setOtherFacility(House house) {
+        this.house = house;
     }
-
+    public void setRoomList(ArrayList<Room> rooms){
+        this.rooms = rooms;
+    }
     public void calculateCostForRooms() {
         int cost = 0;
         for (int k = 0; k < rooms.size(); k++) {
@@ -51,7 +107,7 @@ public abstract class Hotel {
     }
 
     public void calculateCostForOtherFacilities() {
-        this.costForOtherFacilities = this.commonSpace.getCost();
+        this.costForOtherFacilities = this.house.getCost();
     }
 
     public int getCostForOtherFacilities() {
@@ -77,7 +133,7 @@ public abstract class Hotel {
     }
 
     public void writeComSpaceDetails() {
-        this.comSpaceDetails = this.commonSpace.getDescription() + " Other Services.\n";
+        this.comSpaceDetails = this.house.getDescription() + " Other Services.\n";
 
     }
     public String getComSpaceDetails() {

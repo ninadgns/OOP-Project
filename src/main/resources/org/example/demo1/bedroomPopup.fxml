@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="405.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.BedroomPopup">
+<AnchorPane fx:id="anchorPane" prefHeight="405.0" prefWidth="396.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.BedroomPopup">
    <children>
       <Label layoutX="32.0" layoutY="25.0" text="Room No: ">
          <font>
@@ -35,13 +35,13 @@
       <Button fx:id="saveBtn" layoutX="139.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleSave" styleClass="login-signin" stylesheets="@styles.css" text="Save" />
       <VBox layoutX="86.0" layoutY="111.0" prefHeight="68.0" prefWidth="166.0" spacing="5.0">
          <children>
-            <RadioButton fx:id="rac1" mnemonicParsing="false" stylesheets="@styles.css" text="Single">
+            <RadioButton fx:id="rsingleRoom" mnemonicParsing="false" selected="true" stylesheets="@styles.css" text="Single">
                <toggleGroup>
                   <ToggleGroup fx:id="x" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="rbalcony1" mnemonicParsing="false" text="Double" toggleGroup="$x" />
-            <RadioButton fx:id="rattached1" mnemonicParsing="false" text="Large" toggleGroup="$x" />
+            <RadioButton fx:id="rdoubleRoom" mnemonicParsing="false" text="Double" toggleGroup="$x" />
+            <RadioButton fx:id="rlarge" mnemonicParsing="false" text="Large" toggleGroup="$x" />
          </children>
       </VBox>
    </children>

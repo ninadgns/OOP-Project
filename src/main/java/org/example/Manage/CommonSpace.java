@@ -5,26 +5,6 @@ public interface CommonSpace {
     public abstract int getCost();
 }
 
-class IndoorSpace implements CommonSpace {
-    public String getDescription() {
-        return "Indoor Spaces:";
-    }
-
-    public int getCost() {
-        return 50;
-    }
-}
-
-class OutdoorSpace implements CommonSpace {
-    public String getDescription() {
-        return "Outdoor Spaces:";
-    }
-
-    public int getCost() {
-        return 50;
-    }
-}
-
 abstract class OutdoorDecorator implements CommonSpace {
     private CommonSpace decoOutdoorSpace;
 

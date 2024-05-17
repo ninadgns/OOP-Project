@@ -1,7 +1,7 @@
 package org.example.Manage;
 
 public class LargeRoom extends Room {
-    LargeRoom() {
+    public LargeRoom() {
         super.setBedSize("King Size Bed");
         super.setAllowedPerson(4);
        // super.setSQFT(sqft);

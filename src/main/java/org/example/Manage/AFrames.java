@@ -1,8 +1,11 @@
 package org.example.Manage;
 
-class AFrames extends Hotel {
-    AFrames(String address) {
+public class AFrames extends Hotel {
+    public AFrames(String address, String district, String name, double sqft) {
         setAddress(address);
         setType("AFrames");
+        setName(name);
+        setDistrict(district);
+        setSqft(sqft);
     }
 }
