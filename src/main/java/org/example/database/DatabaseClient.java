@@ -27,7 +27,7 @@ import javafx.scene.image.Image;
  * DatabaseClient
  */
 public class DatabaseClient {
-   public static Connection conn;
+    public static Connection conn;
     public static Statement stmt;
 
     public static void initiate() {
@@ -36,9 +36,9 @@ public class DatabaseClient {
                     "jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:6543/postgres?user=postgres.iaffaaaqyxfouhtxibey&password=amarsonarbangla");
             if (conn != null) {
                 System.err.println("Database connnected successfully");
-                 var rs  = DatabaseClient.runSQL("select max(id) from hotels");
-                 rs.next();
-                 Hotel.lastHotelID = rs.getInt("max");
+                var rs = DatabaseClient.runSQL("select max(id) from hotels");
+                rs.next();
+                Hotel.lastHotelID = rs.getInt("max");
 
             }
 
@@ -82,7 +82,7 @@ public class DatabaseClient {
     }
 
     public static void saveFile(String base64String) {
-        
+
         // Loading the Base64 encoded image
         byte[] imageBytes = Base64.getDecoder().decode(base64String);
 
@@ -96,8 +96,7 @@ public class DatabaseClient {
         }
     }
 
-
-public static Image stringToImage(String encodedString) throws IOException {
+    public static Image stringToImage(String encodedString) throws IOException {
         // Decode the Base64 string to byte array
         byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
 
@@ -106,7 +105,7 @@ public static Image stringToImage(String encodedString) throws IOException {
         try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
             outputStream.write(decodedBytes);
         }
-        
+
         // Return the File object representing the decoded image file
         return new Image(tempFile.toURI().toString());
     }
@@ -159,6 +158,7 @@ public static Image stringToImage(String encodedString) throws IOException {
         List<Map<String, Object>> rl = null;
         try {
             String sql = "SELECT * FROM " + tableName + " WHERE " + whereClause;
+            System.out.println(sql);
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rl = resultSetToArray(rs);
