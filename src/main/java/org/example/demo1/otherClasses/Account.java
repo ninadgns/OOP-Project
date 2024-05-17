@@ -138,18 +138,18 @@ public class Account {
 
     public static void dbTeHotelPathai() {
         for (Room room : rooms) {
-            var facilities = new ArrayList<String>(room.getAmenities().subList(3, room.getAmenities().size()))
-                    .toString();
-            List<String> list = Arrays.asList(
-                    String.valueOf(Hotel.lastHotelID),
+            var facilities = new ArrayList<String>(room.getAmenities().subList(3, room.getAmenities().size()));
+            String result = "'" + String.join("', '", facilities) + "'";
 
-                    room.getAmenities().get(0),
-                    // room.getAmenities().get(1),
-                    // room.getAmenities().get(2),
-                    facilities.toString());
-            String allInfoTogether = "'" + String.join("', '", list) + "'";
-            System.out.println(allInfoTogether);
-            DatabaseClient.insert(Tables.ROOMS, "hotelid, type, amenities", allInfoTogether);
+            System.out.println("insert into rooms (hotelid, type, amenities) values (" + Hotel.lastHotelID + ", '"
+                    + room.getAmenities().get(0) + "', ARRAY[" + result + "])");
+            try {
+                DatabaseClient.conn.createStatement()
+                        .executeUpdate("insert into rooms (hotelid, type, amenities) values (" + Hotel.lastHotelID
+                                + ", '" + room.getAmenities().get(0) + "', ARRAY[" + result + "])");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         List<String> list = Arrays.asList(
                 String.valueOf(Hotel.lastHotelID),
