@@ -100,7 +100,6 @@ public class Account {
     public String getPassword() {
         return password;
     }
-
     private String fullName;
     private boolean isCustomer;
     private String dateOfBirth;
