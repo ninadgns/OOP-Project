@@ -56,14 +56,14 @@ public class HomePageForCustomerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        File file = null;
-        try {
-            file = DatabaseClient.stringToFile(Account.loggedIn.getProFilePhoto());
-            Image image = new Image(file.toURI().toString());
-            profileChobiEbongButton.setImage(image); // Set image to the existing ImageView instance
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        
+//        File file = null;
+//        try {
+//            file = DatabaseClient.stringToFile(Account.loggedIn.getProFilePhoto());
+//            Image image = new Image(file.toURI().toString());
+//            profileChobiEbongButton.setImage(image); // Set image to the existing ImageView instance
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
     }
 }
