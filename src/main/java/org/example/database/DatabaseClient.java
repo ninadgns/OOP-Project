@@ -1,5 +1,6 @@
 package org.example.database;
 
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -20,6 +21,7 @@ import org.example.demo1.otherClasses.Account;
 import java.sql.ResultSetMetaData;
 import java.io.File;
 import java.util.Base64;
+import javafx.scene.image.Image;
 
 /**
  * DatabaseClient
@@ -95,7 +97,7 @@ public class DatabaseClient {
     }
 
 
-    public static File stringToFile(String encodedString) throws IOException {
+public static Image stringToImage(String encodedString) throws IOException {
         // Decode the Base64 string to byte array
         byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
 
@@ -104,9 +106,8 @@ public class DatabaseClient {
         try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
             outputStream.write(decodedBytes);
         }
-
         // Return the File object representing the decoded image file
-        return tempFile;
+        return new Image(tempFile.toURI().toString());
     }
 
     public static List<Map<String, Object>> resultSetToArray(ResultSet rs) throws SQLException {

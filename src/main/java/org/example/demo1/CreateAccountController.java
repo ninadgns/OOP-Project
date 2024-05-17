@@ -69,7 +69,7 @@ public class CreateAccountController {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(stage);
         if(selectedFile != null) {
-            account.setProFilePhoto(DatabaseClient.fileToString(selectedFile).toString());
+            account.setProFilePhoto(DatabaseClient.fileToString(selectedFile));
             Image image = new Image(selectedFile.toURI().toString());
 
             // Calculate scaling factor
