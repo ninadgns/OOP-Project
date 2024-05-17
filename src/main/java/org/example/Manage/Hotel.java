@@ -44,7 +44,7 @@ public abstract class Hotel {
     }
 
     public ArrayList<String> getOutdoorAmenities() {
-        return this.house.indoorSpace.getAmenities();
+        return this.house.outdoorSpace.getAmenities();
     }
 
     public ArrayList<String> getIndoorAmenities() {

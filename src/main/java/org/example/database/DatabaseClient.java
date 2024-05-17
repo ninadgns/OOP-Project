@@ -55,7 +55,7 @@ public class DatabaseClient {
             // String content = rs.getString("content");
             // System.out.println("ID: " + id + ", Content: " + content);
             // }
-            System.out.println("db query successfull");
+            System.out.println("db query successful");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -78,6 +78,22 @@ public class DatabaseClient {
         // Encode the byte array to Base64 string
         return Base64.getEncoder().encodeToString(fileBytes);
     }
+
+    public static void saveFile(String base64String) {
+        
+        // Loading the Base64 encoded image
+        byte[] imageBytes = Base64.getDecoder().decode(base64String);
+
+        try {
+            FileOutputStream fos = new FileOutputStream("output.jpg");
+            fos.write(imageBytes);
+            fos.close();
+            System.out.println("chobi saved");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static File stringToFile(String encodedString) throws IOException {
         // Decode the Base64 string to byte array
