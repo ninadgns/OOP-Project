@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,6 +18,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class createPostController implements Initializable {
+    @FXML
+    private BorderPane borderPane;
     @FXML
     private TextField hotelName;
     @FXML
@@ -185,5 +188,9 @@ public class createPostController implements Initializable {
         Hotel.lastHotelID++;
         Account.hotel.setHotelID(Hotel.lastHotelID);
         Account.dbTeHotelPathai();
+
+        Stage stage = (Stage) borderPane.getScene().getWindow();
+
+        stage.close();
     }
 }
