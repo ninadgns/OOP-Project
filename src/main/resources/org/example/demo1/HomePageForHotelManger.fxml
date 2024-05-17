@@ -46,7 +46,7 @@
                         <Image url="@homePage/4402438.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="settingsButton1" fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addPostBtn" fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="11.0" onMouseClicked="#handleAddPost" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@homePage/New%20Project.png" />
                      </image></ImageView>
@@ -142,7 +142,85 @@
             </ScrollPane>
             <ScrollPane prefHeight="347.0" prefWidth="373.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="348.0" prefWidth="358.0">
+                     <children>
+                        <Label fx:id="hotelName" layoutX="59.0" layoutY="39.0" text="You Havent Posted Anything Yet">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <HBox layoutX="14.0" layoutY="122.0" prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="District:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hotelDistrict">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="14.0" layoutY="142.0" prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Address:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hotelAddress">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="14.0" layoutY="102.0" prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Type:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hotelType">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="14.0" layoutY="162.0" prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Floor Space:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hotelFloorSpace">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox layoutX="14.0" layoutY="182.0" prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Cost Per Night:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="hotelCost">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox layoutX="234.0" layoutY="86.0" prefHeight="200.0" prefWidth="100.0" />
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
          </children>

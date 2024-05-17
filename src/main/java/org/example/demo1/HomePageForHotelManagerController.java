@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -24,6 +25,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomePageForHotelManagerController implements Initializable {
+    @FXML
+    private Label hotelName;
+    @FXML
+    private Label hotelDistrict;
+    @FXML
+    private Label hotelAddress;
+    @FXML
+    private Label hotelType;
+    @FXML
+    private Label hotelFloorSpace;
+    @FXML
+    private Label hotelCost;
     @FXML
     private Label emneiLabel;
     @FXML
@@ -68,7 +81,6 @@ public class HomePageForHotelManagerController implements Initializable {
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
         hBox.getChildren().add(rectangle);
         homePageVbox.getChildren().remove(homePageVbox.getChildren().getLast());
-//        homePageVbox.(new Insets(5));
         homePageVbox.setSpacing(5);
         hBox.setSpacing(5);
         homePageVbox.getChildren().add(hBox);
@@ -90,12 +102,9 @@ public class HomePageForHotelManagerController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        try {
-//
-//            image = ImageIO.read();
-//            managerDp.setImage( image);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+    }
+
+    public void handleAddPost(MouseEvent mouseEvent) {
+        
     }
 }
