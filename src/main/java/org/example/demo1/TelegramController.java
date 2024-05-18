@@ -3,13 +3,25 @@ package org.example.demo1;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 
 public class TelegramController {
@@ -22,6 +34,8 @@ public class TelegramController {
     private VBox bgVbox;
     @FXML
     private ScrollPane rightScroll;
+    @FXML
+    private VBox naamerList;
     @FXML
     private AnchorPane chatPanel;
     @FXML
@@ -39,7 +53,6 @@ public class TelegramController {
     private int ct = 0, downed = 0;
 
     // public void handleBtn(ActionEvent actionEvent, boolean isLeft) {
-
     // if (messageText.getText().isEmpty())
     // return;
     // TextArea textArea = new TextArea(messageText.getText());
@@ -59,15 +72,12 @@ public class TelegramController {
     // ct++;
     // messageText.setText("");
     // }
-
     // public void handleBtnL(ActionEvent actionEvent) {
     // handleBtn(actionEvent, true);
     // }
-
     // public void handleBtnR(ActionEvent actionEvent) {
     // handleBtn(actionEvent, false);
     // }
-
     // public void handleSendBtn(MouseEvent mouseEvent) {
     // Label text = new Label(messageText.getText());
     // text.getStyleClass().add("mechat");
@@ -79,7 +89,6 @@ public class TelegramController {
     // text.setLayoutY(180 + (ct + 1) * 40);
     // bgVboxL.getChildren().add(text);
     // double f = Math.ceil(messageText.getText().length()*FONT_SIZE/185);
-
     // // Calculate new scroll position
     // // bgVboxL.setPrefHeight(bgVboxL.getHeight()+(f==1?0:0)*40);
     // bgVboxL.setSpacing(5);
@@ -87,20 +96,18 @@ public class TelegramController {
     // rightScroll.getHeight();
     // rightScroll.setVvalue(scrollPosition);
     // messageText.setText("");
-
     // // Update message count
     // ct += 1;
     // }
-
     // public TelegramController() {
-        // TextInputDialog dialog = new TextInputDialog();
-        // dialog.setTitle("Chat Login");
-        // dialog.setHeaderText("Enter Your Username:");
-        // Optional<String> result = dialog.showAndWait();
-        // String string = "127.0.0.1";
-        // result.ifPresent(username ->
-        // client = new ChatClient(string, 6666, this, username)
-        // );
+    // TextInputDialog dialog = new TextInputDialog();
+    // dialog.setTitle("Chat Login");
+    // dialog.setHeaderText("Enter Your Username:");
+    // Optional<String> result = dialog.showAndWait();
+    // String string = "127.0.0.1";
+    // result.ifPresent(username ->
+    // client = new ChatClient(string, 6666, this, username)
+    // );
     // }
 
     @FXML
@@ -109,7 +116,114 @@ public class TelegramController {
         System.out.println("bgVboxR initialized: " + (bgVboxR != null));
         System.out.println("rightScroll initialized: " + (rightScroll != null));
         client = new ChatClient("localhost", 6666, this, Account.loggedIn.getId());
+        var a = getSenders(Account.loggedIn.getId());
+        for (SenderData senderData : a) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AnchorPaneTemplate.fxml"));
+            try {
+                AnchorPane anchorPane = loader.load();
+                Text textNode = new Text(senderData.name);
+                textNode.setStyle("-fx-font-size: 18;"); // Set the font size
+                textNode.setTextAlignment(TextAlignment.CENTER); // Center align the text
 
+                VBox.setVgrow(textNode, Priority.ALWAYS); // Vertically center the text
+                VBox vBox = (VBox) anchorPane.getChildren().get(0); // Get the VBox from AnchorPane
+                vBox.setAlignment(Pos.CENTER); // Center align the VBox content (textNode)
+                anchorPane.setOnMouseClicked((MouseEvent event) -> {
+                    System.out.println("AnchorPane is clicked!" + senderData.name);
+                    bgVboxR.getChildren().clear();
+                    bgVboxL.getChildren().clear();
+
+                    String messagesSql = "SELECT * FROM messages WHERE (sender_id = " + Account.loggedIn.id
+                            + " AND receiver_id = "
+                            + senderData.sender_id + ") OR (sender_id = " + senderData.sender_id + " AND receiver_id = "
+                            + Account.loggedIn.id
+                            + ") ORDER BY id DESC;";
+
+                    ResultSet messagesResultSet = DatabaseClient.runSQL(messagesSql);
+                    List<String> messagesSentByMe = new ArrayList<>();
+                    List<String> messagesSentByOtherPerson = new ArrayList<>();
+                    try {
+                        while (messagesResultSet.next()) {
+                            // Message message = new Message(messagesResultSet);
+                            // if (message.getSenderId() == userId1) {
+                            // messagesSentByUser1.add(message);
+                            // } else if (message.getSenderId() == userId2) {
+                            // messagesSentByUser2.add(message);
+                            // }
+                            var message_sender_id = messagesResultSet.getInt("sender_id");
+                            if (message_sender_id == senderData.sender_id) {
+                                // messagesSentByOtherPerson.add();
+                                displayReceivedMessage(messagesResultSet.getString("content"));
+                            } else {
+                                displaySentMessage(messagesResultSet.getString("content"));
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                });
+
+                vBox.getChildren().add(textNode);
+                naamerList.getChildren().add(anchorPane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public class SenderData {
+        String name;
+        int lastMessageId;
+        int sender_id;
+
+        public SenderData(String name, int lastMessageId, int sender_id) {
+            this.name = name;
+            this.lastMessageId = lastMessageId;
+            this.sender_id = sender_id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getLastMessageId() {
+            return lastMessageId;
+        }
+
+        public int getSenderId() {
+            return sender_id;
+        }
+
+    }
+
+    public List<SenderData> getSenders(String receiverId) {
+        try {
+            String sql = "SELECT m2.last_message_id, u.name,  m2.sender_id FROM ( SELECT sender_id, MAX(id) as last_message_id FROM messages WHERE receiver_id = "
+                    + receiverId
+                    + " GROUP BY sender_id) m2 JOIN accountinfo u ON u.id = m2.sender_id ORDER BY m2.last_message_id DESC;";
+
+            ResultSet resultSet = DatabaseClient.runSQL(sql);
+
+            List<SenderData> senderDataList = new ArrayList<>();
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                int lastMessageId = resultSet.getInt("last_message_id");
+                int sender_id = resultSet.getInt("sender_id");
+
+                SenderData senderData = new SenderData(name, lastMessageId, sender_id);
+                senderDataList.add(senderData);
+            }
+
+            return senderDataList;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>(); // Return an empty list if there was an exception
     }
 
     @FXML
@@ -138,24 +252,7 @@ public class TelegramController {
         ct += 1;
     }
 
-    public void displayMessage(String message) {
-        Platform.runLater(() -> {
-            System.out.println("Displaying message: " + message);
-            Label text = new Label(message);
-            text.getStyleClass().add("mechat");
-            text.setMaxWidth(185);
-            text.setWrapText(true);
-            text.setLayoutX(150);
-            double messageHeight = Math.ceil(message.length() * FONT_SIZE / 185);
-            text.setLayoutY(180 + (ct + 1) * 40);
-            bgVboxR.getChildren().add(text);
-            bgVboxR.setSpacing(5);
-            rightScroll.setVvalue(1.0); // Auto-scroll to the bottom
-            ct += 1;
-        });
-    }
-
-    void showMsg(String msg) {
+    private void displayReceivedMessage(String msg) {
         Platform.runLater(() -> {
             Label text = new Label(msg);
             text.getStyleClass().add("mechat");
@@ -172,31 +269,44 @@ public class TelegramController {
         });
     }
 
-    private void handleBtn(ActionEvent actionEvent, boolean isLeft) {
-        String message = messageText.getText().trim();
-        if (message.isEmpty()) {
-            System.out.println("Message text is empty"); // Debug print
-            return;
-        }
+    // public void displayMessage(String message) {
+    // Platform.runLater(() -> {
+    // System.out.println("Displaying message: " + message);
+    // Label text = new Label(message);
+    // text.getStyleClass().add("mechat");
+    // text.setMaxWidth(185);
+    // text.setWrapText(true);
+    // text.setLayoutX(150);
+    // double messageHeight = Math.ceil(message.length() * FONT_SIZE / 185);
+    // text.setLayoutY(180 + (ct + 1) * 40);
+    // bgVboxR.getChildren().add(text);
+    // bgVboxR.setSpacing(5);
+    // rightScroll.setVvalue(1.0); // Auto-scroll to the bottom
+    // ct += 1;
+    // });
+    // }
 
-        System.out.println("Handling button click, isLeft: " + isLeft);
-        TextArea textArea = new TextArea(message);
-        textArea.setEditable(false);
-        textArea.setPrefWidth(300);
-        textArea.setWrapText(true);
-
-        if (isLeft) {
-            textArea.getStyleClass().add("left");
-            bgVboxL.getChildren().add(textArea);
-        } else {
-            textArea.getStyleClass().add("right");
-            bgVboxR.getChildren().add(textArea);
-        }
-
-        rightScroll.setVvalue(1.0); // Auto-scroll to the bottom
-        messageText.setText(""); // Clear the input field
-
-        System.out.println("Message displayed: " + message); // Debug print
-    }
+    // private void handleBtn(ActionEvent actionEvent, boolean isLeft) {
+    // String message = messageText.getText().trim();
+    // if (message.isEmpty()) {
+    // System.out.println("Message text is empty"); // Debug print
+    // return;
+    // }
+    // System.out.println("Handling button click, isLeft: " + isLeft);
+    // TextArea textArea = new TextArea(message);
+    // textArea.setEditable(false);
+    // textArea.setPrefWidth(300);
+    // textArea.setWrapText(true);
+    // if (isLeft) {
+    // textArea.getStyleClass().add("left");
+    // bgVboxL.getChildren().add(textArea);
+    // } else {
+    // textArea.getStyleClass().add("right");
+    // bgVboxR.getChildren().add(textArea);
+    // }
+    // rightScroll.setVvalue(1.0); // Auto-scroll to the bottom
+    // messageText.setText(""); // Clear the input field
+    // System.out.println("Message displayed: " + message); // Debug print
+    // }
 
 }

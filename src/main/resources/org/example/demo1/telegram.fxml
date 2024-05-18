@@ -115,13 +115,13 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="356.0" prefWidth="194.0" styleClass="manosh" stylesheets="@styles.css">
                      <children>
-                        <VBox layoutY="-1.0" prefHeight="358.0" prefWidth="195.0">
+                        <VBox fx:id="naamerList" layoutY="-1.0" prefHeight="358.0" prefWidth="195.0">
                            <children>
-                              <AnchorPane prefHeight="49.0" prefWidth="162.0" styleClass="messageThumbnail" stylesheets="@styles.css">
+                              <!-- <AnchorPane prefHeight="49.0" prefWidth="162.0" styleClass="messageThumbnail" stylesheets="@styles.css">
                                  <VBox.margin>
                                     <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                                  </VBox.margin>
-                              </AnchorPane>
+                              </AnchorPane> -->
                            </children>
                         </VBox>
                      </children>

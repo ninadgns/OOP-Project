@@ -2,7 +2,14 @@ package org.example.demo1;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import org.example.database.DatabaseClient;
+
 import javafx.application.Platform;
 
 public class ChatClient {
@@ -35,6 +42,7 @@ public class ChatClient {
         }
     }
 
+  
     public void sendMessage(String message) {
         writer.println(message);
     }
@@ -73,11 +81,12 @@ public class ChatClient {
             while (true) {
                 try {
                     String response = reader.readLine();
-                    if (response == null) break; // Server has closed the connection
-                    System.out.println(response);
+                    if (response == null)
+                        break; // Server has closed the connection
+                    // System.out.println(response);
 
                     // Call showMsg method on the controller
-                    Platform.runLater(() -> controller.showMsg(response));
+                    Platform.runLater(() -> controller.displayReceivedMessage(response));
                 } catch (IOException ex) {
                     System.out.println("Error reading from server: " + ex.getMessage());
                     break;
