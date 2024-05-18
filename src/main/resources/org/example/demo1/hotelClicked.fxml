@@ -7,7 +7,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,9 +16,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
     <top>
-        <HBox prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
+        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
             <children>
                 <AnchorPane prefHeight="53.0" prefWidth="96.0" styleClass="transparent" stylesheets="@styles.css">
                     <HBox.margin>
@@ -33,36 +32,16 @@
                         </ImageView>
                     </children>
                 </AnchorPane>
-                <AnchorPane prefHeight="53.0" prefWidth="370.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
-                    <children>
-                        <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="33.0" prefWidth="334.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="44.0" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="131.0" styleClass="transparent" stylesheets="@styles.css">
-                    <children>
-                        <ImageView fx:id="settingsButton" fitHeight="36.0" fitWidth="41.0" layoutX="47.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@homePage/8170725.png" />
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="profileChobiEbongButton" fitHeight="39.0" fitWidth="39.0" layoutX="88.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@homePage/4402438.png" />
-                            </image>
-                        </ImageView>
-                        <ImageView fx:id="addPostBtn" fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="11.0" onMouseClicked="#handleAddPost" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@homePage/globe-icon-2048x2048-0aixgywi.png" />
-                            </image></ImageView>
-                    </children>
-                </AnchorPane>
+            <AnchorPane prefHeight="53.0" prefWidth="176.0" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="188.0" styleClass="whiteText" text="Know Your Hotel" textAlignment="CENTER" />
+            <AnchorPane prefHeight="53.0" prefWidth="270.0" />
             </children>
         </HBox>
     </top>
     <center>
       <ScrollPane>
          <content>
-            <VBox prefHeight="484.0" prefWidth="597.0">
+            <VBox prefHeight="539.0" prefWidth="597.0">
                <children>
                   <AnchorPane prefHeight="187.0" prefWidth="597.0">
                      <children>
@@ -74,11 +53,11 @@
                         <HBox layoutX="25.0" layoutY="44.0" prefHeight="130.0" prefWidth="548.0" />
                      </children>
                   </AnchorPane>
-                  <HBox prefHeight="311.0" prefWidth="597.0">
+                  <HBox prefHeight="342.0" prefWidth="597.0">
                      <children>
-                        <AnchorPane prefHeight="302.0" prefWidth="360.0">
+                        <AnchorPane prefHeight="350.0" prefWidth="360.0">
                            <children>
-                              <VBox layoutX="14.0" layoutY="8.0" prefHeight="244.0" prefWidth="343.0">
+                              <VBox layoutX="14.0" layoutY="8.0" prefHeight="573.0" prefWidth="343.0">
                                  <children>
                                     <VBox prefHeight="97.0" prefWidth="224.0">
                                        <children>
@@ -109,7 +88,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="81.0" prefWidth="343.0" spacing="4.0">
+                                    <VBox prefHeight="86.0" prefWidth="343.0" spacing="4.0">
                                        <children>
                                           <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
                                              <rotationAxis>
@@ -121,38 +100,139 @@
                                                 <Font name="DejaVu Sans Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="TOP_LEFT" prefHeight="48.0" prefWidth="343.0" text="Description" wrapText="true" />
+                                          <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="343.0" text="Description" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="81.0" prefWidth="343.0" spacing="4.0">
+                                    <VBox>
+                                       <children>
+                                          <VBox prefHeight="81.0" prefWidth="343.0" spacing="4.0">
+                                             <children>
+                                                <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
+                                                   <rotationAxis>
+                                                      <Point3D />
+                                                   </rotationAxis>
+                                                </Line>
+                                                <Label text="What this place offers">
+                                                   <font>
+                                                      <Font name="DejaVu Sans Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox prefHeight="45.0" prefWidth="260.0" spacing="4.0">
+                                                   <children>
+                                                      <ImageView fitHeight="44.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@homePage/images.jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <VBox prefHeight="45.0" prefWidth="295.0">
+                                                         <children>
+                                                            <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="Label" />
+                                                            <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="296.0" text="Label" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="180.0" prefWidth="343.0">
                                        <children>
                                           <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
-                                             <rotationAxis>
-                                                <Point3D />
-                                             </rotationAxis>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
                                           </Line>
-                                          <Label text="What this place offers">
+                                          <Label text="Meet your Host">
                                              <font>
                                                 <Font name="DejaVu Sans Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <HBox prefHeight="45.0" prefWidth="260.0" spacing="4.0">
+                                          <VBox alignment="TOP_CENTER" prefHeight="192.0" prefWidth="343.0" spacing="5.0">
                                              <children>
-                                                <ImageView fitHeight="44.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                                   <image>
-                                                      <Image url="@homePage/images.jpeg" />
-                                                   </image>
-                                                </ImageView>
-                                                <VBox prefHeight="45.0" prefWidth="295.0">
+                                                <HBox prefHeight="117.0" prefWidth="260.0">
                                                    <children>
-                                                      <Label alignment="TOP_LEFT" prefHeight="23.0" prefWidth="304.0" text="Label" />
-                                                      <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="296.0" text="Label" />
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                                                      <AnchorPane>
+                                                         <children>
+                                                            <ImageView fitHeight="87.0" fitWidth="94.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@homePage/4402438.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label layoutY="87.0" text="Manager Name" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                                                    </children>
-                                                </VBox>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="77.0" prefWidth="338.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="76.0" prefWidth="30.0" />
+                                                      <VBox spacing="5.0">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-33-00.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <Label text="Phone No" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-33-23.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <Label text="Email" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-33-32.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <Label text="Address" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
                                              </children>
-                                          </HBox>
+                                          </VBox>
                                        </children>
                                     </VBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="chatManager" fitHeight="38.0" fitWidth="153.0" onMouseClicked="#handleChatManager" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-45-00.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets top="25.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -185,14 +265,14 @@
                                        <children>
                                           <HBox prefHeight="25.0" prefWidth="193.0">
                                              <children>
-                                                <DatePicker prefHeight="27.0" prefWidth="98.0" promptText="Check In" />
-                                                <DatePicker prefHeight="27.0" prefWidth="111.0" promptText="Check Out" />
+                                                <DatePicker fx:id="checkIn" prefHeight="27.0" prefWidth="98.0" promptText="Check In" />
+                                                <DatePicker fx:id="checkOut" prefHeight="27.0" prefWidth="111.0" promptText="Check Out" />
                                              </children>
                                           </HBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
                                              <children>
                                                 <Label text="Guests" />
-                                                <ChoiceBox prefHeight="27.0" prefWidth="209.0">
+                                                <ChoiceBox fx:id="guestCheckBox" prefHeight="27.0" prefWidth="209.0">
                                                    <VBox.margin>
                                                       <Insets top="3.0" />
                                                    </VBox.margin>
@@ -201,7 +281,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <Button mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Reserve">
+                                    <Button fx:id="reserve" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Reserve">
                                        <VBox.margin>
                                           <Insets top="8.0" />
                                        </VBox.margin>
