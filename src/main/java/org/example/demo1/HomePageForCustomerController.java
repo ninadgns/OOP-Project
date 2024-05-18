@@ -46,34 +46,10 @@ import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 public class HomePageForCustomerController implements Initializable {
-    @FXML
-    private Label hotelName;
-    @FXML
-    private Label hotelDistrict;
-    @FXML
-    private Label hotelAddress;
-    @FXML
-    private Label hotelFloorSpace;
-    @FXML
-    private Label hotelCost;
-    @FXML
-    private Label emneiLabel;
-    @FXML
-    private ImageView amiLogo;
-    @FXML
-    private ImageView settingsButton;
-    @FXML
-    private ImageView settingsButton1;
-    @FXML
-    private ImageView managerDp;
-    @FXML
-    private Label managerName;
-    @FXML
-    private Label managerEmail;
-    @FXML
-    private Label managerPhone;
-    @FXML
-    private Label managerAddress;
+//    HomePageForCustomerController(){
+//        super();
+//    }
+    public Label emneiLabel;
     @FXML
     private static ImageView profileChobiEbongButton;
     @FXML
@@ -192,18 +168,13 @@ public class HomePageForCustomerController implements Initializable {
         stackPane.setPrefHeight(300);
         stackPane.setPadding(new Insets(5));
 
-        // Store hotel information in StackPane
-        stackPane.setUserData(hotel);
-
-        stackPane.setOnMouseClicked(this::handleRectangleClick);
+        stackPane.setOnMouseClicked(event -> handleRectangleClick(event));
 
         HBox f=null;
 
         int childrenSize = homePageVbox.getChildren().size();
         if(childrenSize==0){
-            HBox hB=new HBox();
-            hB.setMinHeight(300);
-            homePageVbox.getChildren().add(hB);
+            homePageVbox.getChildren().add(new HBox());
         }
         else{
              f = (HBox) homePageVbox.getChildren().getLast();
