@@ -178,7 +178,10 @@ public class HomePageForCustomerController implements Initializable {
         stackPane.setMinHeight(300);
         stackPane.setPadding(new Insets(5));
 
-        stackPane.setOnMouseClicked(event -> handleRectangleClick(event));
+        // Store hotel information in StackPane
+        stackPane.setUserData(hotel);
+
+        stackPane.setOnMouseClicked(this::handleRectangleClick);
 
         HBox f=null;
 

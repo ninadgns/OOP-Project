@@ -9,7 +9,7 @@ public class Yard extends OutdoorDecorator {
 
     public ArrayList<String> getAmenities() {
         var a = new ArrayList<>(super.getAmenities());
-        a.add("Lawn");
+        a.add("Yard");
         return a;
 
         // StringBuilder str = new StringBuilder();

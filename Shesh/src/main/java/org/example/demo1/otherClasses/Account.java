@@ -107,7 +107,11 @@ public class Account {
         List<String> list = Arrays.asList(
 
                 String.valueOf(Hotel.lastHotelID),
+<<<<<<< Updated upstream:src/main/java/org/example/demo1/otherClasses/Account.java
 
+=======
+//                loggedIn.getId(),
+>>>>>>> Stashed changes:Shesh/src/main/java/org/example/demo1/otherClasses/Account.java
                 hotel.getType(),
                 hotel.getName(),
                 hotel.getAddress(),
