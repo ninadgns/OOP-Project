@@ -34,8 +34,7 @@
               <content>
                   <HBox>
                      <children>
-                        <VBox fx:id="bgVboxL" alignment="BOTTOM_RIGHT" prefHeight="317.0" prefWidth="186.0" styleClass="tgbg" stylesheets="@styles.css" />
-                        <VBox fx:id="bgVboxR" alignment="BOTTOM_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="317.0" prefWidth="199.0" styleClass="tgbg" stylesheets="@styles.css" />
+                        <VBox fx:id="bgVbox" alignment="BOTTOM_RIGHT" prefHeight="318.0" prefWidth="386.0" styleClass="tgbg" stylesheets="@styles.css" />
                      </children>
                   </HBox>
               </content>
