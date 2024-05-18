@@ -107,11 +107,7 @@ public class Account {
         List<String> list = Arrays.asList(
 
                 String.valueOf(Hotel.lastHotelID),
-<<<<<<< Updated upstream:src/main/java/org/example/demo1/otherClasses/Account.java
-
-=======
 //                loggedIn.getId(),
->>>>>>> Stashed changes:Shesh/src/main/java/org/example/demo1/otherClasses/Account.java
                 hotel.getType(),
                 hotel.getName(),
                 hotel.getAddress(),
@@ -128,12 +124,7 @@ public class Account {
                 loggedIn.getId());
 
         String allInfoTogether = "'" + String.join("', '", list) + "'";
-        System.out.println(str1);
-        System.out.println(str2);
-        System.out.println(str3);
-        System.out.println(str4);
-
-
+        System.out.println(allInfoTogether);
 
         // String allInfoTogether = "'" + Hotel.lastHotelID + "', '" + hotel.getType() +
         // "', '" + hotel.getName() + "', '"

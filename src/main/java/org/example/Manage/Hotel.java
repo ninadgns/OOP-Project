@@ -29,8 +29,6 @@ public abstract class Hotel {
     private double sqft;
 
 
-<<<<<<< Updated upstream:src/main/java/org/example/Manage/Hotel.java
-=======
 
     public String getImage1() {
         return image1;
@@ -64,7 +62,6 @@ public abstract class Hotel {
         this.image4 = image4;
     }
 
->>>>>>> Stashed changes:Shesh/src/main/java/org/example/Manage/Hotel.java
     public ArrayList<String> getRoomDescription(int i) {
         if (rooms.size() <= i)
             return null;
