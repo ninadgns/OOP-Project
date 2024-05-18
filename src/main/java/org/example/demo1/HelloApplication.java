@@ -37,6 +37,11 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
 
         DatabaseClient.initiate();
+        allHotels = DatabaseClient.fetch(Tables.HOTELS);
+
+        launch();
+
+        
         //launch();
 
         // DatabaseClient.runSQL("select id, content from notes");
@@ -56,9 +61,6 @@ public class HelloApplication extends Application {
         //// DatabaseClient.saveFile(base64String.toString());
         //// }
 
-        allHotels = DatabaseClient.fetch(Tables.HOTELS);
-
-        launch();
         // for (Map<String, Object> map : a) {
         // var base64String = map.get("profilephoto");
         // if (base64String!=null && base64String.toString().length()>50) {

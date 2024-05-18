@@ -114,7 +114,19 @@ public class TelegramController {
         System.out.println("bgVbox initialized: " + (bgVbox != null));
         // System.out.println("bgVboxR initialized: " + (bgVboxR != null));
         System.out.println("rightScroll initialized: " + (rightScroll != null));
-        client = new ChatClient("localhost", 6666, this, Account.loggedIn.getId());
+        var hostrs = DatabaseClient.runSQL("Select * from messages where id = 1");
+        String host = "";
+        int port = 0;
+        try {
+            if (hostrs.next()) {
+                host = hostrs.getString("content");
+                port = hostrs.getInt("receiver_id");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        client = new ChatClient(host, port, this, Account.loggedIn.getId());
         var a = getSenders(Account.loggedIn.getId());
         for (SenderData senderData : a) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AnchorPaneTemplate.fxml"));

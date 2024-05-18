@@ -108,21 +108,21 @@ public class ChatServer {
                 var out = new PrintWriter(socket.getOutputStream(), true);
 
                 while (true) {
-                    out.println("SUBMITNAME");
+                    // out.println("SUBMITNAME");
                     name = in.readLine();
                     synchronized (userWriters) {
                         if (name != null && !name.isEmpty() && !userWriters.containsKey(name)) {
                             userWriters.put(name, out);
-                            out.println("NAMEACCEPTED " + name);
+                            // out.println("NAMEACCEPTED " + name);
                             // Fetch stored messages for the user from database and send them
-                            List<Pair<String, String>> messageList = DatabaseClient.fetchMessage(name);
-                            if (messageList != null) {
-                                for (Pair<String, String> messagePair : messageList) {
-                                    String senderName = messagePair.getLeft();
-                                    String message = messagePair.getRight();
-                                    out.println("MESSAGE " + senderName + ": " + message);
-                                }
-                            }
+                            // List<Pair<String, String>> messageList = DatabaseClient.fetchMessage(name);
+                            // if (messageList != null) {
+                            //     for (Pair<String, String> messagePair : messageList) {
+                            //         String senderName = messagePair.getLeft();
+                            //         String message = messagePair.getRight();
+                            //         out.println("MESSAGE " + senderName + ": " + message);
+                            //     }
+                            // }
 
                             break;
                         }
@@ -145,9 +145,10 @@ public class ChatServer {
                     synchronized (userWriters) {
                         writer = userWriters.get(receiver);
                     }
-
+// jane@example.com
+// password2
                     if (writer != null) {
-                        writer.println("MESSAGE " + name + ": " + messageText);
+                        writer.println(messageText);
                     }
                 }
             } catch (IOException e) {
