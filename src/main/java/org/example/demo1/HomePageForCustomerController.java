@@ -125,17 +125,11 @@ public class HomePageForCustomerController implements Initializable {
 
         String str1 = (String) hotel.get("image1");
         if (str1 != null && !str1.isEmpty() && !str1.equals("sobinai")) {
-            // Convert the image string to an Image object
             Image image1 = DatabaseClient.stringToImage(str1);
 
-            // Check if the image object is null
             if (image1 != null) {
                 smallRectangle.setFill(new ImagePattern(image1));
-            } else {
-                System.out.println("Error: The image object is null.");
             }
-        } else {
-            System.out.println("Error: The image string is null or empty.");
         }
 
         StringBuilder str=new StringBuilder();
@@ -144,26 +138,25 @@ public class HomePageForCustomerController implements Initializable {
                 .append("Address: ").append((String) hotel.get("address")).append("\n")
                 .append("Cost Per Night: ").append(hotel.get("costpernight")).append("\n");
         String data= str.toString();
-        // Create a label for the hotel description
-       // String description = (String) hotel.get("name");
+
         System.out.println(data);
         Label descriptionLabel = new Label(data);
         descriptionLabel.setWrapText(true);
-        descriptionLabel.setMaxWidth(300);  // Set preferred width to 200 pixels
-        descriptionLabel.setPrefWidth(300);  // Set preferred width to 200 pixels
+        descriptionLabel.setMaxWidth(300);
+        descriptionLabel.setPrefWidth(300);
         descriptionLabel.setPrefHeight(200);
         descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 3px;");
 
         VBox vBox = new VBox();
-        vBox.setPrefWidth(200);  // Set preferred width of the VBox to 170 pixels
+        vBox.setPrefWidth(200);
         vBox.setPrefHeight(300);
         vBox.getChildren().addAll(smallRectangle, descriptionLabel);
-        vBox.setSpacing(5);  // Add some spacing between the rectangle and label
+        vBox.setSpacing(5);
 
 
 
         StackPane stackPane = new StackPane(vBox);
-        stackPane.setPrefWidth(200);  // Set preferred width to 200 pixels
+        stackPane.setPrefWidth(200);
         stackPane.setPrefHeight(300);
         stackPane.setPadding(new Insets(5));
 
@@ -212,22 +205,17 @@ public class HomePageForCustomerController implements Initializable {
 
     public void handleRectangleClick(MouseEvent event) {
         try {
-            // Load the new FXML file for the new window
+
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newWindow.fxml"));
             VBox newWindowRoot = fxmlLoader.load();
 
-            // Create a new Stage (window)
             Stage newWindowStage = new Stage();
             newWindowStage.setTitle("New Window");
             newWindowStage.setScene(new Scene(newWindowRoot, 400, 300));
             newWindowStage.show();
 
-            // Close the current stage (if needed)
-            // ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
 }
