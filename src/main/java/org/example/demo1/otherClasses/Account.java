@@ -107,7 +107,7 @@ public class Account {
         List<String> list = Arrays.asList(
 
                 String.valueOf(Hotel.lastHotelID),
-
+//                loggedIn.getId(),
                 hotel.getType(),
                 hotel.getName(),
                 hotel.getAddress(),
@@ -124,12 +124,7 @@ public class Account {
                 loggedIn.getId());
 
         String allInfoTogether = "'" + String.join("', '", list) + "'";
-        System.out.println(str1);
-        System.out.println(str2);
-        System.out.println(str3);
-        System.out.println(str4);
-
-
+        System.out.println(allInfoTogether);
 
         // String allInfoTogether = "'" + Hotel.lastHotelID + "', '" + hotel.getType() +
         // "', '" + hotel.getName() + "', '"
