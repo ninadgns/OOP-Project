@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.Button?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForCustomerController">
    <top>
       <HBox prefHeight="70.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
@@ -75,10 +76,10 @@
                         <Image url="@homePage/4402438.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="addPostBtn" fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="11.0" onMouseClicked="#handleAddPost" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@homePage/globe-icon-2048x2048-0aixgywi.png" />
-                     </image></ImageView>
+<!--                  <ImageView fx:id="addPostBtn" fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="11.0" onMouseClicked="#handleAddPost" pickOnBounds="true" preserveRatio="true">-->
+<!--                     <image>-->
+<!--                        <Image url="@homePage/globe-icon-2048x2048-0aixgywi.png" />-->
+<!--                     </image></ImageView>-->
                </children>
             </AnchorPane>
          </children>

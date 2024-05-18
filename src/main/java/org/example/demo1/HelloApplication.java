@@ -37,7 +37,7 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
 
         DatabaseClient.initiate();
-        launch();
+        //launch();
 
         // DatabaseClient.runSQL("select id, content from notes");
         // DatabaseClient.runSQL("insert into notes (id, content) values (3, 'chirodin
