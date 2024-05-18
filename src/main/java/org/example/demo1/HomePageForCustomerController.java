@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -178,7 +179,10 @@ public class HomePageForCustomerController implements Initializable {
         stackPane.setMinHeight(300);
         stackPane.setPadding(new Insets(5));
 
-        stackPane.setOnMouseClicked(event -> handleRectangleClick(event));
+        // Store hotel information in StackPane
+        stackPane.setUserData(hotel);
+
+        stackPane.setOnMouseClicked(this::handleRectangleClick);
 
         HBox f=null;
 
@@ -228,16 +232,28 @@ public class HomePageForCustomerController implements Initializable {
     }
 
     public void handleRectangleClick(MouseEvent event) {
+        StackPane clickedPane = (StackPane) event.getSource();
+        Map<String, Object> hotel = (Map<String, Object>) clickedPane.getUserData();
+
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newWindow.fxml"));
-            VBox newWindowRoot = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hotelClicked.fxml"));
+            Parent root = fxmlLoader.load();
 
-            Stage newWindowStage = new Stage();
-            newWindowStage.setTitle("New Window");
-            newWindowStage.setScene(new Scene(newWindowRoot, 400, 300));
-            newWindowStage.show();
+            // Get the controller of the new scene
+            hotelClickedController controller = fxmlLoader.getController();
+            // Pass the hotel information to the controller
+            controller.setHotelData(hotel);
 
-        } catch (IOException e) {
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+
+            Stage stage = new Stage();
+            stage.setTitle("Hotel Details");
+            stage.setScene(scene);
+            stage.setWidth(800);  // Set desired width
+            stage.setHeight(600); // Set desired height
+            stage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
