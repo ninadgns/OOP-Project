@@ -73,7 +73,7 @@ public abstract class Hotel {
     }
 
     public double getFloorSpace() {
-        return sqft;
+        return this.sqft;
     }
 
     public void setSqft(double sqft) {
@@ -181,7 +181,7 @@ public abstract class Hotel {
     }
 
     public int getCostPerNight() {
-        this.costPerNight = getCostForOtherFacilities() + getCostForRooms();
+        this.costPerNight = getCostForOtherFacilities() + getCostForRooms() + (int)sqft*12;
         return this.costPerNight;
     }
 

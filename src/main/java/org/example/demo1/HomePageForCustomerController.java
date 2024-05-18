@@ -127,13 +127,12 @@ public class HomePageForCustomerController implements Initializable {
         } else if (rVilla.isSelected()) {
             selType = "Villa";
         }
-        // Filter hotels based on selected type
-      //  if (selType != null) {
-            for (var hotel : hotelIdsBasedOnArea) {
-                if (selType.equals(hotel.get("type"))) {
+
+        for (var hotel : hotelIdsBasedOnArea) {
+            if (selType.equals(hotel.get("type"))) {
                     hotelIdsonType.add(hotel);
-                }
             }
+        }
 
         homePageVbox.getChildren().clear();
         for(var hotel:  hotelIdsonType) {
@@ -148,37 +147,35 @@ public class HomePageForCustomerController implements Initializable {
 
     public void showHotels(Map<String,Object> hotel) throws Exception{
 
-        Rectangle smallRectangle = new Rectangle(200, 100);
+        Rectangle smallRectangle = new Rectangle(250, 200);
         homePageVbox.setPadding(new Insets(5));
         smallRectangle.setFill(Color.BLUE);
 
         StringBuilder str=new StringBuilder();
-        //int cost=hotel.get("costpernight");
+
         str.append("Name: ").append((String) hotel.get("name")).append("\n")
                 .append("Address: ").append((String) hotel.get("address")).append("\n")
-                .append("Cost Per Night: ").append(hotel.get("costpernight")).append("\n");
+                .append("Cost Per Night: ").append(hotel.get("costpernight")).append(" BDT").append("\n");
         String data= str.toString();
-        // Create a label for the hotel description
-       // String description = (String) hotel.get("name");
-        System.out.println(data);
+
+       // System.out.println(data);
         Label descriptionLabel = new Label(data);
         descriptionLabel.setWrapText(true);
-        descriptionLabel.setMaxWidth(300);  // Set preferred width to 200 pixels
-        descriptionLabel.setPrefWidth(300);  // Set preferred width to 200 pixels
-        descriptionLabel.setPrefHeight(200);
-        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 3px;");
+        descriptionLabel.setPrefWidth(250);
+        descriptionLabel.setPrefHeight(70);
+        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 0;");
 
         VBox vBox = new VBox();
-        vBox.setPrefWidth(200);  // Set preferred width of the VBox to 170 pixels
-        vBox.setPrefHeight(300);
+        vBox.setMinWidth(250);
+        vBox.setMinHeight(300);
         vBox.getChildren().addAll(smallRectangle, descriptionLabel);
-        vBox.setSpacing(5);  // Add some spacing between the rectangle and label
+        vBox.setSpacing(5);
 
 
 
         StackPane stackPane = new StackPane(vBox);
-        stackPane.setPrefWidth(200);  // Set preferred width to 200 pixels
-        stackPane.setPrefHeight(300);
+        stackPane.setMinWidth(250);
+        stackPane.setMinHeight(300);
         stackPane.setPadding(new Insets(5));
 
         stackPane.setOnMouseClicked(event -> handleRectangleClick(event));
@@ -187,17 +184,23 @@ public class HomePageForCustomerController implements Initializable {
 
         int childrenSize = homePageVbox.getChildren().size();
         if(childrenSize==0){
-            homePageVbox.getChildren().add(new HBox());
+            HBox hB=new HBox();
+            hB.setMinHeight(300);
+            homePageVbox.getChildren().add(hB);
         }
         else{
              f = (HBox) homePageVbox.getChildren().getLast();
             if (f.getChildren().size() == 4) {
-                homePageVbox.getChildren().add(new HBox());
+                HBox hB=new HBox();
+                hB.setMinHeight(300);
+                homePageVbox.getChildren().add(hB);
+
             }
         }
 
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
-       hBox.getChildren().add(stackPane);
+        hBox.setMinHeight(300);
+        hBox.getChildren().add(stackPane);
         homePageVbox.getChildren().remove(homePageVbox.getChildren().getLast());
         homePageVbox.setSpacing(5);
         hBox.setSpacing(5);
@@ -226,18 +229,14 @@ public class HomePageForCustomerController implements Initializable {
 
     public void handleRectangleClick(MouseEvent event) {
         try {
-            // Load the new FXML file for the new window
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newWindow.fxml"));
             VBox newWindowRoot = fxmlLoader.load();
 
-            // Create a new Stage (window)
             Stage newWindowStage = new Stage();
             newWindowStage.setTitle("New Window");
             newWindowStage.setScene(new Scene(newWindowRoot, 400, 300));
             newWindowStage.show();
 
-            // Close the current stage (if needed)
-            // ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         } catch (IOException e) {
             e.printStackTrace();
         }

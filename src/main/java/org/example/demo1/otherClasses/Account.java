@@ -5,6 +5,7 @@ import org.example.Manage.Hotel;
 import org.example.Manage.Room;
 import org.example.database.DatabaseClient;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +25,11 @@ public class Account {
     private String email;
     private String address;
     private String password;
+    public static File image1=null;
+    public static File image2=null;
+    public static File image3=null;
+    public static File image4=null;
+
     public static Account loggedIn = new Account();
     public static Hotel hotel;
     public static ArrayList<Room> rooms = new ArrayList<>();
@@ -67,26 +73,63 @@ public class Account {
                 e.printStackTrace();
             }
         }
+        String str1="sobinai",str2="sobinai",str3="sobinai",str4="sobinai";
+        if(image1!=null){
+        try{
+            str1=DatabaseClient.fileToString(image1);}
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        }
+        if(image2!=null){
+            try{
+                str2=DatabaseClient.fileToString(image2);}
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(image3!=null){
+            try{
+                str3=DatabaseClient.fileToString(image3);}
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if(image4!=null){
+            try{
+                str4=DatabaseClient.fileToString(image4);}
+            catch(Exception e) {
+                e.printStackTrace();
+            }
+        }
+       // String toString(hotel.getCostPerNight());
+        //System.out.println(str1);
         List<String> list = Arrays.asList(
 
                 String.valueOf(Hotel.lastHotelID),
-                loggedIn.getId(),
+
                 hotel.getType(),
                 hotel.getName(),
                 hotel.getAddress(),
                 hotel.getDistrict(),
-                String.valueOf(hotel.getFloorSpace()),
-                String.valueOf(hotel.getCostPerNight()),
-                hotel.getAdditionalDescription(),
                 '"' + String.join("\",\"", hotel.getIndoorAmenities()) + '"',
                 '"' + String.join("\",\"", hotel.getOutdoorAmenities()) + '"',
-                "sobinai",
-                "sobinai",
-                "sobinai",
-                "sobinai");
+                hotel.getAdditionalDescription(),
+                str1,
+                str2,
+                str3,
+                str4,
+                String.valueOf(hotel.getFloorSpace()),
+                String.valueOf(hotel.getCostPerNight()),
+                loggedIn.getId());
 
         String allInfoTogether = "'" + String.join("', '", list) + "'";
-        System.out.println(allInfoTogether);
+        System.out.println(str1);
+        System.out.println(str2);
+        System.out.println(str3);
+        System.out.println(str4);
+
+
 
         // String allInfoTogether = "'" + Hotel.lastHotelID + "', '" + hotel.getType() +
         // "', '" + hotel.getName() + "', '"
@@ -95,14 +138,20 @@ public class Account {
         // hotel.getCostPerNight() + "', '"
         // + hotel.getAdditionalDescription() + "', '" + "sobinai" + "', '"
         // + "sobinai" + "', '" + "sobinai" + "', '" + "sobinai'";
-
+        int i=0;
+       // String s= toString(hotel.getFloorSpace());
         DatabaseClient.insert("hotels",
-                "id, ownerid, type, name, address, district, floorspace, costpernight, additionaldescription, indoorspace, outdoorspace, image1, image2, image3, image4",
+                "id, type, name, address, district, indoorspace, outdoorspace, additionaldescription, image1, image2, image3, image4, floorspace, costpernight, ownerid",
                 allInfoTogether);
         // DatabaseClient.insert("hotels",
         // "id, type, name, address, district, sqft, pernightcost, indoorspace,
         // outdoorspace, additionaldescription, room1, room2, room3, image1, image2,
         // image3, image4 ", allInfoTogether);
+
+        image1=null;
+        image2=null;
+        image3=null;
+        image4=null;
 
     }
 
