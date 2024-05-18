@@ -2,16 +2,20 @@ package org.example.demo1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import org.example.Manage.AFrames;
 import org.example.Manage.Cabin;
 import org.example.Manage.Cottage;
@@ -111,19 +115,41 @@ public class HomePageForCustomerController implements Initializable {
     }
 
     public void showHotels(Map<String,Object> hotel) throws Exception{
-        Rectangle rectangle = new Rectangle(200, 200);
+
+        Rectangle smallRectangle = new Rectangle(200, 100);
         homePageVbox.setPadding(new Insets(5));
-        rectangle.setFill(Color.BLUE);
+        smallRectangle.setFill(Color.BLUE);
 
-
-        String description = (String) hotel.get("name");
-       // System.out.println(description);
-        Label descriptionLabel = new Label(description);
+        StringBuilder str=new StringBuilder();
+        //int cost=hotel.get("costpernight");
+        str.append("Name: ").append((String) hotel.get("name")).append("\n")
+                .append("Address: ").append((String) hotel.get("address")).append("\n")
+                .append("Cost Per Night: ").append(hotel.get("costpernight")).append("\n");
+        String data= str.toString();
+        // Create a label for the hotel description
+       // String description = (String) hotel.get("name");
+        System.out.println(data);
+        Label descriptionLabel = new Label(data);
         descriptionLabel.setWrapText(true);
-        descriptionLabel.setStyle("-fx-text-fill: white; -fx-padding: 10px;");
+        descriptionLabel.setMaxWidth(300);  // Set preferred width to 200 pixels
+        descriptionLabel.setPrefWidth(300);  // Set preferred width to 200 pixels
+        descriptionLabel.setPrefHeight(200);
+        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 3px;");
 
-        StackPane stackPane = new StackPane();
-        stackPane.getChildren().addAll(rectangle, descriptionLabel);
+        VBox vBox = new VBox();
+        vBox.setPrefWidth(200);  // Set preferred width of the VBox to 170 pixels
+        vBox.setPrefHeight(300);
+        vBox.getChildren().addAll(smallRectangle, descriptionLabel);
+        vBox.setSpacing(5);  // Add some spacing between the rectangle and label
+
+
+
+        StackPane stackPane = new StackPane(vBox);
+        stackPane.setPrefWidth(200);  // Set preferred width to 200 pixels
+        stackPane.setPrefHeight(300);
+        stackPane.setPadding(new Insets(5));
+
+        stackPane.setOnMouseClicked(event -> handleRectangleClick(event));
 
         HBox f=null;
 
@@ -138,12 +164,9 @@ public class HomePageForCustomerController implements Initializable {
             }
         }
 
-
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
-       //     hBox.getChildren().add(rectangle);
-        hBox.getChildren().add(stackPane);
+       hBox.getChildren().add(stackPane);
         homePageVbox.getChildren().remove(homePageVbox.getChildren().getLast());
-   //        homePageVbox.(new Insets(5));
         homePageVbox.setSpacing(5);
         hBox.setSpacing(5);
         homePageVbox.getChildren().add(hBox);
@@ -167,6 +190,25 @@ public class HomePageForCustomerController implements Initializable {
 //            throw new RuntimeException(e);
 //        }
 //
+    }
+
+    public void handleRectangleClick(MouseEvent event) {
+        try {
+            // Load the new FXML file for the new window
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newWindow.fxml"));
+            VBox newWindowRoot = fxmlLoader.load();
+
+            // Create a new Stage (window)
+            Stage newWindowStage = new Stage();
+            newWindowStage.setTitle("New Window");
+            newWindowStage.setScene(new Scene(newWindowRoot, 400, 300));
+            newWindowStage.show();
+
+            // Close the current stage (if needed)
+            // ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
