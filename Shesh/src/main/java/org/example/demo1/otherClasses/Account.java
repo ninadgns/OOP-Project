@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import org.example.Manage.Hotel;
 import org.example.Manage.Room;
 import org.example.database.DatabaseClient;
-import org.example.database.Tables;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +34,7 @@ public class Account {
     public static Hotel hotel;
     public static ArrayList<Room> rooms = new ArrayList<>();
 
-
+    
 
     public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
         String allInfoTogether = "'" + account.getFullName() + "'" + ", " + "'" + account.getPhoneNumber() + "'" + ", "
@@ -108,6 +107,11 @@ public class Account {
         List<String> list = Arrays.asList(
 
                 String.valueOf(Hotel.lastHotelID),
+<<<<<<< Updated upstream:src/main/java/org/example/demo1/otherClasses/Account.java
+
+=======
+//                loggedIn.getId(),
+>>>>>>> Stashed changes:Shesh/src/main/java/org/example/demo1/otherClasses/Account.java
                 hotel.getType(),
                 hotel.getName(),
                 hotel.getAddress(),
@@ -121,16 +125,15 @@ public class Account {
                 str4,
                 String.valueOf(hotel.getFloorSpace()),
                 String.valueOf(hotel.getCostPerNight()),
-                hotel.getAdditionalDescription(),
-                '"' + String.join("\",\"", hotel.getIndoorAmenities()) + '"',
-                '"' + String.join("\",\"", hotel.getOutdoorAmenities()) + '"',
-                "sobinai",
-                "sobinai",
-                "sobinai",
-                "sobinai");
+                loggedIn.getId());
 
         String allInfoTogether = "'" + String.join("', '", list) + "'";
-        System.out.println(allInfoTogether);
+        System.out.println(str1);
+        System.out.println(str2);
+        System.out.println(str3);
+        System.out.println(str4);
+
+
 
         // String allInfoTogether = "'" + Hotel.lastHotelID + "', '" + hotel.getType() +
         // "', '" + hotel.getName() + "', '"
@@ -142,7 +145,7 @@ public class Account {
         int i=0;
        // String s= toString(hotel.getFloorSpace());
         DatabaseClient.insert("hotels",
-                "id, type, name, address, district, floorspace, costpernight, additionaldescription, indoorspace, outdoorspace, image1, image2, image3, image4",
+                "id, type, name, address, district, indoorspace, outdoorspace, additionaldescription, image1, image2, image3, image4, floorspace, costpernight, ownerid",
                 allInfoTogether);
         // DatabaseClient.insert("hotels",
         // "id, type, name, address, district, sqft, pernightcost, indoorspace,

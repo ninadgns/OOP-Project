@@ -122,12 +122,38 @@
                            </Label>
                         </children>
                      </HBox>
+                     <HBox fx:id="photoHbox4" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn5" mnemonicParsing="false" onAction="#handleChoosePhoto5" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel5" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox fx:id="photoHbox5" alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="264.0">
+                        <children>
+                           <Button fx:id="choosePhotoBtn6" mnemonicParsing="false" onAction="#handleChoosePhoto6" text="Thumbnail Photo " />
+                           <Label fx:id="choosePhotoLabel6" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                              <padding>
+                                 <Insets left="5.0" />
+                              </padding>
+                              <HBox.margin>
+                                 <Insets left="5.0" />
+                              </HBox.margin>
+                           </Label>
+                        </children>
+                     </HBox>
                   </children>
                   <padding>
                      <Insets top="15.0" />
                   </padding>
                </VBox>
-               <Button fx:id="postBtn" layoutX="124.0" layoutY="663.0" mnemonicParsing="false" onAction="#handlePostBtn" styleClass="login-signin" stylesheets="@styles.css" text="Post" />
+               <Button fx:id="postBtn" layoutX="124.0" layoutY="740.0" mnemonicParsing="false" onAction="#handlePostBtn" styleClass="login-signin" stylesheets="@styles.css" text="Post" />
                <VBox layoutX="31.0" layoutY="297.0" prefHeight="26.0" prefWidth="315.0" spacing="3.0">
                   <children>
                      <HBox prefHeight="19.0" prefWidth="324.0" spacing="7.0">

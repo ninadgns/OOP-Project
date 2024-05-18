@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="925.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="828.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
             <children>
@@ -45,12 +45,12 @@
                <children>
                   <AnchorPane prefHeight="187.0" prefWidth="597.0">
                      <children>
-                        <Label fx:id="hotelName" layoutX="34.0" layoutY="17.0" prefHeight="30.0" prefWidth="476.0" text="Hotel Name" wrapText="true">
+                        <Label layoutX="34.0" layoutY="17.0" prefHeight="30.0" prefWidth="476.0" text="Hotel Name" wrapText="true">
                            <font>
                               <Font name="DejaVu Sans Bold" size="18.0" />
                            </font>
                         </Label>
-                        <HBox fx:id="imageVbox" layoutX="7.0" layoutY="44.0" prefHeight="130.0" prefWidth="583.0" />
+                        <HBox layoutX="25.0" layoutY="44.0" prefHeight="130.0" prefWidth="548.0" />
                      </children>
                   </AnchorPane>
                   <HBox prefHeight="342.0" prefWidth="597.0">
@@ -61,28 +61,34 @@
                                  <children>
                                     <VBox prefHeight="97.0" prefWidth="224.0">
                                        <children>
-                                          <Label fx:id="type" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="224.0" text="Type" wrapText="true">
+                                          <Label text="Label" />
+                                          <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="224.0" text="District" wrapText="true">
                                              <font>
                                                 <Font name="Andika Bold" size="13.0" />
                                              </font>
                                           </Label>
                                           <HBox prefHeight="29.0" prefWidth="224.0">
                                              <children>
-                                                <Label fx:id="indoor" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="156.0" text="Indoor Space">
+                                                <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="76.0" text="Bed">
                                                    <font>
                                                       <Font name="Andika Bold" size="13.0" />
                                                    </font>
                                                 </Label>
-                                                <Label fx:id="outdoor" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="168.0" text="Outdoor Space">
+                                                <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="76.0" text="Bath">
                                                    <font>
                                                       <Font name="Andika Bold" size="13.0" />
                                                    </font>
                                                 </Label>
                                              </children>
                                           </HBox>
+                                          <Label alignment="TOP_LEFT" prefHeight="40.0" prefWidth="224.0" text="Address" wrapText="true">
+                                             <font>
+                                                <Font name="Andika Bold" size="13.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </VBox>
-                                    <VBox prefHeight="174.0" prefWidth="343.0" spacing="4.0">
+                                    <VBox prefHeight="86.0" prefWidth="343.0" spacing="4.0">
                                        <children>
                                           <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
                                              <rotationAxis>
@@ -94,13 +100,7 @@
                                                 <Font name="DejaVu Sans Bold" size="13.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="additionDescription" alignment="TOP_LEFT" prefHeight="92.0" prefWidth="343.0" text="Description" wrapText="true" />
-                                          <Label alignment="TOP_LEFT" prefHeight="0.0" prefWidth="59.0" text="Address" wrapText="true">
-                                             <font>
-                                                <Font name="Andika Bold" size="13.0" />
-                                             </font>
-                                          </Label>
-                                          <Label fx:id="address" alignment="TOP_LEFT" prefHeight="97.0" prefWidth="343.0" text="District" />
+                                          <Label alignment="TOP_LEFT" prefHeight="20.0" prefWidth="343.0" text="Description" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox>
@@ -307,7 +307,7 @@
                                                 <VBox alignment="TOP_RIGHT" prefHeight="98.0" prefWidth="83.0" spacing="2.0">
                                                    <children>
                                                       <Label text="teka" />
-                                                      <Label alignment="TOP_RIGHT" text="150" />
+                                                      <Label alignment="TOP_RIGHT" text="vuateka" />
                                                    </children>
                                                    <padding>
                                                       <Insets bottom="5.0" />
