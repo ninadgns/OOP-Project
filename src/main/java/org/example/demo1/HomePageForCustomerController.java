@@ -51,8 +51,6 @@ public class HomePageForCustomerController implements Initializable {
     @FXML
     private Label hotelAddress;
     @FXML
-    private Label hotelType;
-    @FXML
     private Label hotelFloorSpace;
     @FXML
     private Label hotelCost;
@@ -61,11 +59,7 @@ public class HomePageForCustomerController implements Initializable {
     @FXML
     private ImageView amiLogo;
     @FXML
-    private TextField hotelSearchBox;
-    @FXML
     private ImageView settingsButton;
-    @FXML
-    private ImageView profileChobiEbongButton;
     @FXML
     private ImageView settingsButton1;
     @FXML

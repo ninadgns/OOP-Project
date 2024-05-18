@@ -30,9 +30,10 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
-
     }
-    public static List<Map<String,Object>> allHotels;
+
+    public static List<Map<String, Object>> allHotels;
+
     public static void main(String[] args) {
 
         DatabaseClient.initiate();
@@ -48,18 +49,16 @@ public class HelloApplication extends Application {
         //
         // }
 
-    //    var a = DatabaseClient.fetch(Tables.ACCOUNTINFO);
-//        for (Map<String, Object> map : a) {
-//            var base64String = map.get("profilephoto");
-////            if (base64String!=null && base64String.toString().length()>50) {
-////                DatabaseClient.saveFile(base64String.toString());
-////            }
+        // var a = DatabaseClient.fetch(Tables.ACCOUNTINFO);
+        // for (Map<String, Object> map : a) {
+        // var base64String = map.get("profilephoto");
+        //// if (base64String!=null && base64String.toString().length()>50) {
+        //// DatabaseClient.saveFile(base64String.toString());
+        //// }
 
-        allHotels=DatabaseClient.fetch(Tables.HOTELS);
+        allHotels = DatabaseClient.fetch(Tables.HOTELS);
 
         launch();
-    }
-}
         // for (Map<String, Object> map : a) {
         // var base64String = map.get("profilephoto");
         // if (base64String!=null && base64String.toString().length()>50) {
@@ -75,9 +74,10 @@ public class HelloApplication extends Application {
         // }).start();
 
         // try {
-        //     ChatServer.start(args);
+        // ChatServer.start(args);
         // } catch (Exception e) {
-        //     e.printStackTrace();// TODO: handle exception
+        // e.printStackTrace();// TODO: handle exception
         // }
+
     }
 }

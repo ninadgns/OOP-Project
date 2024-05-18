@@ -15,7 +15,7 @@ public class Account {
     private String fname;
     private String lname;
     private String name;
-    private String id;
+    public String id;
     private String fullName;
     private boolean isCustomer;
     private String dateOfBirth;
@@ -189,28 +189,9 @@ public class Account {
     public String getPassword() {
         return password;
     }
-    private String fullName;
-    private boolean isCustomer;
-    private String dateOfBirth;
-    private String proFilePhoto;
-    private String phoneNumber;
-    private String email;
-    private String address;
-    private String password;
-    public static Account loggedIn = new Account();
-    public static Hotel hotel;
-    public static ArrayList<Room> rooms = new ArrayList<>();
 
-    public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
-        String allInfoTogether = "'" + account.getFullName() + "'" + ", " + "'" + account.getPhoneNumber() + "'" + ", "
-                + "'" + account.getEmail() + "'" + ", '" + account.getAddress() + "', " + "'" + account.getPassword() + "'"
-                + ", " + "'" + account.getDateOfBirth() + "'" + ", " + "'" + account.getIsCustomer() + "'" + ", " + "'"
-                + account.getProFilePhoto() + "'";
-        DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto",
-                allInfoTogether);
-        // DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
-        System.out.println("Push Hoise");
-
+    public String getId() {
+        return id;
     }
 
     public void setId(String id) {
