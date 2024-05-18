@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.example.Manage.AFrames;
@@ -148,35 +149,47 @@ public class HomePageForCustomerController implements Initializable {
 
     public void showHotels(Map<String,Object> hotel) throws Exception{
 
-        Rectangle smallRectangle = new Rectangle(250, 200);
+        Rectangle smallRectangle = new Rectangle(200, 100);
         homePageVbox.setPadding(new Insets(5));
         smallRectangle.setFill(Color.BLUE);
 
-        StringBuilder str=new StringBuilder();
 
+
+        String str1 = (String) hotel.get("image1");
+        if (str1 != null && !str1.isEmpty() && !str1.equals("sobinai")) {
+            Image image1 = DatabaseClient.stringToImage(str1);
+
+            if (image1 != null) {
+                smallRectangle.setFill(new ImagePattern(image1));
+            }
+        }
+
+        StringBuilder str=new StringBuilder();
+        //int cost=hotel.get("costpernight");
         str.append("Name: ").append((String) hotel.get("name")).append("\n")
                 .append("Address: ").append((String) hotel.get("address")).append("\n")
-                .append("Cost Per Night: ").append(hotel.get("costpernight")).append(" BDT").append("\n");
+                .append("Cost Per Night: ").append(hotel.get("costpernight")).append("\n");
         String data= str.toString();
 
-       // System.out.println(data);
+        System.out.println(data);
         Label descriptionLabel = new Label(data);
         descriptionLabel.setWrapText(true);
-        descriptionLabel.setPrefWidth(250);
-        descriptionLabel.setPrefHeight(70);
-        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 0;");
+        descriptionLabel.setMaxWidth(300);
+        descriptionLabel.setPrefWidth(300);
+        descriptionLabel.setPrefHeight(200);
+        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 3px;");
 
         VBox vBox = new VBox();
-        vBox.setMinWidth(250);
-        vBox.setMinHeight(300);
+        vBox.setPrefWidth(200);
+        vBox.setPrefHeight(300);
         vBox.getChildren().addAll(smallRectangle, descriptionLabel);
         vBox.setSpacing(5);
 
 
 
         StackPane stackPane = new StackPane(vBox);
-        stackPane.setMinWidth(250);
-        stackPane.setMinHeight(300);
+        stackPane.setPrefWidth(200);
+        stackPane.setPrefHeight(300);
         stackPane.setPadding(new Insets(5));
 
         // Store hotel information in StackPane
@@ -195,16 +208,12 @@ public class HomePageForCustomerController implements Initializable {
         else{
              f = (HBox) homePageVbox.getChildren().getLast();
             if (f.getChildren().size() == 4) {
-                HBox hB=new HBox();
-                hB.setMinHeight(300);
-                homePageVbox.getChildren().add(hB);
-
+                homePageVbox.getChildren().add(new HBox());
             }
         }
 
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
-        hBox.setMinHeight(300);
-        hBox.getChildren().add(stackPane);
+       hBox.getChildren().add(stackPane);
         homePageVbox.getChildren().remove(homePageVbox.getChildren().getLast());
         homePageVbox.setSpacing(5);
         hBox.setSpacing(5);
