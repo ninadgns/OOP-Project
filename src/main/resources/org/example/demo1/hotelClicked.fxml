@@ -50,7 +50,7 @@
                               <Font name="DejaVu Sans Bold" size="18.0" />
                            </font>
                         </Label>
-                        <HBox layoutX="7.0" layoutY="44.0" prefHeight="130.0" prefWidth="583.0" />
+                        <HBox fx:id="imageVbox" layoutX="7.0" layoutY="44.0" prefHeight="130.0" prefWidth="583.0" />
                      </children>
                   </AnchorPane>
                   <HBox prefHeight="342.0" prefWidth="597.0">
