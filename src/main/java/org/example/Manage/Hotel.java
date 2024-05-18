@@ -1,3 +1,4 @@
+
 package org.example.Manage;
 
 import java.util.*;
@@ -6,6 +7,7 @@ import java.util.ArrayList;
 public abstract class Hotel {
     public static int lastHotelID;
     private int hotelID;
+    private String ownerID;
     private String address;
     private String district;
     private String roomDetails;
@@ -18,11 +20,11 @@ public abstract class Hotel {
     private HashMap<Client, CheckInandOut> bookings = new HashMap<>();
     private String type;
     private ArrayList<Room> rooms = new ArrayList<>();
-    // private CommonSpace indoorSpace, outdoorSpace;
+
     private House house;
     private int costPerNight, costForRooms, costForOtherFacilities;
-
     private double sqft;
+
 
     public ArrayList<String> getRoomDescription(int i) {
         if (rooms.size() <= i)
@@ -72,7 +74,7 @@ public abstract class Hotel {
     }
 
     public double getFloorSpace() {
-        return sqft;
+        return this.sqft;
     }
 
     public void setSqft(double sqft) {
@@ -101,6 +103,14 @@ public abstract class Hotel {
 
     public void setOtherFacility(House house) {
         this.house = house;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
     }
 
     public void setRoomList(ArrayList<Room> rooms) {
@@ -172,7 +182,7 @@ public abstract class Hotel {
     }
 
     public int getCostPerNight() {
-        this.costPerNight = getCostForOtherFacilities() + getCostForRooms();
+        this.costPerNight = getCostForOtherFacilities() + getCostForRooms() + (int)sqft*12;
         return this.costPerNight;
     }
 
@@ -187,18 +197,7 @@ public abstract class Hotel {
                 || !checkout.matches("\\d{4}\\d{2}\\d{2}")) {
             return true;
         }
-        // String[] CheckIn = checkin.split(" ");
-        // String[] CheckOut = checkin.split(" ");
-        //
-        // int chInDay = Integer.parseInt(CheckIn[0]);
-        // int chOutDay = Integer.parseInt(CheckOut[0]);
-        // int chInMon = Integer.parseInt(CheckIn[1]);
-        // int chOutMon = Integer.parseInt(CheckOut[1]);
-        // int chInYear = Integer.parseInt(CheckIn[2]);
-        // int chOutYear = Integer.parseInt(CheckOut[2]);
 
-        // final String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-        // "Aug", "Sep", "Oct", "Nov", "Dec" };
         int givenCheckinDate = Integer.parseInt(checkin);
         int givenCheckoutDate = Integer.parseInt(checkout);
 
@@ -207,9 +206,7 @@ public abstract class Hotel {
         for (Map.Entry<Client, CheckInandOut> entry : this.getBookings().entrySet()) {
             CheckInandOut booked = entry.getValue();
             if (booked.checkinDate < givenCheckoutDate && booked.checkinDate > givenCheckinDate) {
-                // if ((booked.checkinMon == chInMon && booked.checkinDay <= chInDay) ||
-                // (booked.checkoutMon == chInMon && booked.checkoutDay > chInDay)) {
-                vacant = false;
+                 vacant = false;
                 break;
             }
             if (booked.checkoutDate < givenCheckoutDate && booked.checkoutDate > givenCheckinDate) {

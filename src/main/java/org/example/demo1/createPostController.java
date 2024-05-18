@@ -1,3 +1,4 @@
+
 package org.example.demo1;
 
 import javafx.event.ActionEvent;
@@ -7,16 +8,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.Manage.*;
+import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
+
+import java.io.File;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class createPostController implements Initializable {
+    @FXML
+    private BorderPane borderPane;
     @FXML
     private TextField hotelName;
     @FXML
@@ -118,15 +126,90 @@ public class createPostController implements Initializable {
     }
 
     public void handleChoosePhoto1(ActionEvent actionEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose an Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Get the stage to show the FileChooser dialog
+        Stage stage = (Stage) photoHbox.getScene().getWindow();
+
+        // Show the file chooser dialog
+        Account.image1 = fileChooser.showOpenDialog(stage);
+
+        if (Account.image1 != null) {
+            // Set the label to display the selected file's name
+            choosePhotoLabel1.setText(Account.image1.getName());
+        } else {
+            choosePhotoLabel1.setText("No image chosen");
+        }
     }
 
+
+
     public void handleChoosePhoto2(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose an Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Get the stage to show the FileChooser dialog
+        Stage stage = (Stage) photoHbox.getScene().getWindow();
+
+        // Show the file chooser dialog
+        Account.image2 = fileChooser.showOpenDialog(stage);
+
+        if (Account.image2 != null) {
+            // Set the label to display the selected file's name
+            choosePhotoLabel2.setText(Account.image2.getName());
+        } else {
+            choosePhotoLabel2.setText("No image chosen");
+        }
     }
 
     public void handleChoosePhoto3(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose an Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Get the stage to show the FileChooser dialog
+        Stage stage = (Stage) photoHbox.getScene().getWindow();
+
+        // Show the file chooser dialog
+        Account.image3 = fileChooser.showOpenDialog(stage);
+
+        if (Account.image3 != null) {
+            // Set the label to display the selected file's name
+            choosePhotoLabel3.setText(Account.image3.getName());
+        } else {
+            choosePhotoLabel3.setText("No image chosen");
+        }
     }
 
     public void handleChoosePhoto4(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose an Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        // Get the stage to show the FileChooser dialog
+        Stage stage = (Stage) photoHbox.getScene().getWindow();
+
+        // Show the file chooser dialog
+        Account.image4 = fileChooser.showOpenDialog(stage);
+
+        if (Account.image4 != null) {
+            // Set the label to display the selected file's name
+            choosePhotoLabel4.setText(Account.image4.getName());
+        } else {
+            choosePhotoLabel4.setText("No image chosen");
+        }
     }
 
     public void handleChoosePhoto5(ActionEvent actionEvent) {
@@ -182,8 +265,13 @@ public class createPostController implements Initializable {
 
         Account.hotel.setAdditionalDescription(longDescription.getText());
         Account.hotel.setRoomList(Account.rooms);
+        Account.hotel.setOwnerID(Account.loggedIn.getId());
         Hotel.lastHotelID++;
         Account.hotel.setHotelID(Hotel.lastHotelID);
         Account.dbTeHotelPathai();
+
+        Stage stage = (Stage) borderPane.getScene().getWindow();
+
+        stage.close();
     }
 }

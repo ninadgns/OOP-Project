@@ -1,14 +1,19 @@
+
 package org.example.demo1;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -21,26 +26,54 @@ import org.example.Manage.AFrames;
 import org.example.Manage.Cabin;
 import org.example.Manage.Cottage;
 import org.example.Manage.Villa;
+import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 public class HomePageForCustomerController implements Initializable {
-//    HomePageForCustomerController(){
-//        super();
-//    }
-    public Label emneiLabel;
+    @FXML
+    private Label hotelName;
+    @FXML
+    private Label hotelDistrict;
+    @FXML
+    private Label hotelAddress;
+    @FXML
+    private Label hotelFloorSpace;
+    @FXML
+    private Label hotelCost;
+    @FXML
+    private Label emneiLabel;
+    @FXML
+    private ImageView amiLogo;
+    @FXML
+    private ImageView settingsButton;
+    @FXML
+    private ImageView settingsButton1;
+    @FXML
+    private ImageView managerDp;
+    @FXML
+    private Label managerName;
+    @FXML
+    private Label managerEmail;
+    @FXML
+    private Label managerPhone;
+    @FXML
+    private Label managerAddress;
     @FXML
     private static ImageView profileChobiEbongButton;
     @FXML
@@ -69,7 +102,7 @@ public class HomePageForCustomerController implements Initializable {
     public void handleDoneBtn(ActionEvent actionEvent) {
         hotelIdsBasedOnArea =new LinkedBlockingQueue<>();
         String str= hotelSearchBox.getText();
-      //  System.out.println(str);
+        //  System.out.println(str);
         homePageVbox.getChildren().clear();
         for(var hotel:  HelloApplication.allHotels){
             if(str.equals(hotel.get("district"))){
@@ -96,13 +129,12 @@ public class HomePageForCustomerController implements Initializable {
         } else if (rVilla.isSelected()) {
             selType = "Villa";
         }
-        // Filter hotels based on selected type
-      //  if (selType != null) {
-            for (var hotel : hotelIdsBasedOnArea) {
-                if (selType.equals(hotel.get("type"))) {
-                    hotelIdsonType.add(hotel);
-                }
+
+        for (var hotel : hotelIdsBasedOnArea) {
+            if (selType.equals(hotel.get("type"))) {
+                hotelIdsonType.add(hotel);
             }
+        }
 
         homePageVbox.getChildren().clear();
         for(var hotel:  hotelIdsonType) {
@@ -117,11 +149,9 @@ public class HomePageForCustomerController implements Initializable {
 
     public void showHotels(Map<String,Object> hotel) throws Exception{
 
-        Rectangle smallRectangle = new Rectangle(200, 100);
+        Rectangle smallRectangle = new Rectangle(250, 200);
         homePageVbox.setPadding(new Insets(5));
-        smallRectangle.setFill(Color.BLUE);
-
-
+        smallRectangle.setFill(Color.GRAY);
 
         String str1 = (String) hotel.get("image1");
         if (str1 != null && !str1.isEmpty() && !str1.equals("sobinai")) {
@@ -133,31 +163,28 @@ public class HomePageForCustomerController implements Initializable {
         }
 
         StringBuilder str=new StringBuilder();
-        //int cost=hotel.get("costpernight");
+
         str.append("Name: ").append((String) hotel.get("name")).append("\n")
                 .append("Address: ").append((String) hotel.get("address")).append("\n")
-                .append("Cost Per Night: ").append(hotel.get("costpernight")).append("\n");
+                .append("Cost Per Night: ").append(hotel.get("costpernight")).append(" BDT").append("\n");
         String data= str.toString();
 
-        System.out.println(data);
+        // System.out.println(data);
         Label descriptionLabel = new Label(data);
         descriptionLabel.setWrapText(true);
-        descriptionLabel.setMaxWidth(300);
-        descriptionLabel.setPrefWidth(300);
-        descriptionLabel.setPrefHeight(200);
-        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 3px;");
+        descriptionLabel.setPrefWidth(250);
+        descriptionLabel.setPrefHeight(70);
+        descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 0;");
 
         VBox vBox = new VBox();
-        vBox.setPrefWidth(200);
-        vBox.setPrefHeight(300);
+        vBox.setMinWidth(250);
+        vBox.setMinHeight(300);
         vBox.getChildren().addAll(smallRectangle, descriptionLabel);
         vBox.setSpacing(5);
 
-
-
         StackPane stackPane = new StackPane(vBox);
-        stackPane.setPrefWidth(200);
-        stackPane.setPrefHeight(300);
+        stackPane.setMinWidth(250);
+        stackPane.setMinHeight(300);
         stackPane.setPadding(new Insets(5));
 
         stackPane.setOnMouseClicked(event -> handleRectangleClick(event));
@@ -166,17 +193,23 @@ public class HomePageForCustomerController implements Initializable {
 
         int childrenSize = homePageVbox.getChildren().size();
         if(childrenSize==0){
-            homePageVbox.getChildren().add(new HBox());
+            HBox hB=new HBox();
+            hB.setMinHeight(300);
+            homePageVbox.getChildren().add(hB);
         }
         else{
-             f = (HBox) homePageVbox.getChildren().getLast();
+            f = (HBox) homePageVbox.getChildren().getLast();
             if (f.getChildren().size() == 4) {
-                homePageVbox.getChildren().add(new HBox());
+                HBox hB=new HBox();
+                hB.setMinHeight(300);
+                homePageVbox.getChildren().add(hB);
+
             }
         }
 
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
-       hBox.getChildren().add(stackPane);
+        hBox.setMinHeight(300);
+        hBox.getChildren().add(stackPane);
         homePageVbox.getChildren().remove(homePageVbox.getChildren().getLast());
         homePageVbox.setSpacing(5);
         hBox.setSpacing(5);
@@ -205,7 +238,6 @@ public class HomePageForCustomerController implements Initializable {
 
     public void handleRectangleClick(MouseEvent event) {
         try {
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("newWindow.fxml"));
             VBox newWindowRoot = fxmlLoader.load();
 
@@ -218,4 +250,6 @@ public class HomePageForCustomerController implements Initializable {
             e.printStackTrace();
         }
     }
+
+
 }
