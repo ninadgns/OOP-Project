@@ -89,6 +89,7 @@ public class ChatClient {
                     Platform.runLater(() -> controller.displayReceivedMessage(response));
                 } catch (IOException ex) {
                     System.out.println("Error reading from server: " + ex.getMessage());
+
                     break;
                 }
             }

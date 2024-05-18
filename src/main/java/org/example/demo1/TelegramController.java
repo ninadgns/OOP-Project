@@ -108,6 +108,7 @@ public class TelegramController {
     // }
 
     String receiver = new String();
+
     @FXML
     public void initialize() {
         System.out.println("bgVbox initialized: " + (bgVbox != null));
@@ -129,13 +130,13 @@ public class TelegramController {
                 anchorPane.setOnMouseClicked((MouseEvent event) -> {
                     System.out.println("AnchorPane is clicked!" + senderData.name);
                     bgVbox.getChildren().clear();
-                    receiver =  senderData.sender_id;
+                    receiver = senderData.sender_id;
 
                     String messagesSql = "SELECT * FROM messages WHERE (sender_id = " + Account.loggedIn.id
                             + " AND receiver_id = "
                             + senderData.sender_id + ") OR (sender_id = " + senderData.sender_id + " AND receiver_id = "
                             + Account.loggedIn.id
-                            + ") ORDER BY id DESC;";
+                            + ") ORDER BY id ASC;";
 
                     ResultSet messagesResultSet = DatabaseClient.runSQL(messagesSql);
                     List<String> messagesSentByMe = new ArrayList<>();
@@ -149,7 +150,8 @@ public class TelegramController {
                             // messagesSentByUser2.add(message);
                             // }
                             var message_sender_id = messagesResultSet.getString("sender_id");
-                            if (message_sender_id == senderData.sender_id) {
+                            System.out.println(message_sender_id + " " + senderData.sender_id);
+                            if (Integer.parseInt(message_sender_id) == Integer.parseInt(senderData.sender_id)) {
                                 // messagesSentByOtherPerson.add();
                                 displayReceivedMessage(messagesResultSet.getString("content"));
                                 System.out.println("bame dilam");
@@ -202,7 +204,7 @@ public class TelegramController {
         try {
             String sql = "SELECT m2.last_message_id, u.name,  m2.sender_id FROM ( SELECT sender_id, MAX(id) as last_message_id FROM messages WHERE receiver_id = "
                     + receiverId
-                    + " GROUP BY sender_id) m2 JOIN accountinfo u ON u.id = m2.sender_id ORDER BY m2.last_message_id ASC;";
+                    + " GROUP BY sender_id) m2 JOIN accountinfo u ON u.id = m2.sender_id ORDER BY m2.last_message_id DESC;";
 
             ResultSet resultSet = DatabaseClient.runSQL(sql);
 
@@ -230,7 +232,7 @@ public class TelegramController {
     public void handleSendBtn(MouseEvent mouseEvent) {
         String message = messageText.getText().trim();
         if (!message.isEmpty()) {
-            client.sendMessage("/msg " + receiver +" " + message);
+            client.sendMessage("/msg " + receiver + " " + message);
             displaySentMessage(message);
             messageText.setText("");
         } else {
