@@ -80,8 +80,8 @@ public class HomePageForCustomerController implements Initializable {
     public TextField hotelSearchBox;
     @FXML
     private VBox homePageVbox;
-//   @FXML
-//   private Button handleDonebtn;
+    // @FXML
+    // private Button handleDonebtn;
 
     @FXML
     private RadioButton rCabin;
@@ -93,67 +93,73 @@ public class HomePageForCustomerController implements Initializable {
     private RadioButton rAFrame;
     @FXML
     private RadioButton rVilla;
-    private BlockingQueue<Map<String,Object>> hotelIdsonType;
-    private BlockingQueue<Map<String,Object>> hotelIdsBasedOnArea;
-    public void setLabelData(String s){
+    private BlockingQueue<Map<String, Object>> hotelIdsonType;
+    private BlockingQueue<Map<String, Object>> hotelIdsBasedOnArea;
+
+    public void setLabelData(String s) {
         emneiLabel.setText(s);
     }
 
     public void handleDoneBtn(ActionEvent actionEvent) {
-        hotelIdsBasedOnArea =new LinkedBlockingQueue<>();
-        String str= hotelSearchBox.getText();
-      //  System.out.println(str);
+        hotelIdsBasedOnArea = new LinkedBlockingQueue<>();
+        String str = hotelSearchBox.getText();
+        // System.out.println(str);
         homePageVbox.getChildren().clear();
-        for(var hotel:  HelloApplication.allHotels){
-            if(str.equals(hotel.get("district"))){
+        for (var hotel : HelloApplication.allHotels) {
+            if (str.equals(hotel.get("district"))) {
                 hotelIdsBasedOnArea.add(hotel);
             }
         }
-        for(var hotel: hotelIdsBasedOnArea){
-            try{
-                showHotels(hotel);}
-            catch(Exception e){
+        for (var hotel : hotelIdsBasedOnArea) {
+            try {
+                showHotels(hotel);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
+
     public void handleTypeDone(ActionEvent actionEvent) {
-        hotelIdsonType=new LinkedBlockingQueue<>();
+        hotelIdsonType = new LinkedBlockingQueue<>();
         String selType = null;
         if (rAFrame.isSelected()) {
-            selType = "AFrames";
-        }else if(rCabin.isSelected()) {
-            selType = "Cabins";
+            selType = "AFrame";
+        } else if (rCabin.isSelected()) {
+            selType = "Cabin";
         } else if (rCottage.isSelected()) {
             selType = "Cottage";
         } else if (rVilla.isSelected()) {
             selType = "Villa";
         }
-
-        for (var hotel : hotelIdsBasedOnArea) {
-            if (selType.equals(hotel.get("type"))) {
+        if (hotelIdsBasedOnArea != null) {
+            for (var hotel : hotelIdsBasedOnArea) {
+                if (selType.equals(hotel.get("type"))) {
                     hotelIdsonType.add(hotel);
+                }
+            }
+        } else {
+            for (var hotel : HelloApplication.allHotels) {
+                if (selType.equals(hotel.get("type"))) {
+                    hotelIdsonType.add(hotel);
+                }
             }
         }
-
         homePageVbox.getChildren().clear();
-        for(var hotel:  hotelIdsonType) {
+        for (var hotel : hotelIdsonType) {
 
-            try{
-                showHotels(hotel);}
-            catch(Exception e){
+            try {
+                showHotels(hotel);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public void showHotels(Map<String,Object> hotel) throws Exception{
+    public void showHotels(Map<String, Object> hotel) throws Exception {
 
         Rectangle smallRectangle = new Rectangle(200, 100);
         homePageVbox.setPadding(new Insets(5));
         smallRectangle.setFill(Color.BLUE);
-
-
 
         String str1 = (String) hotel.get("image1");
         if (str1 != null && !str1.isEmpty() && !str1.equals("sobinai")) {
@@ -164,12 +170,12 @@ public class HomePageForCustomerController implements Initializable {
             }
         }
 
-        StringBuilder str=new StringBuilder();
-        //int cost=hotel.get("costpernight");
+        StringBuilder str = new StringBuilder();
+        // int cost=hotel.get("costpernight");
         str.append("Name: ").append((String) hotel.get("name")).append("\n")
                 .append("Address: ").append((String) hotel.get("address")).append("\n")
                 .append("Cost Per Night: ").append(hotel.get("costpernight")).append("\n");
-        String data= str.toString();
+        String data = str.toString();
 
         System.out.println(data);
         Label descriptionLabel = new Label(data);
@@ -185,8 +191,6 @@ public class HomePageForCustomerController implements Initializable {
         vBox.getChildren().addAll(smallRectangle, descriptionLabel);
         vBox.setSpacing(5);
 
-
-
         StackPane stackPane = new StackPane(vBox);
         stackPane.setPrefWidth(200);
         stackPane.setPrefHeight(300);
@@ -197,47 +201,48 @@ public class HomePageForCustomerController implements Initializable {
 
         stackPane.setOnMouseClicked(this::handleRectangleClick);
 
-        HBox f=null;
+        HBox f = null;
 
         int childrenSize = homePageVbox.getChildren().size();
-        if(childrenSize==0){
-            HBox hB=new HBox();
+        if (childrenSize == 0) {
+            HBox hB = new HBox();
             hB.setMinHeight(300);
             homePageVbox.getChildren().add(hB);
-        }
-        else{
-             f = (HBox) homePageVbox.getChildren().getLast();
+        } else {
+            f = (HBox) homePageVbox.getChildren().getLast();
             if (f.getChildren().size() == 4) {
                 homePageVbox.getChildren().add(new HBox());
             }
         }
 
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
-       hBox.getChildren().add(stackPane);
+        hBox.getChildren().add(stackPane);
         homePageVbox.getChildren().remove(homePageVbox.getChildren().getLast());
         homePageVbox.setSpacing(5);
         hBox.setSpacing(5);
         homePageVbox.getChildren().add(hBox);
 
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for(var hotel:  HelloApplication.allHotels){
-            try{
-                showHotels(hotel);}
-            catch(Exception e){
+        for (var hotel : HelloApplication.allHotels) {
+            try {
+                showHotels(hotel);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-//        File file = null;
-//        try {
-//            file = DatabaseClient.stringToFile(Account.loggedIn.getProFilePhoto());
-//            Image image = new Image(file.toURI().toString());
-//            profileChobiEbongButton.setImage(image); // Set image to the existing ImageView instance
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
+        // File file = null;
+        // try {
+        // file = DatabaseClient.stringToFile(Account.loggedIn.getProFilePhoto());
+        // Image image = new Image(file.toURI().toString());
+        // profileChobiEbongButton.setImage(image); // Set image to the existing
+        // ImageView instance
+        // } catch (IOException e) {
+        // throw new RuntimeException(e);
+        // }
+        //
     }
 
     public void handleRectangleClick(MouseEvent event) {
@@ -259,13 +264,12 @@ public class HomePageForCustomerController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Hotel Details");
             stage.setScene(scene);
-            stage.setWidth(800);  // Set desired width
+            stage.setWidth(800); // Set desired width
             stage.setHeight(600); // Set desired height
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 }
