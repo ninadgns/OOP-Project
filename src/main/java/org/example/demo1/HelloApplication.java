@@ -9,6 +9,7 @@ import org.example.database.Tables;
 
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("signinPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("HomePageForCustomer.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
 
@@ -27,7 +28,7 @@ public class HelloApplication extends Application {
         // System.getProperties().get("javafx.runtime.version"));
 
     }
-
+    public static List<Map<String,Object>> allHotels;
     public static void main(String[] args) {
 
         DatabaseClient.initiate();
@@ -41,14 +42,14 @@ public class HelloApplication extends Application {
         //
         // }
 
-        var a = DatabaseClient.fetch(Tables.ACCOUNTINFO);
-        for (Map<String, Object> map : a) {
-            var base64String = map.get("profilephoto");
-            if (base64String!=null && base64String.toString().length()>50) {
-                DatabaseClient.saveFile(base64String.toString());
-            }
+    //    var a = DatabaseClient.fetch(Tables.ACCOUNTINFO);
+//        for (Map<String, Object> map : a) {
+//            var base64String = map.get("profilephoto");
+////            if (base64String!=null && base64String.toString().length()>50) {
+////                DatabaseClient.saveFile(base64String.toString());
+////            }
 
-        }
+        allHotels=DatabaseClient.fetch(Tables.HOTELS);
 
         launch();
     }

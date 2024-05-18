@@ -2,9 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForCustomerController">
    <top>
-      <HBox prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
+      <HBox prefHeight="70.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
          <children>
             <AnchorPane prefHeight="53.0" prefWidth="96.0" styleClass="transparent" stylesheets="@styles.css">
                <HBox.margin>
@@ -28,9 +29,34 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="53.0" prefWidth="366.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+            <AnchorPane prefHeight="70.0" prefWidth="366.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="33.0" prefWidth="376.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="4.0" />
+                  <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="376.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="4.0" />
+                  <Button fx:id="Done" layoutX="339.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleDoneBtn" text="Done" />
+                  <HBox alignment="CENTER" layoutY="43.0" prefHeight="0.0" prefWidth="400.0" styleClass="whitebg" stylesheets="@styles.css">
+                     <children>
+                        <RadioButton fx:id="rAFrame" mnemonicParsing="false" prefHeight="18.0" prefWidth="75.0" selected="true" text="AFrame">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="hotelType" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rCabin" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Cabin" toggleGroup="$hotelType">
+                           <HBox.margin>
+                              <Insets left="5.0" right="2.0" />
+                           </HBox.margin></RadioButton>
+                        <RadioButton fx:id="rCottage" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Cottage" toggleGroup="$hotelType">
+                           <HBox.margin>
+                              <Insets left="5.0" right="2.0" />
+                           </HBox.margin></RadioButton>
+                        <RadioButton fx:id="rVilla" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Villa" toggleGroup="$hotelType">
+                           <HBox.margin>
+                              <Insets left="5.0" right="2.0" />
+                           </HBox.margin></RadioButton>
+                        <Button fx:id="Select" mnemonicParsing="false" onAction="#handleTypeDone" text="Select" />
+                     </children></HBox>
                </children>
             </AnchorPane>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="115.0" styleClass="transparent" stylesheets="@styles.css">
@@ -55,11 +81,30 @@
          <content>
             <VBox fx:id="homePageVbox" prefHeight="342.0" prefWidth="584.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="60.0" prefWidth="584.0">
-                     <children>
-                        <Button fx:id="tipDeoBtn" mnemonicParsing="false" onAction="#handleTipDeo" text="Tip Deo" textAlignment="CENTER" />
-                        <Label fx:id="emneiLabel" />
-                     </children></HBox>
+<!--                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="584.0">-->
+<!--                     <children>-->
+<!--                        <RadioButton fx:id="rAFrame" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" selected="true" text="AFrame">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin>-->
+<!--                           <toggleGroup>-->
+<!--                              <ToggleGroup fx:id="hotelType" />-->
+<!--                           </toggleGroup>-->
+<!--                        </RadioButton>-->
+<!--                        <RadioButton fx:id="rCabin" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0"  text="Cabin" toggleGroup="$hotelType">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin></RadioButton>-->
+<!--                        <RadioButton fx:id="rCottage" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0"  text="Cottage" toggleGroup="$hotelType">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin></RadioButton>-->
+<!--                        <RadioButton fx:id="rVilla" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0"  text="Villa" toggleGroup="$hotelType">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin></RadioButton>-->
+<!--                        <Button fx:id="Select" mnemonicParsing="false" onAction="#handleTypeDone" text="Select" />-->
+<!--                         </children></HBox>-->
                </children>
             </VBox>
          </content>
