@@ -1,5 +1,6 @@
 package org.example.database;
 
+import org.example.database.Pair;
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.example.Manage.Hotel;
-import org.example.demo1.otherClasses.Account;
 
 import java.sql.ResultSetMetaData;
 import java.io.File;
@@ -153,6 +153,35 @@ public class DatabaseClient {
 
     }
 
+    public static void insertMessage(String receiver, String sender, String message) {
+        try {
+            conn.createStatement()
+                    .executeUpdate("insert into messages (sender_id, receiver_id, content) values ('"
+                            + sender + "', '" + receiver + "','" + message + "')");
+            System.out.println("insert into messages (sender_id, receiver_id, content) values ('"
+                    + sender + "', '" + receiver + "','" + message + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Pair<String, String>> fetchMessage(String receiver) {
+        System.out.println("select * from messages  where receiver_id = " + receiver);
+        var rs = runSQL("select * from messages  where receiver_id = " + receiver);
+        List<Pair<String, String>> ret = new ArrayList<>();
+        try {
+            if (rs != null)
+                while (rs.next()) {
+                    var sender = rs.getString("sender_id");
+                    var content = rs.getString("content");
+                    ret.add(new Pair<String, String>(sender, content));
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
     public static List<Map<String, Object>> fetchWhere(String tableName, String whereClause) {
         ResultSet rs = null;
         List<Map<String, Object>> rl = null;
@@ -175,7 +204,9 @@ public class DatabaseClient {
             conn.createStatement().executeUpdate(sql);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.out.println(e.getMessage());
+            // e.getMessage();
         }
     }
 

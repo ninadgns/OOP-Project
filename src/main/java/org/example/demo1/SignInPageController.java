@@ -52,9 +52,10 @@ public class SignInPageController {
 
     public void auth() throws Exception {
         var table = DatabaseClient.fetchWhere("accountinfo", "email='" + enterEmailToSignIn.getText() + "'");
-        var row = table.get(0);
+
         boolean f = false;
-        if (row.get("email").equals(enterEmailToSignIn.getText())) {
+        if (table.size()!=0) {
+            var row = table.get(0);
             if (!row.get("password").equals(enterPwdToSignIn.getText())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
@@ -69,7 +70,7 @@ public class SignInPageController {
                 Account.reTrieveAccount(row);
             }
         }
-        if (!f) {
+        else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Email Not Found");
@@ -85,7 +86,7 @@ public class SignInPageController {
         try {
             auth();
             Client client = (Account.loggedIn.getIsCustomer()) ? (new Customer()) : (new HotelManager());
-            System.out.println(33);
+            // System.out.println(33);
             client.setPage(actionEvent, getClass());
             // FXMLLoader loader = new
             // FXMLLoader(getClass().getResource("HomePageForHotelManger.fxml"));
