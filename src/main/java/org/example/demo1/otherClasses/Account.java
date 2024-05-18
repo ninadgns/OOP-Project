@@ -48,7 +48,8 @@ public class Account {
 
     }
 
-    public static void reTrieveAccount(Map<String, Object> f) throws IOException {
+    public static Account reTrieveAccount(Map<String, Object> f) throws IOException {
+        Account loggedIn = new Account();
         loggedIn.setId(f.get("id").toString());
         loggedIn.setFullName(f.get("name").toString());
         loggedIn.setEmail(f.get("email").toString());
@@ -58,6 +59,7 @@ public class Account {
         loggedIn.setDateOfBirth(f.get("dateofbirth").toString());
         loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
         loggedIn.setProFilePhoto(f.get("profilephoto").toString());
+        return loggedIn;
     }
 
     public static void dbTeHotelPathai() {

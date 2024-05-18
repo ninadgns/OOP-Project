@@ -7,7 +7,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import org.example.database.DatabaseClient;
+import org.example.demo1.otherClasses.Account;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +20,20 @@ public class hotelClickedController implements Initializable {
     public ImageView amiLogo;
     @FXML
     public HBox imageVbox;
+    @FXML
+    public VBox bairerVbox;
+    @FXML
+    public VBox vitorerVbox;
+    @FXML
+    public ImageView hostImage;
+    @FXML
+    public Label hostName;
+    @FXML
+    public Label hostPhone;
+    @FXML
+    public Label hostEmail;
+    @FXML
+    public Label hostAddress;
     @FXML
     private Label hotelName;
     @FXML
@@ -50,23 +66,52 @@ public class hotelClickedController implements Initializable {
             Image image = DatabaseClient.stringToImage(hotel.get("image1").toString());
             ImageView imageView = new ImageView();
             imageView.setImage(image);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(130);
             imageVbox.getChildren().add(imageView);
-        }if (!hotel.get("image2").toString().equals("sobinai")) {
+        }
+        if (!hotel.get("image2").toString().equals("sobinai")) {
             Image image = DatabaseClient.stringToImage(hotel.get("image2").toString());
             ImageView imageView = new ImageView();
             imageView.setImage(image);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(130);
+
             imageVbox.getChildren().add(imageView);
-        }if (!hotel.get("image3").toString().equals("sobinai")) {
+        }
+        if (!hotel.get("image3").toString().equals("sobinai")) {
             Image image = DatabaseClient.stringToImage(hotel.get("image3").toString());
             ImageView imageView = new ImageView();
             imageView.setImage(image);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(130);
+
             imageVbox.getChildren().add(imageView);
-        }if (!hotel.get("image4").toString().equals("sobinai")) {
+        }
+        if (!hotel.get("image4").toString().equals("sobinai")) {
             Image image = DatabaseClient.stringToImage(hotel.get("image4").toString());
             ImageView imageView = new ImageView();
             imageView.setImage(image);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(130);
+
             imageVbox.getChildren().add(imageView);
         }
+
+        try {
+            String ownerId = hotel.get("ownerid").toString();
+
+            var table = DatabaseClient.fetchWhere("accountinfo", "id='" + ownerId + "'");
+            var row = table.get(0);
+            Account host = Account.reTrieveAccount(row);
+            hostImage.setImage(DatabaseClient.stringToImage(host.getProFilePhoto()));
+            hostName.setText(host.getName());
+            hostPhone.setText(host.getPhoneNumber());
+            hostEmail.setText(host.getEmail());
+            hostAddress.setText(host.getAddress());
+        } catch (Exception e) {
+        }
+//        Account
 
     }
 }

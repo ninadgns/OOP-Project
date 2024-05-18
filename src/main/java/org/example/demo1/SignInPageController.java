@@ -68,7 +68,7 @@ public class SignInPageController {
                 isCustomer = row.get("iscustomer").equals("true");
                 f = true;
                 System.out.println("customer logged in");
-                Account.reTrieveAccount(row);
+                Account.loggedIn = Account.reTrieveAccount(row);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
