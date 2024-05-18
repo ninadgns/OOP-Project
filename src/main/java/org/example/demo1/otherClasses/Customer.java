@@ -14,7 +14,7 @@ public class Customer implements Client {
 
     @Override
     public void setPage(ActionEvent actionEvent, Class<? extends SignInPageController> aClass) throws IOException {
-        FXMLLoader loader = new FXMLLoader(aClass.getResource("Telegram.fxml"));
+        FXMLLoader loader = new FXMLLoader(aClass.getResource("HomePageForCustomer.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

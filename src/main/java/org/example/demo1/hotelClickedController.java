@@ -1,7 +1,11 @@
 package org.example.demo1;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 
@@ -49,8 +54,21 @@ public class hotelClickedController implements Initializable {
     private Label additionDescription;
     @FXML
     private Label address;
-
+Account host;
     public void handleChatManager(MouseEvent mouseEvent) {
+        DatabaseClient.insertMessage(Account.loggedIn.id, host.getId(), "Hi");
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("telegram.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            // stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -106,7 +124,7 @@ public class hotelClickedController implements Initializable {
 
             var table = DatabaseClient.fetchWhere("accountinfo", "id='" + ownerId + "'");
             var row = table.get(0);
-            Account host = Account.reTrieveAccount(row);
+            host = Account.reTrieveAccount(row);
             hostImage.setImage(DatabaseClient.stringToImage(host.getProFilePhoto()));
             hostName.setText(host.getName());
             hostPhone.setText(host.getPhoneNumber());
