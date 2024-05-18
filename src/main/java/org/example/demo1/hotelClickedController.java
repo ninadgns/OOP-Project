@@ -2,6 +2,7 @@ package org.example.demo1;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,6 +35,8 @@ public class hotelClickedController implements Initializable {
     public Label hostEmail;
     @FXML
     public Label hostAddress;
+    @FXML
+    public ChoiceBox guestCheckBox;
     @FXML
     private Label hotelName;
     @FXML
@@ -111,6 +114,9 @@ public class hotelClickedController implements Initializable {
             hostAddress.setText(host.getAddress());
         } catch (Exception e) {
         }
+        String[] guestNumber = { "1", "2", "3", "4", "5", "6", "7"};
+        guestCheckBox.getItems().addAll(guestNumber);
+
 //        Account
 
     }
