@@ -1,5 +1,7 @@
 package org.example.database;
 
+import org.example.database.Pair;
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,16 +15,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.example.Manage.Hotel;
+
 import java.sql.ResultSetMetaData;
 import java.io.File;
 import java.util.Base64;
+import javafx.scene.image.Image;
 
 /**
  * DatabaseClient
  */
 public class DatabaseClient {
-    static Connection conn;
-    static Statement stmt;
+    public static Connection conn;
+    public static Statement stmt;
 
     public static void initiate() {
         try {
@@ -30,6 +36,10 @@ public class DatabaseClient {
                     "jdbc:postgresql://aws-0-us-west-1.pooler.supabase.com:6543/postgres?user=postgres.iaffaaaqyxfouhtxibey&password=amarsonarbangla");
             if (conn != null) {
                 System.err.println("Database connnected successfully");
+                var rs = DatabaseClient.runSQL("select max(id) from hotels");
+                rs.next();
+                Hotel.lastHotelID = rs.getInt("max");
+
             }
 
         } catch (Exception e) {
@@ -47,7 +57,7 @@ public class DatabaseClient {
             // String content = rs.getString("content");
             // System.out.println("ID: " + id + ", Content: " + content);
             // }
-            System.out.println("db query successfull");
+            System.out.println("db query successful");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -71,7 +81,22 @@ public class DatabaseClient {
         return Base64.getEncoder().encodeToString(fileBytes);
     }
 
-public static File stringToFile(String encodedString) throws IOException {
+    public static void saveFile(String base64String) {
+
+        // Loading the Base64 encoded image
+        byte[] imageBytes = Base64.getDecoder().decode(base64String);
+
+        try {
+            FileOutputStream fos = new FileOutputStream("output.jpg");
+            fos.write(imageBytes);
+            fos.close();
+            System.out.println("chobi saved");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Image stringToImage(String encodedString) throws IOException {
         // Decode the Base64 string to byte array
         byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
 
@@ -82,12 +107,11 @@ public static File stringToFile(String encodedString) throws IOException {
         }
 
         // Return the File object representing the decoded image file
-        return tempFile;
+        return new Image(tempFile.toURI().toString());
     }
 
-
     public static List<Map<String, Object>> resultSetToArray(ResultSet rs) throws SQLException {
-        
+
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
 
@@ -129,11 +153,41 @@ public static File stringToFile(String encodedString) throws IOException {
 
     }
 
+    public static void insertMessage(String receiver, String sender, String message) {
+        try {
+            conn.createStatement()
+                    .executeUpdate("insert into messages (sender_id, receiver_id, content) values ('"
+                            + sender + "', '" + receiver + "','" + message + "')");
+            System.out.println("insert into messages (sender_id, receiver_id, content) values ('"
+                    + sender + "', '" + receiver + "','" + message + "')");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static List<Pair<String, String>> fetchMessage(String receiver) {
+        System.out.println("select * from messages  where receiver_id = " + receiver);
+        var rs = runSQL("select * from messages  where receiver_id = " + receiver);
+        List<Pair<String, String>> ret = new ArrayList<>();
+        try {
+            if (rs != null)
+                while (rs.next()) {
+                    var sender = rs.getString("sender_id");
+                    var content = rs.getString("content");
+                    ret.add(new Pair<String, String>(sender, content));
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
     public static List<Map<String, Object>> fetchWhere(String tableName, String whereClause) {
         ResultSet rs = null;
         List<Map<String, Object>> rl = null;
         try {
             String sql = "SELECT * FROM " + tableName + " WHERE " + whereClause;
+            System.out.println(sql);
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rl = resultSetToArray(rs);
@@ -150,7 +204,9 @@ public static File stringToFile(String encodedString) throws IOException {
             conn.createStatement().executeUpdate(sql);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            System.out.println(e.getMessage());
+            // e.getMessage();
         }
     }
 

@@ -1,0 +1,211 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AFrames {
+  ~ AFrames(String): 
+}
+class AirConditioner {
+  + AirConditioner(Room): 
+   description: String
+   cost: int
+}
+class Area {
+  ~ Area(String): 
+  - districtName: String
+  - hotelListOfOneType: ArrayList<Hotel>
+  - vacantHotelList: ArrayList<Hotel>
+  + addHotel(Hotel): void
+  + vacantHotels(String, String): ArrayList<Hotel>
+  + getHotelOfOneType(String): ArrayList<Hotel>
+   hotelListOfOneType: ArrayList<Hotel>
+   vacantHotelList: ArrayList<Hotel>
+   districtName: String
+}
+class AttachedBath {
+  + AttachedBath(Room): 
+   description: String
+   cost: int
+}
+class Balcony {
+  + Balcony(Room): 
+   description: String
+   cost: int
+}
+class Cabin {
+  ~ Cabin(String): 
+}
+class CheckInandOut {
+  ~ CheckInandOut(String, String): 
+  - totalCost: int
+  - totalDays: int
+  - payment: boolean
+  + setTotalDays(): void
+   totalDays: int
+   totalCost: int
+   payment: boolean
+}
+class Client {
+  + Client(): 
+  - emailAddress: String
+  - name: String
+  + setphoneNo(int): void
+  + getphoneNo(int): int
+   name: String
+   emailAddress: String
+   NIDNo: int
+}
+class Cottage {
+  ~ Cottage(String): 
+}
+class DoubleRoom {
+  ~ DoubleRoom(double): 
+   description: String
+   cost: int
+}
+class Facilities {
+  + Facilities(): 
+   description: String
+   cost: int
+}
+class Garage {
+  + Garage(House): 
+   description: String
+   cost: int
+}
+class Hotel {
+  + Hotel(): 
+  - address: String
+  - houseDetails: String
+  - costForRooms: int
+  - roomDetails: String
+  - specifications: String
+  - costPerNight: int
+  - bookings: HashMap<Client, CheckInandOut>
+  - costForOtherFacilities: int
+  - type: String
+  + addBookings(Client, CheckInandOut): void
+  + removeBooking(Client): void
+  + addRoom(Room): void
+   roomDetails: String
+   houseDetails: String
+   otherFacility: House
+   type: String
+   bookings: HashMap<Client, CheckInandOut>
+   costPerNight: int
+   specifications: String
+   address: String
+   costForOtherFacilities: int
+   costForRooms: int
+}
+class HotelSystem {
+  + HotelSystem(): 
+  + createHotel(): Hotel
+  + main(String[]): void
+}
+class House {
+  + House(): 
+  - cost: int
+  - description: String
+   description: String
+   cost: int
+}
+class HouseDecorator {
+  + HouseDecorator(): 
+}
+class Kitchen {
+  + Kitchen(House): 
+   description: String
+   cost: int
+}
+class LargeRoom {
+  ~ LargeRoom(double): 
+   description: String
+   cost: int
+}
+class Lawn {
+  + Lawn(House): 
+   description: String
+   cost: int
+}
+class Management {
+  + Management(): 
+  - areaList: ArrayList<Area>
+  + addArea(): void
+  + getAreabyName(String): Area
+   areaList: ArrayList<Area>
+}
+class Room {
+  + Room(): 
+  - bedSize: String
+  - description: String
+   description: String
+   SQFT: double
+   allowedPerson: int
+   cost: int
+   bedSize: String
+}
+class RoomDecorator {
+  + RoomDecorator(): 
+}
+class SingleRoom {
+  ~ SingleRoom(double): 
+   description: String
+   cost: int
+}
+class SwimmingPool {
+  + SwimmingPool(House): 
+   description: String
+   cost: int
+}
+class Villa {
+  ~ Villa(String): 
+}
+
+AFrames         -[#000082,plain]-^  Hotel          
+AirConditioner "1" *-[#595959,plain]-> "room\n1" Room           
+AirConditioner  -[#000082,plain]-^  RoomDecorator  
+Area           "1" *-[#595959,plain]-> "hotelLists\n*" Hotel          
+AttachedBath   "1" *-[#595959,plain]-> "room\n1" Room           
+AttachedBath    -[#000082,plain]-^  RoomDecorator  
+Balcony        "1" *-[#595959,plain]-> "room\n1" Room           
+Balcony         -[#000082,plain]-^  RoomDecorator  
+Cabin           -[#000082,plain]-^  Hotel          
+Cottage         -[#000082,plain]-^  Hotel          
+DoubleRoom      -[#000082,plain]-^  Room           
+Facilities      -[#000082,plain]-^  House          
+Garage         "1" *-[#595959,plain]-> "house\n1" House          
+Garage          -[#000082,plain]-^  HouseDecorator 
+Hotel          "1" *-[#595959,plain]-> "bookings\n*" CheckInandOut  
+Hotel          "1" *-[#595959,plain]-> "bookings\n*" Client         
+Hotel          "1" *-[#595959,plain]-> "house\n1" House          
+Hotel          "1" *-[#595959,plain]-> "rooms\n*" Room           
+HotelSystem     -[#595959,dashed]->  AirConditioner : "«create»"
+HotelSystem     -[#595959,dashed]->  AttachedBath   : "«create»"
+HotelSystem     -[#595959,dashed]->  Balcony        : "«create»"
+HotelSystem     -[#595959,dashed]->  DoubleRoom     : "«create»"
+HotelSystem     -[#595959,dashed]->  Facilities     : "«create»"
+HotelSystem     -[#595959,dashed]->  Garage         : "«create»"
+HotelSystem     -[#595959,dashed]->  Kitchen        : "«create»"
+HotelSystem     -[#595959,dashed]->  LargeRoom      : "«create»"
+HotelSystem     -[#595959,dashed]->  Lawn           : "«create»"
+HotelSystem     -[#595959,dashed]->  Management     : "«create»"
+HotelSystem     -[#595959,dashed]->  SingleRoom     : "«create»"
+HotelSystem     -[#595959,dashed]->  SwimmingPool   : "«create»"
+HotelSystem     -[#595959,dashed]->  Villa          : "«create»"
+HouseDecorator  -[#000082,plain]-^  House          
+Kitchen        "1" *-[#595959,plain]-> "house\n1" House          
+Kitchen         -[#000082,plain]-^  HouseDecorator 
+LargeRoom       -[#000082,plain]-^  Room           
+Lawn           "1" *-[#595959,plain]-> "house\n1" House          
+Lawn            -[#000082,plain]-^  HouseDecorator 
+Management     "1" *-[#595959,plain]-> "areaList\n*" Area           
+Management      -[#595959,dashed]->  Area           : "«create»"
+RoomDecorator   -[#000082,plain]-^  Room           
+SingleRoom      -[#000082,plain]-^  Room           
+SwimmingPool   "1" *-[#595959,plain]-> "house\n1" House          
+SwimmingPool    -[#000082,plain]-^  HouseDecorator 
+Villa           -[#000082,plain]-^  Hotel          
+@enduml

@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 
 import java.io.File;
@@ -61,13 +62,14 @@ public class CreateAccountController {
         stage.show();
     }
 
-    public void handleChoosePhoto(ActionEvent actionEvent) {
+    public void handleChoosePhoto(ActionEvent actionEvent) throws IOException {
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose an Image File");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(stage);
         if(selectedFile != null) {
+            account.setProFilePhoto(DatabaseClient.fileToString(selectedFile));
             Image image = new Image(selectedFile.toURI().toString());
 
             // Calculate scaling factor
@@ -86,6 +88,9 @@ public class CreateAccountController {
             formImage.setClip(clip);
 
             choosePhotoLabel.setText(selectedFile.getName());
+        }
+        else {
+            account.setProFilePhoto("nai");
         }
     }
     void exceptionGiver() throws Exception{
@@ -132,4 +137,5 @@ public class CreateAccountController {
 //            ConfirmPasswordError.main();
         }
     }
+
 }
