@@ -69,9 +69,11 @@ public class HomePageForHotelManagerController implements Initializable {
     private VBox homePageVbox;
     @FXML
     private Button tipDeoBtn;
-    public void setLabelData(String s){
+
+    public void setLabelData(String s) {
         emneiLabel.setText(s);
     }
+
     public void handleTipDeo(ActionEvent actionEvent) {
         Rectangle rectangle = new Rectangle(200, 200);
         homePageVbox.setPadding(new Insets(5));
@@ -79,7 +81,6 @@ public class HomePageForHotelManagerController implements Initializable {
         HBox f = (HBox) homePageVbox.getChildren().getLast();
         if (homePageVbox.getChildren().size() == 1 || f.getChildren().size() == 4) {
             homePageVbox.getChildren().add(new HBox());
-
         }
 
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
@@ -114,10 +115,9 @@ public class HomePageForHotelManagerController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             scene.getStylesheets()
                     .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
-            // Parent root = (Parent)
             Stage stage = new Stage();
             stage.setTitle("Hello!");
-            stage.setX(500 +  100);
+            stage.setX(500 + 100);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {

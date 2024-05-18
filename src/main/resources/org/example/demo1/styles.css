@@ -1,150 +1,201 @@
 .left {
     -fx-background-color: #2b5278;
-      -fx-border-radius: 100;
+    -fx-border-radius: 100;
     -fx-text-fill: white;
 }
+
 .right {
     -fx-background-color: #4580ba;
-      -fx-border-radius: 100;
+    -fx-border-radius: 100;
     -fx-text-fill: white;
 }
-.tgbg{
+
+.tgbg {
     -fx-background-image: url("messenger/bg.png");
     -fx-background-size: 420 320;
 }
-.lsidebar{
+
+.lsidebar {
     -fx-background-color: #171c21;
 }
-.manosh{
+
+.manosh {
     -fx-background-color: #17212b;
 }
-.transparent{
+
+.transparent {
     -fx-background-color: transparent;
 }
-.formImage{
 
-}
+.formImage {}
 
-.mechat{
+.mechat-sent {
+
     -fx-background-color: #036d97;
     -fx-text-fill: white;
     -fx-padding: 5 5;
     -fx-background-radius: 5px;
     -fx-font-size: 13;
-    
+    -fx-alignment: top-right;
 }
+
+.mechat-received {
+
+    -fx-background-color: #036d97;
+    -fx-text-fill: white;
+    -fx-padding: 5 5;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13;
+    -fx-alignment: top-left;
+}
+
+.mechat {
+    -fx-background-color: #036d97;
+    -fx-text-fill: white;
+    -fx-padding: 5 5;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13;
+}
+
+
 .login-email {
     -fx-background-color: rgba(0, 106, 255, 0.1);
     -fx-background-radius: 12px;
-    
+
     -fx-prompt-text-fill: #878787;
     -fx-text-fill: black;
 }
-.login-signin{
+
+.login-signin {
     -fx-background-color: #002c6d;
     -fx-background-radius: 30;
     -fx-text-fill: white;
     -fx-padding: 6 45 6 45;
-    
+
 }
-.login-signin:hover{
+
+.login-signin:hover {
     -fx-background-color: #15458c;
     -fx-background-radius: 30;
     -fx-text-fill: white;
     -fx-padding: 6 45 6 45;
 }
-.login-signup{
+
+.login-signup {
     -fx-background-color: transparent;
     -fx-border-color: white;
     -fx-border-radius: 30;
     -fx-text-fill: white;
     -fx-padding: 7 45 7 45;
 }
-.login-signup:hover{
-    -fx-background-color: rgba(255,255,255,0.1);
+
+.login-signup:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-background-radius: 30;
     -fx-border-color: white;
     -fx-border-radius: 30;
     -fx-text-fill: white;
     -fx-padding: 7 45 7 45;
-    
+
 }
-.whitebg{
+
+.whitebg {
     -fx-background-color: white;
 }
-.strikethrough:hover{
+
+.strikethrough:hover {
     -fx-underline: true;
     -fx-text-fill: black;
 }
+
 .date-picker {
-    -fx-background-color: #f0f0f0; /* Background color */
-    -fx-text-fill: #333333; /* Text color */
-    -fx-font-size: 14px; /* Font size */
-    -fx-pref-width: 200px; /* Preferred width */
+    -fx-background-color: #f0f0f0;
+    /* Background color */
+    -fx-text-fill: #333333;
+    /* Text color */
+    -fx-font-size: 14px;
+    /* Font size */
+    -fx-pref-width: 200px;
+    /* Preferred width */
     -fx-pref-height: 30px;
-    
+
     /* Preferred height */
     /* Add more custom styles as needed */
 }
-.rightVbox{
-    -fx-padding: 5;    
+
+.rightVbox {
+    -fx-padding: 5;
 }
+
 /* scrollbar.css */
 .scroll-pane .scroll-bar {
-    -fx-background-color: transparent; /* Background color */
-    -fx-opacity: 0.3; /* Reduced opacity */
+    -fx-background-color: transparent;
+    /* Background color */
+    -fx-opacity: 0.3;
+    /* Reduced opacity */
 }
 
 .scroll-pane .scroll-bar:hover {
-    -fx-opacity: 1.0; /* Full opacity on hover */
+    -fx-opacity: 1.0;
+    /* Full opacity on hover */
 }
 
 
 .scroll-pane .scroll-bar .thumb {
-    -fx-background-color: #545a60; /* Thumb color */
-    -fx-background-radius: 5px; /* Thumb border radius */
+    -fx-background-color: #545a60;
+    /* Thumb color */
+    -fx-background-radius: 5px;
+    /* Thumb border radius */
 }
 
 .scroll-pane .scroll-bar .track {
-    -fx-background-color: transparent; /* Track color */
+    -fx-background-color: transparent;
+    /* Track color */
 }
 
 .scroll-pane .scroll-bar .increment-button,
 .scroll-pane .scroll-bar .decrement-button {
-    -fx-background-color: transparent; /* Button color */
+    -fx-background-color: transparent;
+    /* Button color */
 }
 
 
-.searchbar{
+.searchbar {
     -fx-background-color: #242f3d;
     -fx-background-radius: 50px;
 }
-.homeSearchBar{
+
+.homeSearchBar {
     -fx-background-color: white;
     -fx-text-fill: #535353;
     -fx-background-radius: 50px;
 }
-.sendtext{
+
+.sendtext {
     -fx-background-color: #242f3d;
 }
-.garo-nil{
+
+.garo-nil {
     -fx-background-color: #152738;
 }
-.text-area .scroll-pane .viewport{
+
+.text-area .scroll-pane .viewport {
     -fx-background-color: transparent;
     -fx-border-radius: 100;
 
 }
-.messageThumbnail{
+
+.messageThumbnail {
     -fx-background-color: #2b5278;
     -fx-background-radius: 2px;
 }
 
-.whiteText{
+.whiteText {
     -fx-text-fill: white;
 }
-.text-area .scroll-pane .content{
+
+.text-area .scroll-pane .content {
     -fx-background-color: transparent;
-          -fx-border-radius: 100;
+    -fx-border-radius: 100;
 
 }
