@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -110,6 +111,14 @@ public class HomePageForHotelManagerController implements Initializable {
     }
 
     public void handleAddPost(MouseEvent mouseEvent) {
+        if(!DatabaseClient.fetchWhere("hotels", "ownerid='" + Account.loggedIn.getId() + "'").isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error");
+            alert.setHeaderText("You already have a post.");
+            alert.setContentText("You can't create another right now.");
+            alert.show();
+            return;
+        }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("createPost.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
