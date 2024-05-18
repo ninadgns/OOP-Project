@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import org.example.Manage.AFrames;
@@ -119,6 +120,23 @@ public class HomePageForCustomerController implements Initializable {
         Rectangle smallRectangle = new Rectangle(200, 100);
         homePageVbox.setPadding(new Insets(5));
         smallRectangle.setFill(Color.BLUE);
+
+
+
+        String str1 = (String) hotel.get("image1");
+        if (str1 != null && !str1.isEmpty() && !str1.equals("sobinai")) {
+            // Convert the image string to an Image object
+            Image image1 = DatabaseClient.stringToImage(str1);
+
+            // Check if the image object is null
+            if (image1 != null) {
+                smallRectangle.setFill(new ImagePattern(image1));
+            } else {
+                System.out.println("Error: The image object is null.");
+            }
+        } else {
+            System.out.println("Error: The image string is null or empty.");
+        }
 
         StringBuilder str=new StringBuilder();
         //int cost=hotel.get("costpernight");
