@@ -185,6 +185,7 @@ public class createPostController implements Initializable {
 
         Account.hotel.setAdditionalDescription(longDescription.getText());
         Account.hotel.setRoomList(Account.rooms);
+        Account.hotel.setOwnerID(Account.loggedIn.getId());
         Hotel.lastHotelID++;
         Account.hotel.setHotelID(Hotel.lastHotelID);
         Account.dbTeHotelPathai();

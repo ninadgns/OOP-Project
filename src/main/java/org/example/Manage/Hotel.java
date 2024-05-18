@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public abstract class Hotel {
     public static int lastHotelID;
     private int hotelID;
+    private String ownerID;
     private String address;
     private String district;
     private String roomDetails;
@@ -21,8 +22,8 @@ public abstract class Hotel {
     // private CommonSpace indoorSpace, outdoorSpace;
     private House house;
     private int costPerNight, costForRooms, costForOtherFacilities;
-
     private double sqft;
+
 
     public ArrayList<String> getRoomDescription(int i) {
         if (rooms.size() <= i)
@@ -101,6 +102,14 @@ public abstract class Hotel {
 
     public void setOtherFacility(House house) {
         this.house = house;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
+    }
+
+    public void setOwnerID(String ownerID) {
+        this.ownerID = ownerID;
     }
 
     public void setRoomList(ArrayList<Room> rooms) {

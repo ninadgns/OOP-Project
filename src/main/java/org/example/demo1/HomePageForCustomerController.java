@@ -69,9 +69,11 @@ public class HomePageForCustomerController implements Initializable {
     private VBox homePageVbox;
     @FXML
     private Button tipDeoBtn;
-    public void setLabelData(String s){
+
+    public void setLabelData(String s) {
         emneiLabel.setText(s);
     }
+
     public void handleTipDeo(ActionEvent actionEvent) {
         Rectangle rectangle = new Rectangle(200, 200);
         homePageVbox.setPadding(new Insets(5));
@@ -79,7 +81,6 @@ public class HomePageForCustomerController implements Initializable {
         HBox f = (HBox) homePageVbox.getChildren().getLast();
         if (homePageVbox.getChildren().size() == 1 || f.getChildren().size() == 4) {
             homePageVbox.getChildren().add(new HBox());
-
         }
 
         HBox hBox = (HBox) homePageVbox.getChildren().getLast();
