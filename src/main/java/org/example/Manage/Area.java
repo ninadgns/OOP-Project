@@ -10,11 +10,21 @@ public class Area {
     private ArrayList<Hotel> hotelLists;
     private ArrayList<Hotel> hotelListOfOneType;
 
+    private HashMap<Integer,String> allhotelList;
+    //private ArrayList<Hotel> hotelListOfOneType;
     Area(String districtName) {
         this.districtName = districtName;
         this.hotelLists = new ArrayList<>();
+        this.allhotelList=new HashMap<>();
     }
 
+    public void addHotelID(int hotelID,String type){
+        this.allhotelList.put(hotelID,type);
+    }
+
+    public HashMap<Integer,String> getHotelIDList(){
+       return this.allhotelList;
+    }
     public void addHotel(Hotel hotel) {
         hotelLists.add(hotel);
     }

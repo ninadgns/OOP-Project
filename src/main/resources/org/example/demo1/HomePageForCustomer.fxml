@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,9 +14,12 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Rectangle?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForCustomerController">
    <top>
-      <HBox prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
+      <HBox prefHeight="70.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
          <children>
             <AnchorPane prefHeight="53.0" prefWidth="96.0" styleClass="transparent" stylesheets="@styles.css">
                <HBox.margin>
@@ -29,9 +33,34 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="53.0" prefWidth="370.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+            <AnchorPane prefHeight="70.0" prefWidth="366.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
                <children>
-                  <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="33.0" prefWidth="334.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="44.0" />
+                  <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="30.0" prefWidth="376.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="4.0" />
+                  <Button fx:id="Done" layoutX="339.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleDoneBtn" text="Done" />
+                  <HBox alignment="CENTER" layoutY="43.0" prefHeight="0.0" prefWidth="400.0" styleClass="whitebg" stylesheets="@styles.css">
+                     <children>
+                        <RadioButton fx:id="rAFrame" mnemonicParsing="false" prefHeight="18.0" prefWidth="75.0" selected="true" text="AFrame">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="hotelType" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rCabin" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Cabin" toggleGroup="$hotelType">
+                           <HBox.margin>
+                              <Insets left="5.0" right="2.0" />
+                           </HBox.margin></RadioButton>
+                        <RadioButton fx:id="rCottage" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Cottage" toggleGroup="$hotelType">
+                           <HBox.margin>
+                              <Insets left="5.0" right="2.0" />
+                           </HBox.margin></RadioButton>
+                        <RadioButton fx:id="rVilla" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" text="Villa" toggleGroup="$hotelType">
+                           <HBox.margin>
+                              <Insets left="5.0" right="2.0" />
+                           </HBox.margin></RadioButton>
+                        <Button fx:id="Select" mnemonicParsing="false" onAction="#handleTypeDone" text="Select" />
+                     </children></HBox>
                </children>
             </AnchorPane>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="131.0" styleClass="transparent" stylesheets="@styles.css">
@@ -56,91 +85,53 @@
       </HBox>
    </top>
    <center>
-      <HBox>
-         <children>
-            <ScrollPane prefHeight="347.0" prefWidth="614.0">
-               <content>
-                  <AnchorPane prefHeight="345.0" prefWidth="593.0">
-                     <children>
-                        <ImageView fx:id="managerDp" fitHeight="150.0" fitWidth="200.0" layoutX="220.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@homePage/4402438.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="managerName" layoutX="243.0" layoutY="157.0" text="Hayre Manosh">
-                           <font>
-                              <Font name="DejaVu Sans Bold" size="13.0" />
-                           </font></Label>
-                        <Line endX="100.0" layoutX="296.0" layoutY="188.0" startX="-100.0" stroke="#949494" />
-                        <VBox layoutX="203.0" layoutY="196.0" prefHeight="141.0" prefWidth="193.0">
-                           <children>
-                              <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
-                                 <children>
-                                    <Label text="Email:">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                    <Label fx:id="managerEmail" text="manosh@gmail.com">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
-                                 <children>
-                                    <Label text="Phone No:">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                    <Label fx:id="managerPhone" text="0116132">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
-                                 <children>
-                                    <Label text="Address:">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                    <Label fx:id="managerAddress" text="Shonar Bangladesh">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
-                                 <children>
-                                    <Label text="Date of Birth:">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                    <Label fx:id="managerDob" text="69/69/6969">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                 </children>
-                              </HBox>
-                              <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
-                                 <children>
-                                    <Label text="Account Type:">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                    <Label text="Customer">
-                                       <font>
-                                          <Font name="Jara Bold" size="13.0" />
-                                       </font></Label>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-         </children>
-      </HBox>
+      <ScrollPane prefHeight="365.0" prefWidth="600.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="homePageVbox" prefHeight="342.0" prefWidth="584.0">
+               <children>
+<!--                  <HBox spacing="5">-->
+<!--                     <VBox spacing="5" fx:id="hotelBox" onMouseClicked="#handleRectangleClick">-->
+<!--                        <StackPane>-->
+<!--                           <Rectangle width="200" height="150" fill="BLUE"/>-->
+<!--                        </StackPane>-->
+<!--                        <Label fx:id="descriptionLabel" text="Hotel Description" wrapText="true" style="-fx-text-fill: white; -fx-padding: 10px;"/>-->
+<!--                     </VBox>-->
+<!--                  </HBox>-->
+
+
+
+<!--                  <HBox alignment="CENTER" prefHeight="33.0" prefWidth="584.0">-->
+<!--                     <children>-->
+<!--                        <RadioButton fx:id="rAFrame" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0" selected="true" text="AFrame">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin>-->
+<!--                           <toggleGroup>-->
+<!--                              <ToggleGroup fx:id="hotelType" />-->
+<!--                           </toggleGroup>-->
+<!--                        </RadioButton>-->
+<!--                        <RadioButton fx:id="rCabin" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0"  text="Cabin" toggleGroup="$hotelType">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin></RadioButton>-->
+<!--                        <RadioButton fx:id="rCottage" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0"  text="Cottage" toggleGroup="$hotelType">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin></RadioButton>-->
+<!--                        <RadioButton fx:id="rVilla" mnemonicParsing="false" prefHeight="18.0" prefWidth="68.0"  text="Villa" toggleGroup="$hotelType">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin></RadioButton>-->
+<!--                        <Button fx:id="Select" mnemonicParsing="false" onAction="#handleTypeDone" text="Select" />-->
+<!--                         </children></HBox>-->
+               </children>
+            </VBox>
+         </content>
+         <!-- Anchor the center section to all sides -->
+         <AnchorPane.topAnchor>0.0</AnchorPane.topAnchor>
+         <AnchorPane.bottomAnchor>0.0</AnchorPane.bottomAnchor>
+         <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+         <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
+      </ScrollPane>
    </center>
 </BorderPane>
