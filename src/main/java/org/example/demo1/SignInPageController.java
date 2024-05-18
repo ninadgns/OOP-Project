@@ -40,38 +40,37 @@ public class SignInPageController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("createAccountPage.fxml"));
             Parent root = loader.load();
-            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
-//            stage.show();
+            // stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void auth() throws Exception{
-        var table = DatabaseClient.fetch("accountinfo");
+
+    public void auth() throws Exception {
+        var table = DatabaseClient.fetchWhere("accountinfo", "email='" + enterEmailToSignIn.getText() + "'");
+
         boolean f = false;
-        for(var row: table){
-            if(row.get("email").equals(enterEmailToSignIn.getText())){
-                if(!row.get("password").equals(enterPwdToSignIn.getText())){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Wrong Password");
-                    alert.setContentText("Enter Correct Password");
-                    alert.show();
-                    throw new Exception("Wrong Password");
-                }
-                else {
-                    isCustomer = row.get("iscustomer").equals("true");
-                    f = true;
-                    System.out.println("hehe");
-                    Account.reTrieveAccount(row);
-                    break;
-                }
+        if (table.size()!=0) {
+            var row = table.get(0);
+            if (!row.get("password").equals(enterPwdToSignIn.getText())) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Wrong Password");
+                alert.setContentText("Enter Correct Password");
+                alert.show();
+                throw new Exception("Wrong Password");
+            } else {
+                isCustomer = row.get("iscustomer").equals("true");
+                f = true;
+                System.out.println("customer logged in");
+                Account.reTrieveAccount(row);
             }
         }
-        if(!f){
+        else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Email Not Found");
@@ -81,23 +80,24 @@ public class SignInPageController {
         }
 
     }
-    public void handleSignInBtnToSignIn(ActionEvent actionEvent) throws IOException {
 
+    public void handleSignInBtnToSignIn(ActionEvent actionEvent) throws IOException {
 
         try {
             auth();
-            Client client = (Account.loggedIn.getIsCustomer())? (new Customer()):(new HotelManager());
-            System.out.println(33);
+            Client client = (Account.loggedIn.getIsCustomer()) ? (new Customer()) : (new HotelManager());
+            // System.out.println(33);
             client.setPage(actionEvent, getClass());
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePageForHotelManger.fxml"));
-//            Parent root = loader.load();
-//
-//            HomePageController homePageController = loader.getController();
-//            homePageController.setLabelData(enterEmailToSignIn.getText());
-//            System.out.println(enterEmailToSignIn.getText());
-//            stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-//            scene = new Scene(root);
-//            stage.setScene(scene);
+            // FXMLLoader loader = new
+            // FXMLLoader(getClass().getResource("HomePageForHotelManger.fxml"));
+            // Parent root = loader.load();
+            //
+            // HomePageController homePageController = loader.getController();
+            // homePageController.setLabelData(enterEmailToSignIn.getText());
+            // System.out.println(enterEmailToSignIn.getText());
+            // stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            // scene = new Scene(root);
+            // stage.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
         }
