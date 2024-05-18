@@ -4,11 +4,16 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import org.example.database.ChatServer;
 import org.example.database.DatabaseClient;
 import org.example.database.Tables;
 
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -24,14 +29,15 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        // System.out.println("javafx.runtime.version: " +
-        // System.getProperties().get("javafx.runtime.version"));
+
 
     }
     public static List<Map<String,Object>> allHotels;
     public static void main(String[] args) {
 
         DatabaseClient.initiate();
+        launch();
+
         // DatabaseClient.runSQL("select id, content from notes");
         // DatabaseClient.runSQL("insert into notes (id, content) values (3, 'chirodin
         // tomar akash')");
@@ -52,5 +58,26 @@ public class HelloApplication extends Application {
         allHotels=DatabaseClient.fetch(Tables.HOTELS);
 
         launch();
+    }
+}
+        // for (Map<String, Object> map : a) {
+        // var base64String = map.get("profilephoto");
+        // if (base64String!=null && base64String.toString().length()>50) {
+        // DatabaseClient.saveFile(base64String.toString());
+        // }
+
+        // }
+        // new Thread(
+        // () -> {
+        // while (true) {
+        // chat();
+        // }
+        // }).start();
+
+        // try {
+        //     ChatServer.start(args);
+        // } catch (Exception e) {
+        //     e.printStackTrace();// TODO: handle exception
+        // }
     }
 }

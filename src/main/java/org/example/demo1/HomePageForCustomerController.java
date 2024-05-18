@@ -3,12 +3,16 @@ package org.example.demo1;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -20,26 +24,60 @@ import org.example.Manage.AFrames;
 import org.example.Manage.Cabin;
 import org.example.Manage.Cottage;
 import org.example.Manage.Villa;
+import javafx.stage.Stage;
 import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 
 import java.util.Map;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.TimeUnit;
 
 public class HomePageForCustomerController implements Initializable {
-//    HomePageForCustomerController(){
-//        super();
-//    }
-    public Label emneiLabel;
+    @FXML
+    private Label hotelName;
+    @FXML
+    private Label hotelDistrict;
+    @FXML
+    private Label hotelAddress;
+    @FXML
+    private Label hotelType;
+    @FXML
+    private Label hotelFloorSpace;
+    @FXML
+    private Label hotelCost;
+    @FXML
+    private Label emneiLabel;
+    @FXML
+    private ImageView amiLogo;
+    @FXML
+    private TextField hotelSearchBox;
+    @FXML
+    private ImageView settingsButton;
+    @FXML
+    private ImageView profileChobiEbongButton;
+    @FXML
+    private ImageView settingsButton1;
+    @FXML
+    private ImageView managerDp;
+    @FXML
+    private Label managerName;
+    @FXML
+    private Label managerEmail;
+    @FXML
+    private Label managerPhone;
+    @FXML
+    private Label managerAddress;
     @FXML
     private static ImageView profileChobiEbongButton;
     @FXML

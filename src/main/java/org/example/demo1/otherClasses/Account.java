@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import org.example.Manage.Hotel;
 import org.example.Manage.Room;
 import org.example.database.DatabaseClient;
-import org.example.database.Tables;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +12,100 @@ import java.util.List;
 import java.util.Map;
 
 public class Account {
+    private String fname;
+    private String lname;
+    private String name;
+    private String id;
+    private String fullName;
+    private boolean isCustomer;
+    private String dateOfBirth;
+    private String proFilePhoto;
+    private String phoneNumber;
+    private String email;
+    private String address;
+    private String password;
+    public static Account loggedIn = new Account();
+    public static Hotel hotel;
+    public static ArrayList<Room> rooms = new ArrayList<>();
+
+    
+
+    public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
+        String allInfoTogether = "'" + account.getFullName() + "'" + ", " + "'" + account.getPhoneNumber() + "'" + ", "
+                + "'" + account.getEmail() + "'" + ", " + "'Ami Address'" + ", " + "'" + account.getPassword() + "'"
+                + ", " + "'" + account.getDateOfBirth() + "'" + ", " + "'" + account.getIsCustomer() + "'" + ", " + "'"
+                + account.getProFilePhoto() + "'";
+        DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto",
+                allInfoTogether);
+        // DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+        System.out.println("Push Hoise");
+
+    }
+
+    public static void reTrieveAccount(Map<String, Object> f) throws IOException {
+        loggedIn.setId(f.get("id").toString());
+        loggedIn.setFullName(f.get("name").toString());
+        loggedIn.setEmail(f.get("email").toString());
+        loggedIn.setAddress(f.get("address").toString());
+        loggedIn.setPassword(f.get("password").toString());
+        loggedIn.setPhoneNumber(f.get("phoneno").toString());
+        loggedIn.setDateOfBirth(f.get("dateofbirth").toString());
+        loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
+        loggedIn.setProFilePhoto(f.get("profilephoto").toString());
+    }
+
+    public static void dbTeHotelPathai() {
+        for (Room room : rooms) {
+            var facilities = new ArrayList<String>(room.getAmenities().subList(3, room.getAmenities().size()));
+            String result = "'" + String.join("', '", facilities) + "'";
+
+            try {
+                DatabaseClient.conn.createStatement()
+                        .executeUpdate("insert into rooms (hotelid, type, amenities) values (" + Hotel.lastHotelID
+                                + ", '" + room.getAmenities().get(0) + "', ARRAY[" + result + "])");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        List<String> list = Arrays.asList(
+
+                String.valueOf(Hotel.lastHotelID),
+                loggedIn.getId(),
+                hotel.getType(),
+                hotel.getName(),
+                hotel.getAddress(),
+                hotel.getDistrict(),
+                String.valueOf(hotel.getFloorSpace()),
+                String.valueOf(hotel.getCostPerNight()),
+                hotel.getAdditionalDescription(),
+                '"' + String.join("\",\"", hotel.getIndoorAmenities()) + '"',
+                '"' + String.join("\",\"", hotel.getOutdoorAmenities()) + '"',
+                "sobinai",
+                "sobinai",
+                "sobinai",
+                "sobinai");
+
+        String allInfoTogether = "'" + String.join("', '", list) + "'";
+        System.out.println(allInfoTogether);
+
+        // String allInfoTogether = "'" + Hotel.lastHotelID + "', '" + hotel.getType() +
+        // "', '" + hotel.getName() + "', '"
+        // + hotel.getAddress() + "', '"
+        // + hotel.getDistrict() + "', '" + hotel.getFloorSpace() + "', '" +
+        // hotel.getCostPerNight() + "', '"
+        // + hotel.getAdditionalDescription() + "', '" + "sobinai" + "', '"
+        // + "sobinai" + "', '" + "sobinai" + "', '" + "sobinai'";
+
+        DatabaseClient.insert("hotels",
+                "id, ownerid, type, name, address, district, floorspace, costpernight, additionaldescription, indoorspace, outdoorspace, image1, image2, image3, image4",
+                allInfoTogether);
+        // DatabaseClient.insert("hotels",
+        // "id, type, name, address, district, sqft, pernightcost, indoorspace,
+        // outdoorspace, additionaldescription, room1, room2, room3, image1, image2,
+        // image3, image4 ", allInfoTogether);
+
+    }
+
     public void setFname(String fname) {
         this.fname = fname;
     }
@@ -52,10 +145,6 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    String fname;
-    String lname;
-    String name;
 
     public String getFname() {
         return fname;
@@ -100,7 +189,6 @@ public class Account {
     public String getPassword() {
         return password;
     }
-
     private String fullName;
     private boolean isCustomer;
     private String dateOfBirth;
@@ -115,7 +203,7 @@ public class Account {
 
     public static void dbTeAccountPathai(Account account, String DbName, ActionEvent actionEvent) throws IOException {
         String allInfoTogether = "'" + account.getFullName() + "'" + ", " + "'" + account.getPhoneNumber() + "'" + ", "
-                + "'" + account.getEmail() + "'" + ", " + "'Ami Address'" + ", " + "'" + account.getPassword() + "'"
+                + "'" + account.getEmail() + "'" + ", '" + account.getAddress() + "', " + "'" + account.getPassword() + "'"
                 + ", " + "'" + account.getDateOfBirth() + "'" + ", " + "'" + account.getIsCustomer() + "'" + ", " + "'"
                 + account.getProFilePhoto() + "'";
         DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto",
@@ -125,65 +213,7 @@ public class Account {
 
     }
 
-    public static void reTrieveAccount(Map<String, Object> f) throws IOException {
-        loggedIn.setFullName(f.get("name").toString());
-        loggedIn.setEmail(f.get("email").toString());
-        loggedIn.setAddress(f.get("address").toString());
-        loggedIn.setPassword(f.get("password").toString());
-        loggedIn.setPhoneNumber(f.get("phoneno").toString());
-        loggedIn.setDateOfBirth(f.get("dateofbirth").toString());
-        loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
-        loggedIn.setProFilePhoto(f.get("profilephoto").toString());
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public static void dbTeHotelPathai() {
-        for (Room room : rooms) {
-            var facilities = new ArrayList<String>(room.getAmenities().subList(3, room.getAmenities().size()));
-            String result = "'" + String.join("', '", facilities) + "'";
-
-            try {
-                DatabaseClient.conn.createStatement()
-                        .executeUpdate("insert into rooms (hotelid, type, amenities) values (" + Hotel.lastHotelID
-                                + ", '" + room.getAmenities().get(0) + "', ARRAY[" + result + "])");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        List<String> list = Arrays.asList(
-                String.valueOf(Hotel.lastHotelID),
-                hotel.getType(),
-                hotel.getName(),
-                hotel.getAddress(),
-                hotel.getDistrict(),
-                String.valueOf(hotel.getFloorSpace()),
-                String.valueOf(hotel.getCostPerNight()),
-                hotel.getAdditionalDescription(),
-                '"' + String.join("\",\"", hotel.getIndoorAmenities()) + '"',
-                '"' + String.join("\",\"", hotel.getOutdoorAmenities()) + '"',
-                "sobinai",
-                "sobinai",
-                "sobinai",
-                "sobinai");
-
-        String allInfoTogether = "'" + String.join("', '", list) + "'";
-        System.out.println(allInfoTogether);
-
-        // String allInfoTogether = "'" + Hotel.lastHotelID + "', '" + hotel.getType() +
-        // "', '" + hotel.getName() + "', '"
-        // + hotel.getAddress() + "', '"
-        // + hotel.getDistrict() + "', '" + hotel.getFloorSpace() + "', '" +
-        // hotel.getCostPerNight() + "', '"
-        // + hotel.getAdditionalDescription() + "', '" + "sobinai" + "', '"
-        // + "sobinai" + "', '" + "sobinai" + "', '" + "sobinai'";
-
-        DatabaseClient.insert("hotels",
-                "id, type, name, address, district, floorspace, costpernight, additionaldescription, indoorspace, outdoorspace, image1, image2, image3, image4",
-                allInfoTogether);
-        // DatabaseClient.insert("hotels",
-        // "id, type, name, address, district, sqft, pernightcost, indoorspace,
-        // outdoorspace, additionaldescription, room1, room2, room3, image1, image2,
-        // image3, image4 ", allInfoTogether);
-
-    }
-
 }
