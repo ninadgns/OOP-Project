@@ -158,7 +158,7 @@ public class HomePageForCustomerController implements Initializable {
 
     public void showHotels(Map<String, Object> hotel) throws Exception {
 
-        Rectangle smallRectangle = new Rectangle(200, 100);
+        Rectangle smallRectangle = new Rectangle(140, 100);
         homePageVbox.setPadding(new Insets(5));
         smallRectangle.setFill(Color.BLUE);
 
@@ -269,7 +269,7 @@ public class HomePageForCustomerController implements Initializable {
             // Get the controller of the new scene
             hotelClickedController controller = fxmlLoader.getController();
             // Pass the hotel information to the controller
-            controller.setHotelData(hotel);
+            controller.setHotelData(hotel, hotel.get("id").toString());
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
@@ -298,6 +298,20 @@ public class HomePageForCustomerController implements Initializable {
             stage.show();
         } catch (Exception e) {
             System.out.println(e);
+        }
+    }
+
+    public void handleProfile(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerProfile.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            // stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

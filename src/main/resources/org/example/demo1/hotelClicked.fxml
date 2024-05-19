@@ -294,7 +294,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <Button fx:id="reserve" mnemonicParsing="false" styleClass="login-signin" stylesheets="@styles.css" text="Reserve">
+                                    <Button fx:id="reserve" mnemonicParsing="false" onAction="#handleReserveBtn" styleClass="login-signin" stylesheets="@styles.css" text="Reserve">
                                        <VBox.margin>
                                           <Insets top="8.0" />
                                        </VBox.margin>
