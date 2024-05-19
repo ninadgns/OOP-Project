@@ -104,6 +104,7 @@ public class HomePageForHotelManagerController implements Initializable {
         try {
             image = DatabaseClient.stringToImage(Account.loggedIn.getProFilePhoto());
             managerDp.setImage(image);
+
             profileChobiEbongButton.setImage(image);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -121,6 +122,21 @@ public class HomePageForHotelManagerController implements Initializable {
         }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("createPost.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets()
+                    .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+            Stage stage = new Stage();
+            stage.setTitle("Hello!");
+            stage.setX(500 + 100);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void handleChatButton(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telegram.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             scene.getStylesheets()
                     .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());

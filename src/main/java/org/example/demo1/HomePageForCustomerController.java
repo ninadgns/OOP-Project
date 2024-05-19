@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Scene;
@@ -75,7 +76,7 @@ public class HomePageForCustomerController implements Initializable {
     @FXML
     private Label managerAddress;
     @FXML
-    private static ImageView profileChobiEbongButton;
+    private ImageView profileChobiEbongButton;
     @FXML
     public TextField hotelSearchBox;
     @FXML
@@ -233,6 +234,18 @@ public class HomePageForCustomerController implements Initializable {
                 e.printStackTrace();
             }
         }
+        try {
+            System.out.println(Account.loggedIn.getFullName());
+//            profileChobiEbongButton.setImage(image);
+//            var table = DatabaseClient.fetchWhere("accountinfo", "email='" + Account.loggedIn.getEmail() + "'");
+//            var row = table.get(0);
+            Image image = DatabaseClient.stringToImage(Account.loggedIn.getProFilePhoto());
+//            image.isPreserveRatio(false);
+            profileChobiEbongButton.setImage(image);
+
+        } catch (Exception e) {
+//            throw new RuntimeException(e);
+        }
         // File file = null;
         // try {
         // file = DatabaseClient.stringToFile(Account.loggedIn.getProFilePhoto());
@@ -272,4 +285,19 @@ public class HomePageForCustomerController implements Initializable {
         }
     }
 
+    public void handleChatButton(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telegram.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets()
+                    .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+            Stage stage = new Stage();
+            stage.setTitle("Hello!");
+            stage.setX(500 + 100);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
