@@ -13,40 +13,44 @@ public class CheckInandOut {
          //   "Aug", "Sep", "Oct", "Nov", "Dec" };
     private final int[] days = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    CheckInandOut(String checkin, String checkout) {
-        if (checkin.isEmpty() || checkout.isEmpty()
-                || !checkin.matches("\\d{4}\\d{2}\\d{2}")
-                || !checkout.matches("\\d{4}\\d{2}\\d{2}")) {
-            this.checkin = null;
-            this.checkout = null;
-        }
+    public CheckInandOut(String checkin, String checkout) {
+//        if (checkin.isEmpty() || checkout.isEmpty()
+//                || !checkin.matches("\\d{4}\\d{2}\\d{2}")
+//                || !checkout.matches("\\d{4}\\d{2}\\d{2}")) {
+//            this.checkin = null;
+//            this.checkout = null;
+//        }
         checkinDate = Integer.parseInt(checkin);
         checkoutDate = Integer.parseInt(checkout);
         int diff=checkoutDate-checkinDate;
-        // int monthDiff=(diff%10000)/100;
-//        try{
-//        if(diff<=0){
-//            throws Exception e;
-//        }
-//        }
-//        catch(Exception e){
-//            e.printStackTrace();
-//        }
+
         this.checkin = checkin;
         this.checkout = checkout;
     }
 
+    public String getCheckin(){
+        return this.checkin;
+    }
+    public String getCheckout(){
+        return this.checkout;
+    }
+
     public void setTotalDays(){
-        checkinDate = Integer.parseInt(checkin);
-        checkoutDate = Integer.parseInt(checkout);
+       // checkinDate = Integer.parseInt(checkin);
+       // checkoutDate = Integer.parseInt(checkout);
         int diff=checkoutDate-checkinDate;
-        if (diff<=50) {
+        if(diff==0){
+            totalDays=0;
+            return;
+        }
+        if (diff<=50 && diff>0) {
             this.totalDays = checkoutDate - checkinDate;
         } else {
           int  checkinMon=(checkinDate%10000)/100;
           int  checkoutMon=(checkoutDate%10000)/100;
           int  checkinDay=(checkinDate%100);
           int checkoutDay=(checkoutDate%100);
+          //System.out.println("begin  "+checkinDay +" "+checkoutDay+" "+checkinMon+" "+checkoutMon);
             if((checkinDate/10000) == (checkoutDate/10000)) {
                 this.totalDays = days[checkinMon-1] - checkinDay + checkoutDay;
                 for (int i = (checkinMon + 1) % 12; i < checkoutMon; i++) {
@@ -84,6 +88,7 @@ public class CheckInandOut {
     }
 
     public int getTotalDays() {
+        setTotalDays();
         return this.totalDays;
     }
 }

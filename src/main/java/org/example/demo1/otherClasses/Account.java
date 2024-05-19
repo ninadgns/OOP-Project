@@ -1,6 +1,7 @@
 package org.example.demo1.otherClasses;
 
 import javafx.event.ActionEvent;
+import org.example.Manage.CheckInandOut;
 import org.example.Manage.Hotel;
 import org.example.Manage.Room;
 import org.example.database.DatabaseClient;
@@ -42,6 +43,18 @@ public class Account {
                 + ", " + "'" + account.getDateOfBirth() + "'" + ", " + "'" + account.getIsCustomer() + "'" + ", " + "'"
                 + account.getProFilePhoto() + "'";
         DatabaseClient.insert(DbName, "name, phoneno, email, address, password, dateofbirth, iscustomer, profilephoto",
+                allInfoTogether);
+        // DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+        System.out.println("Push Hoise");
+
+    }
+
+
+    public static void dbTeBookingPathai(CheckInandOut booking, String hotelID,String customerID,String totalDays,String totalPrice)  {
+        String allInfoTogether = "'" + hotelID + "'" + ", " + "'" + booking.getCheckin() + "'" + ", "
+                + "'" + booking.getCheckout() + "'" + ", "+ "'"  + customerID + "'"
+                + ", " + "'" +totalDays + "'" + ", " + "'" +totalPrice + "'";
+        DatabaseClient.insert("bookings", "hotel_id, check_in_date, check_out_date, customer_id, totaldays, totalcost",
                 allInfoTogether);
         // DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
         System.out.println("Push Hoise");

@@ -251,7 +251,7 @@ public class HomePageForCustomerController implements Initializable {
             // Get the controller of the new scene
             hotelClickedController controller = fxmlLoader.getController();
             // Pass the hotel information to the controller
-            controller.setHotelData(hotel);
+            controller.setHotelData(hotel, hotel.get("id").toString());
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
