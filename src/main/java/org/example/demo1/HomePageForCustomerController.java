@@ -291,9 +291,10 @@ public class HomePageForCustomerController implements Initializable {
             Scene scene = new Scene(fxmlLoader.load());
             scene.getStylesheets()
                     .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+            // Parent root = (Parent)
             Stage stage = new Stage();
             stage.setTitle("Book Stay");
-            stage.setX(500 + 100);
+            stage.setX(500 +  100);
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {

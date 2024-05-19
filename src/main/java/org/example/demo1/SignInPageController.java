@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import org.example.database.DatabaseClient;
@@ -26,7 +23,7 @@ public class SignInPageController {
     @FXML
     private TextField enterEmailToSignIn;
     @FXML
-    private TextField enterPwdToSignIn;
+    private PasswordField enterPwdToSignIn;
     @FXML
     private Button signInBtnToSignIn;
     @FXML

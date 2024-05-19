@@ -58,20 +58,20 @@
                         <String fx:value="whiteText" />
                      </styleClass>
                   </TextField>
-                  <ImageView fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@messenger/emoji.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="5.0" top="-5.0" />
-                     </HBox.margin>
-                  </ImageView>
                   <ImageView fx:id="sendBtn" fitHeight="20.0" fitWidth="27.0" onMouseClicked="#handleSendBtn" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@messenger/send.png" />
                      </image>
                      <HBox.margin>
                         <Insets left="12.0" top="-5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fitHeight="20.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@messenger/emoji.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="-5.0" />
                      </HBox.margin>
                   </ImageView>
                </children>
