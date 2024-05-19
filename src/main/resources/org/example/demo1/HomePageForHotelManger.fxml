@@ -36,7 +36,7 @@
             </AnchorPane>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="131.0" styleClass="transparent" stylesheets="@styles.css">
                <children>
-                  <ImageView fx:id="settingsButton" fitHeight="36.0" fitWidth="41.0" layoutX="47.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="36.0" fitWidth="41.0" layoutX="47.0" layoutY="9.0" onMouseClicked="#handleChatButton" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@homePage/8170725.png" />
                      </image>
