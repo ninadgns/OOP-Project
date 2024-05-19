@@ -137,13 +137,14 @@ public class TelegramController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AnchorPaneTemplate.fxml"));
             try {
                 AnchorPane anchorPane = loader.load();
-                Text textNode = new Text(senderData.name);
-                textNode.setStyle("-fx-font-size: 18;"); // Set the font size
+                Label textNode = new Label();
+                textNode.setText(senderData.name);
+                textNode.setStyle("-fx-font-size: 18; -fx-text-fill: white;-fx-margin: 10px  10px 10px 10px;"); // Set the font size
                 textNode.setTextAlignment(TextAlignment.CENTER); // Center align the text
 
                 VBox.setVgrow(textNode, Priority.ALWAYS); // Vertically center the text
                 VBox vBox = (VBox) anchorPane.getChildren().get(0); // Get the VBox from AnchorPane
-                vBox.setAlignment(Pos.CENTER); // Center align the VBox content (textNode)
+                vBox.setAlignment(Pos.CENTER_LEFT); // Center align the VBox content (textNode)
                 anchorPane.setOnMouseClicked((MouseEvent event) -> {
                     System.out.println("AnchorPane is clicked!" + senderData.name);
                     bgVbox.getChildren().clear();
@@ -171,10 +172,10 @@ public class TelegramController {
                             if (Integer.parseInt(message_sender_id) == Integer.parseInt(senderData.sender_id)) {
                                 // messagesSentByOtherPerson.add();
                                 displayReceivedMessage(messagesResultSet.getString("content"));
-                                System.out.println("bame dilam");
+                                // System.out.println("bame dilam");
                             } else {
                                 displaySentMessage(messagesResultSet.getString("content"));
-                                System.out.println("dane dilam");
+                                // System.out.println("dane dilam");
                             }
                         }
                     } catch (Exception e) {

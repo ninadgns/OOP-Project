@@ -57,7 +57,7 @@ public class DatabaseClient {
             // String content = rs.getString("content");
             // System.out.println("ID: " + id + ", Content: " + content);
             // }
-            System.out.println("db query successful");
+            // System.out.println("db query successful");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -140,7 +140,7 @@ public class DatabaseClient {
 
     public static List<Map<String, Object>> fetch(String tableName) {
         String sql = "select * from " + tableName;
-        System.out.println(sql);
+        // System.out.println(sql);
         ResultSet rs = runSQL(sql);
         List<Map<String, Object>> rl = null;
         try {
@@ -158,15 +158,15 @@ public class DatabaseClient {
             conn.createStatement()
                     .executeUpdate("insert into messages (sender_id, receiver_id, content) values ('"
                             + sender + "', '" + receiver + "','" + message + "')");
-            System.out.println("insert into messages (sender_id, receiver_id, content) values ('"
-                    + sender + "', '" + receiver + "','" + message + "')");
+            // System.out.println("insert into messages (sender_id, receiver_id, content) values ('"
+                    // + sender + "', '" + receiver + "','" + message + "')");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static List<Pair<String, String>> fetchMessage(String receiver) {
-        System.out.println("select * from messages  where receiver_id = " + receiver);
+        // System.out.println("select * from messages  where receiver_id = " + receiver);
         var rs = runSQL("select * from messages  where receiver_id = " + receiver);
         List<Pair<String, String>> ret = new ArrayList<>();
         try {
@@ -187,7 +187,7 @@ public class DatabaseClient {
         List<Map<String, Object>> rl = null;
         try {
             String sql = "SELECT * FROM " + tableName + " WHERE " + whereClause;
-            System.out.println(sql);
+            // System.out.println(sql);
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rl = resultSetToArray(rs);
@@ -199,7 +199,7 @@ public class DatabaseClient {
 
     public static void insert(String tableName, String fields, String values) {
         String sql = "insert into " + tableName + "(" + fields + ") Values (" + values + ")";
-        System.out.println(sql);
+        // System.out.println(sql);
         try {
             conn.createStatement().executeUpdate(sql);
 

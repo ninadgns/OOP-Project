@@ -264,7 +264,7 @@ public class HomePageForCustomerController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Hotel Details");
             stage.setScene(scene);
-            stage.setWidth(800); // Set desired width
+            stage.setWidth(650); // Set desired width
             stage.setHeight(600); // Set desired height
             stage.show();
         } catch (Exception e) {
@@ -272,4 +272,37 @@ public class HomePageForCustomerController implements Initializable {
         }
     }
 
+    public void handleChatButton(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telegram.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets()
+                    .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+            Stage stage = new Stage();
+            stage.setWidth(650);
+            stage.setHeight(400);
+            stage.setTitle("Book Stay");
+            stage.setX(500 + 100);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public void handleProfile(MouseEvent mouseEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerProfile.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            // stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
