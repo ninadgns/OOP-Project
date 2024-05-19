@@ -95,15 +95,18 @@ Account host;
         DatabaseClient.insertMessage(Account.loggedIn.id, host.getId(), "Hi");
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("telegram.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("telegram.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            scene.getStylesheets()
+                    .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
+            // Parent root = (Parent)
+            Stage stage = new Stage();
+            stage.setTitle("Book Stay");
+            stage.setX(500 +  100);
             stage.setScene(scene);
-            // stage.show();
-
+            stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
     //handleReserveBtn
