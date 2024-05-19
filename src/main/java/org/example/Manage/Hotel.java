@@ -233,18 +233,7 @@ public abstract class Hotel {
                 || !checkout.matches("\\d{4}\\d{2}\\d{2}")) {
             return true;
         }
-        // String[] CheckIn = checkin.split(" ");
-        // String[] CheckOut = checkin.split(" ");
-        //
-        // int chInDay = Integer.parseInt(CheckIn[0]);
-        // int chOutDay = Integer.parseInt(CheckOut[0]);
-        // int chInMon = Integer.parseInt(CheckIn[1]);
-        // int chOutMon = Integer.parseInt(CheckOut[1]);
-        // int chInYear = Integer.parseInt(CheckIn[2]);
-        // int chOutYear = Integer.parseInt(CheckOut[2]);
 
-        // final String[] months = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
-        // "Aug", "Sep", "Oct", "Nov", "Dec" };
         int givenCheckinDate = Integer.parseInt(checkin);
         int givenCheckoutDate = Integer.parseInt(checkout);
 

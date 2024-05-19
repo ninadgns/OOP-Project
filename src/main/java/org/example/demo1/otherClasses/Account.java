@@ -1,6 +1,7 @@
 package org.example.demo1.otherClasses;
 
 import javafx.event.ActionEvent;
+import org.example.Manage.CheckInandOut;
 import org.example.Manage.Hotel;
 import org.example.Manage.Room;
 import org.example.database.DatabaseClient;
@@ -48,8 +49,7 @@ public class Account {
 
     }
 
-    public static Account reTrieveAccount(Map<String, Object> f) throws IOException {
-        Account loggedIn = new Account();
+    public static void reTrieveAccount(Map<String, Object> f) throws IOException {
         loggedIn.setId(f.get("id").toString());
         loggedIn.setFullName(f.get("name").toString());
         loggedIn.setEmail(f.get("email").toString());
@@ -59,7 +59,6 @@ public class Account {
         loggedIn.setDateOfBirth(f.get("dateofbirth").toString());
         loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
         loggedIn.setProFilePhoto(f.get("profilephoto").toString());
-        return loggedIn;
     }
 
     public static void dbTeHotelPathai() {
