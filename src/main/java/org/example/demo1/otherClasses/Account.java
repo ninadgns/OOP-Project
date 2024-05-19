@@ -49,7 +49,8 @@ public class Account {
 
     }
 
-    public static void reTrieveAccount(Map<String, Object> f) throws IOException {
+    public static Account reTrieveAccount(Map<String, Object> f) throws IOException {
+        Account loggedIn = new Account();
         loggedIn.setId(f.get("id").toString());
         loggedIn.setFullName(f.get("name").toString());
         loggedIn.setEmail(f.get("email").toString());
@@ -59,6 +60,7 @@ public class Account {
         loggedIn.setDateOfBirth(f.get("dateofbirth").toString());
         loggedIn.setCustomer(f.get("iscustomer").toString().equals("true"));
         loggedIn.setProFilePhoto(f.get("profilephoto").toString());
+        return loggedIn;
     }
 
     public static void dbTeHotelPathai() {
@@ -148,6 +150,17 @@ public class Account {
         image2=null;
         image3=null;
         image4=null;
+
+    }
+
+    public static void dbTeBookingPathai(CheckInandOut booking, String hotelID,String customerID,String totalDays,String totalPrice)  {
+        String allInfoTogether = "'" + hotelID + "'" + ", " + "'" + booking.getCheckin() + "'" + ", "
+                + "'" + booking.getCheckout() + "'" + ", "+ "'"  + customerID + "'"
+                + ", " + "'" +totalDays + "'" + ", " + "'" +totalPrice + "'";
+        DatabaseClient.insert("bookings", "hotel_id, check_in_date, check_out_date, customer_id, totaldays, totalcost",
+                allInfoTogether);
+        // DatabaseClient.update("notes", "id, content", "5, 'o ma fagune tor'");
+        System.out.println("Push Hoise");
 
     }
 
