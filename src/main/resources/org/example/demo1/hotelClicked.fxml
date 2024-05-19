@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
     <top>
         <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
             <children>
@@ -25,7 +25,7 @@
                         <Insets />
                     </HBox.margin>
                     <children>
-                        <ImageView fx:id="amiLogo" fitHeight="61.0" fitWidth="100.0" layoutX="7.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="amiLogo" fitHeight="32.0" fitWidth="94.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@homePage/28267842_7.png" />
                             </image>
@@ -252,12 +252,12 @@
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="158.0" prefWidth="222.0">
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="11.0" prefHeight="259.0" prefWidth="211.0">
+                              <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="11.0" prefHeight="303.0" prefWidth="211.0">
                                  <children>
                                     <HBox prefHeight="22.0" prefWidth="193.0">
                                        <children>
-                                          <Label text="kata" />
-                                          <Label text="taka">
+                                          <Label fx:id="kata" styleClass="strike" stylesheets="@styles.css" />
+                                          <Label fx:id="taka">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -294,7 +294,7 @@
                                           </VBox>
                                        </children>
                                     </VBox>
-                                    <Button fx:id="reserve" mnemonicParsing="false" onAction="#handleReserveBtn" styleClass="login-signin" stylesheets="@styles.css" text="Reserve">
+                                    <Button fx:id="calculate" mnemonicParsing="false" onAction="#handleCalculate" stylesheets="@styles.css" text="Calculate Cost">
                                        <VBox.margin>
                                           <Insets top="8.0" />
                                        </VBox.margin>
@@ -311,7 +311,7 @@
                                                 <VBox prefHeight="70.0" prefWidth="129.0" spacing="2.0">
                                                    <children>
                                                       <Label text="Hotel Cost" />
-                                                      <Label text="VuaBNB Cost" />
+                                                      <Label text="BookStay Cost" />
                                                    </children>
                                                    <padding>
                                                       <Insets bottom="5.0" />
@@ -319,7 +319,7 @@
                                                 </VBox>
                                                 <VBox alignment="TOP_RIGHT" prefHeight="98.0" prefWidth="83.0" spacing="2.0">
                                                    <children>
-                                                      <Label text="teka" />
+                                                      <Label fx:id="takaa" />
                                                       <Label alignment="TOP_RIGHT" text="150" />
                                                    </children>
                                                    <padding>
@@ -332,11 +332,12 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label prefHeight="18.0" prefWidth="246.0" text="Total Cost Before Tax" />
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="181.0" text="Pura Tekaa" />
+                                                <Label fx:id="total" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="181.0" text="Pura Tekaa" />
                                              </children>
                                           </HBox>
                                        </children>
                                     </VBox>
+                                    <Button fx:id="reserve" layoutX="46.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleReserveBtn" styleClass="login-signin" stylesheets="@styles.css" text="Reserve" />
                                  </children>
                               </VBox>
                            </children></AnchorPane>

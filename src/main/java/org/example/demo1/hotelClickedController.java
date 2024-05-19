@@ -40,6 +40,14 @@ public class hotelClickedController implements Initializable {
     public ImageView amiLogo;
     public static CheckInandOut newbooking;
     public static String costPerNight,hotelID,customerID="9";
+    @FXML
+    public Label total;
+    @FXML
+    public Label takaa;
+    @FXML
+    public Label kata;
+    @FXML
+    public Label taka;
     private BlockingQueue<Map<String,Object>> bookingsDone;
     private List<Map<String,Object>>  allBooking;
     @FXML
@@ -79,6 +87,9 @@ public class hotelClickedController implements Initializable {
     private Label additionDescription;
     @FXML
     private Label address;
+    public int totalPrice;
+    String day;
+    boolean isPossible = false;
 Account host;
     public void handleChatManager(MouseEvent mouseEvent) {
         DatabaseClient.insertMessage(Account.loggedIn.id, host.getId(), "Hi");
@@ -97,66 +108,20 @@ Account host;
     }
     //handleReserveBtn
     public void handleReserveBtn(ActionEvent event) {
-
-        LocalDate checkInDate =checkIn.getValue();
-        LocalDate checkOutDate =checkOut.getValue();
-
-        getPreviousBooking();
-
-        if (checkInDate != null && checkOutDate != null) {
-            // Format the date
-            DateTimeFormatter Informatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-            String InformattedDate = checkInDate.format(Informatter);
-            DateTimeFormatter Outformatter = DateTimeFormatter.ofPattern("yyyyMMdd");
-            String OutformattedDate = checkOutDate.format(Outformatter);
-            int a=Integer.parseInt(InformattedDate);
-            int b=Integer.parseInt(OutformattedDate);
-
-            if(a>b){
-                //System.out.println("1. "+a+" "+b);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Alert");
-                alert.setHeaderText("Select check-in and check-out date properly");
-                //alert.setContentText(formattedDate);
-                alert.showAndWait();
-                return;
-
-            }
-            newbooking=new CheckInandOut(InformattedDate,OutformattedDate);
-            boolean vacant= isVacant(InformattedDate,OutformattedDate);
-            if(vacant){
-
-                int days= newbooking.getTotalDays();
-                String day= Integer.toString(days);
-                int totalCost=days*(int)Integer.parseInt(costPerNight) +150;
-               // System.out.println("2. "+Integer.parseInt(day) +" " + Integer.parseInt(costPerNight)  +" " + days+" " + costPerNight);
-                String totalPrice=Integer.toString(totalCost);
-                Account.dbTeBookingPathai(newbooking,hotelID,customerID,day,totalPrice);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Booking Done");
-                alert.setHeaderText("Your total payment");
-                alert.setContentText(totalPrice);
-                alert.showAndWait();
-                return;
-                //bookingsDone.add(booking);
-            }
-            else{
-            //System.out.println(formattedDate);
-            // Show the formatted date in an alert dialog
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Alert");
-            alert.setHeaderText("Your selected dates are booked already");
-            //alert.setContentText(formattedDate);
-            alert.showAndWait();}
-        } else {
-            // If no date is selected, show an alert
+        handleCalculate(event);
+        if(!isPossible){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("No Date Selected");
-            alert.setHeaderText("No date selected");
-            alert.setContentText("Please select dates for check-in and check-out");
+            alert.setTitle("Error");
+            alert.setHeaderText("Error");
+            alert.setContentText("Set Dates Properly");
             alert.showAndWait();
         }
-
+        Account.dbTeBookingPathai(newbooking,hotelID,customerID,day,Integer.toString(totalPrice));
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Booking Done");
+        alert.setHeaderText("Your total payment");
+        alert.setContentText(Integer.toString(totalPrice));
+        alert.showAndWait();
     }
 
 
@@ -188,18 +153,20 @@ Account host;
         System.out.println(givenCheckoutDate +" " + givenCheckinDate);
         boolean vacant = true;
 
-        for (var booking : bookingsDone) {
-            int bookedDate1=Integer.parseInt(booking.get("checkinDate").toString());
-            int bookedDate2=Integer.parseInt(booking.get("checkoutDate").toString());
-          // System.out.println("3. "+bookedDate2 +" " + bookedDate1);
-            if (bookedDate1 < givenCheckoutDate && bookedDate2 > givenCheckinDate) {
-                 vacant = false;
-                break;
-            }
-            if (bookedDate2 < givenCheckoutDate && bookedDate1 > givenCheckinDate) {
-                vacant = false;
-                break;
+        if(!bookingsDone.isEmpty()) {
+            for (var booking : bookingsDone) {
+                int bookedDate1 = Integer.parseInt(booking.get("check_in_date").toString());
+                int bookedDate2 = Integer.parseInt(booking.get("check_out_date").toString());
+                // System.out.println("3. "+bookedDate2 +" " + bookedDate1);
+                if (bookedDate1 < givenCheckoutDate && bookedDate2 > givenCheckinDate) {
+                    vacant = false;
+                    break;
+                }
+                if (bookedDate2 < givenCheckoutDate && bookedDate1 > givenCheckinDate) {
+                    vacant = false;
+                    break;
 
+                }
             }
         }
         return vacant;
@@ -268,6 +235,70 @@ Account host;
 
 //        Account
 
+
+    }
+
+    public void handleCalculate(ActionEvent actionEvent) {
+
+        LocalDate checkInDate =checkIn.getValue();
+        LocalDate checkOutDate =checkOut.getValue();
+
+        getPreviousBooking();
+
+        if (checkInDate != null && checkOutDate != null) {
+            // Format the date
+            DateTimeFormatter Informatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            String InformattedDate = checkInDate.format(Informatter);
+            DateTimeFormatter Outformatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+            String OutformattedDate = checkOutDate.format(Outformatter);
+            int a=Integer.parseInt(InformattedDate);
+            int b=Integer.parseInt(OutformattedDate);
+
+            if(a>b){
+                //System.out.println("1. "+a+" "+b);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setHeaderText("Select check-in and check-out date properly");
+                //alert.setContentText(formattedDate);
+                alert.showAndWait();
+                return;
+
+            }
+            newbooking=new CheckInandOut(InformattedDate,OutformattedDate);
+            boolean vacant= isVacant(InformattedDate,OutformattedDate);
+            if(vacant){
+
+                int days = newbooking.getTotalDays();
+                 day= Integer.toString(days);
+                int totalCost=days*(int)Integer.parseInt(costPerNight) +150;
+                // System.out.println("2. "+Integer.parseInt(day) +" " + Integer.parseInt(costPerNight)  +" " + days+" " + costPerNight);
+                totalPrice= (totalCost)-150;
+                isPossible=true;
+//                return;
+                //bookingsDone.add(booking);
+            }
+            else{
+                //System.out.println(formattedDate);
+                // Show the formatted date in an alert dialog
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Alert");
+                alert.setHeaderText("Your selected dates are booked already");
+                //alert.setContentText(formattedDate);
+                alert.showAndWait();}
+        } else {
+            // If no date is selected, show an alert
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Date Selected");
+            alert.setHeaderText("No date selected");
+            alert.setContentText("Please select dates for check-in and check-out");
+            alert.showAndWait();
+        }
+
+//        kata.setText(Integer.toString((int)(totalPrice+totalPrice/10)));
+        taka.setText(Integer.toString((int)(totalPrice)));
+        takaa.setText(Integer.toString((int)(totalPrice)));
+        total.setText(Integer.toString((int)(totalPrice+150)));
+//        kata.setText(;
 
     }
 }

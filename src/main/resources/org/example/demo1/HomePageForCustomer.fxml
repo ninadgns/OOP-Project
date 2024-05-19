@@ -22,7 +22,7 @@
                   <Insets />
                </HBox.margin>
                <children>
-                  <ImageView fx:id="amiLogo" fitHeight="61.0" fitWidth="100.0" layoutX="7.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="amiLogo" fitHeight="35.0" fitWidth="94.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@homePage/28267842_7.png" />
                      </image>
