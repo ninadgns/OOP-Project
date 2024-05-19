@@ -35,11 +35,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.example.Manage.CheckInandOut;
 import org.example.demo1.otherClasses.Account;
-
+import java.time.LocalDate;
 public class hotelClickedController implements Initializable {
     public ImageView amiLogo;
     public static CheckInandOut newbooking;
-    public static String costPerNight,hotelID,customerID="9";
+    public static String costPerNight,hotelID,customerID;
     @FXML
     public Label total;
     @FXML
@@ -109,6 +109,7 @@ Account host;
     //handleReserveBtn
     public void handleReserveBtn(ActionEvent event) {
         handleCalculate(event);
+
         if(!isPossible){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
@@ -242,6 +243,10 @@ Account host;
 
         LocalDate checkInDate =checkIn.getValue();
         LocalDate checkOutDate =checkOut.getValue();
+        customerID=Account.loggedIn.getId();
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        String formattedDate = currentDate.format(formatter);
 
         getPreviousBooking();
 
@@ -251,10 +256,11 @@ Account host;
             String InformattedDate = checkInDate.format(Informatter);
             DateTimeFormatter Outformatter = DateTimeFormatter.ofPattern("yyyyMMdd");
             String OutformattedDate = checkOutDate.format(Outformatter);
-            int a=Integer.parseInt(InformattedDate);
-            int b=Integer.parseInt(OutformattedDate);
+            int c = Integer.parseInt(formattedDate);
+            int a =Integer.parseInt(InformattedDate);
+            int b =Integer.parseInt(OutformattedDate);
 
-            if(a>b){
+            if(a>b || a<=c || b<=c){
                 //System.out.println("1. "+a+" "+b);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Alert");

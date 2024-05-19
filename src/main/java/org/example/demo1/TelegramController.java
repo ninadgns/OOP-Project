@@ -28,8 +28,8 @@ import org.example.demo1.otherClasses.Account;
 public class TelegramController {
 
 
-    String ChatServerIP = "localhost";
-    int ChatServerPort = 6666;
+    String ChatServerIP = "0.tcp.in.ngrok.io";
+    int ChatServerPort = 11426;
 
 
 
