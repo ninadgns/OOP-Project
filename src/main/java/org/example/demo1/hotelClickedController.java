@@ -150,21 +150,22 @@ public class hotelClickedController implements Initializable {
         int givenCheckoutDate = Integer.parseInt(checkout);
         System.out.println(givenCheckoutDate +" " + givenCheckinDate);
         boolean vacant = true;
+       if(bookingsDone.size()!=0) {
+           for (var booking : bookingsDone) {
+               int bookedDate1 = Integer.parseInt(booking.get("check_in_date").toString());
+               int bookedDate2 = Integer.parseInt(booking.get("check_out_date").toString());
+               // System.out.println("3. "+bookedDate2 +" " + bookedDate1);
+               if (bookedDate1 < givenCheckoutDate && bookedDate2 > givenCheckinDate) {
+                   vacant = false;
+                   break;
+               }
+               if (bookedDate2 < givenCheckoutDate && bookedDate1 > givenCheckinDate) {
+                   vacant = false;
+                   break;
 
-        for (var booking : bookingsDone) {
-            int bookedDate1=Integer.parseInt(booking.get("checkinDate").toString());
-            int bookedDate2=Integer.parseInt(booking.get("checkoutDate").toString());
-          // System.out.println("3. "+bookedDate2 +" " + bookedDate1);
-            if (bookedDate1 < givenCheckoutDate && bookedDate2 > givenCheckinDate) {
-                 vacant = false;
-                break;
-            }
-            if (bookedDate2 < givenCheckoutDate && bookedDate1 > givenCheckinDate) {
-                vacant = false;
-                break;
-
-            }
-        }
+               }
+           }
+       }
         return vacant;
     }
     public void setHotelData(Map<String, Object> hotel, String hotelId) throws IOException {
