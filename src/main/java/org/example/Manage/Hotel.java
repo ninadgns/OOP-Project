@@ -218,7 +218,7 @@ public abstract class Hotel {
     }
 
     public int getCostPerNight() {
-        this.costPerNight = getCostForOtherFacilities() + getCostForRooms() + (int)sqft*12;
+        this.costPerNight = getCostForOtherFacilities() + getCostForRooms() + (int)(sqft*0.12);
         return this.costPerNight;
     }
 
