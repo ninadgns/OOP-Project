@@ -26,6 +26,13 @@ import org.example.database.DatabaseClient;
 import org.example.demo1.otherClasses.Account;
 
 public class TelegramController {
+
+
+    String ChatServerIP = "localhost";
+    int ChatServerPort = 6666;
+
+
+
     final double FONT_SIZE = 7.115384615;
     @FXML
     private VBox bgVbox;
@@ -114,19 +121,17 @@ public class TelegramController {
         System.out.println("bgVbox initialized: " + (bgVbox != null));
         // System.out.println("bgVboxR initialized: " + (bgVboxR != null));
         System.out.println("rightScroll initialized: " + (rightScroll != null));
-        var hostrs = DatabaseClient.runSQL("Select * from messages where id = 1");
-        String host = "";
-        int port = 0;
-        try {
-            if (hostrs.next()) {
-                host = hostrs.getString("content");
-                port = hostrs.getInt("receiver_id");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     var hostrs = DatabaseClient.runSQL("Select * from messages where id = 1");
+        //     if (hostrs.next()) {
+        //         host = hostrs.getString("content");
+        //         port = hostrs.getInt("receiver_id");
+        //     }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
 
-        client = new ChatClient(host, port, this, Account.loggedIn.getId());
+        client = new ChatClient(ChatServerIP, ChatServerPort, this, Account.loggedIn.getId());
         var a = getSenders(Account.loggedIn.getId());
         for (SenderData senderData : a) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AnchorPaneTemplate.fxml"));
