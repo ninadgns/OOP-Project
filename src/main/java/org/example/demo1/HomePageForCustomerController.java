@@ -315,4 +315,5 @@ public class HomePageForCustomerController implements Initializable {
             e.printStackTrace();
         }
     }
+
 }

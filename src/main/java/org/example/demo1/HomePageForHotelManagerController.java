@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -30,6 +31,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HomePageForHotelManagerController implements Initializable {
+    @FXML
+    public BorderPane borderpane;
     @FXML
     private Label hotelName;
     @FXML
@@ -148,5 +151,11 @@ public class HomePageForHotelManagerController implements Initializable {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    public void handleLogout(MouseEvent mouseEvent) {
+        Stage stage = (Stage) borderpane.getScene().getWindow();
+
+        stage.close();
+
     }
 }

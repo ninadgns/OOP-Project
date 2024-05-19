@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForHotelManagerController">
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForHotelManagerController">
    <top>
       <HBox prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
          <children>
@@ -50,6 +50,11 @@
                      <image>
                         <Image url="@homePage/New%20Project.png" />
                      </image></ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-30.0" layoutY="11.0" onMouseClicked="#handleLogout" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@login/images.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
