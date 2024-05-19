@@ -250,14 +250,14 @@
                               </VBox>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="158.0" prefWidth="222.0">
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="581.0" prefWidth="267.0">
                            <children>
                               <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="11.0" prefHeight="303.0" prefWidth="211.0">
                                  <children>
                                     <HBox prefHeight="22.0" prefWidth="193.0">
                                        <children>
                                           <Label fx:id="kata" styleClass="strike" stylesheets="@styles.css" />
-                                          <Label fx:id="taka">
+                                          <Label fx:id="taka" text="Cost">
                                              <HBox.margin>
                                                 <Insets />
                                              </HBox.margin>
@@ -271,15 +271,15 @@
                                           </Label>
                                        </children>
                                     </HBox>
-                                    <VBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="193.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="220.0">
                                        <padding>
                                           <Insets top="5.0" />
                                        </padding>
                                        <children>
                                           <HBox prefHeight="25.0" prefWidth="193.0">
                                              <children>
-                                                <DatePicker fx:id="checkIn" prefHeight="27.0" prefWidth="98.0" promptText="Check In" />
-                                                <DatePicker fx:id="checkOut" prefHeight="27.0" prefWidth="111.0" promptText="Check Out" />
+                                                <DatePicker fx:id="checkIn" prefHeight="27.0" prefWidth="107.0" promptText="Check In" />
+                                                <DatePicker fx:id="checkOut" prefHeight="27.0" prefWidth="108.0" promptText="Check Out" />
                                              </children>
                                           </HBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
@@ -332,7 +332,7 @@
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
                                                 <Label prefHeight="18.0" prefWidth="246.0" text="Total Cost Before Tax" />
-                                                <Label fx:id="total" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="181.0" text="Pura Tekaa" />
+                                                <Label fx:id="total" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="181.0" text="" />
                                              </children>
                                           </HBox>
                                        </children>
