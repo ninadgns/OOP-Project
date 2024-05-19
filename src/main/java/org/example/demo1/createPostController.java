@@ -111,7 +111,7 @@ public class createPostController implements Initializable {
                         .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
                 // Parent root = (Parent)
                 Stage stage = new Stage();
-                stage.setTitle("Hello!");
+                stage.setTitle("Book Stay");
                 stage.setX(500 + i * 100);
                 stage.setScene(scene);
                 stage.show();

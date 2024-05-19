@@ -130,7 +130,7 @@ public class CustomerProfileController implements Initializable {
             scene.getStylesheets()
                     .add(Objects.requireNonNull(getClass().getResource("styles.css")).toExternalForm());
             Stage stage = new Stage();
-            stage.setTitle("Hello!");
+            stage.setTitle("Book Stay");
             stage.setX(500 + 100);
             stage.setScene(scene);
             stage.show();

@@ -38,6 +38,9 @@
     -fx-font-size: 13;
     -fx-alignment: top-right;
 }
+.strike .label .text{
+    -fx-strikethrough: true;
+}
 
 .mechat-received {
 
@@ -47,6 +50,9 @@
     -fx-background-radius: 5px;
     -fx-font-size: 13;
     -fx-alignment: top-left;
+}
+.strikethrough {
+    -fx-strikethrough: true;
 }
 
 .mechat {
