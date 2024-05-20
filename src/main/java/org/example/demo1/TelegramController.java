@@ -28,8 +28,8 @@ import org.example.demo1.otherClasses.Account;
 public class TelegramController {
 
 
-    String ChatServerIP = "localhost";
-    int ChatServerPort = 6666;
+    String ChatServerIP = "0.tcp.in.ngrok.io";
+    int ChatServerPort = 11426;
 
 
 
@@ -94,12 +94,19 @@ public class TelegramController {
                             // messagesSentByUser2.add(message);
                             // }
                             var message_sender_id = messagesResultSet.getString("sender_id");
-                            System.out.println(message_sender_id + " " + senderData.sender_id);
+                           // System.out.println(message_sender_id + " " + senderData.sender_id);
                             if (Integer.parseInt(message_sender_id) == Integer.parseInt(senderData.sender_id)) {
                                 // messagesSentByOtherPerson.add();
                                 displayReceivedMessage(messagesResultSet.getString("content"));
+<<<<<<< Updated upstream
                             } else {
                                 displaySentMessage(messagesResultSet.getString("content"));
+=======
+                                //System.out.println("bame dilam");
+                            } else {
+                                displaySentMessage(messagesResultSet.getString("content"));
+                                //System.out.println("dane dilam");
+>>>>>>> Stashed changes
                             }
                         }
                     } catch (Exception e) {

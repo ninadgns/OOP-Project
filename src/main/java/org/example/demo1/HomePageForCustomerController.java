@@ -180,6 +180,11 @@ public class HomePageForCustomerController implements Initializable {
         descriptionLabel.setWrapText(true);
         descriptionLabel.setMaxWidth(100);
         descriptionLabel.setMinWidth(80);
+<<<<<<< Updated upstream
+=======
+        //descriptionLabel.setPrefWidth(300);
+       //descriptionLabel.setPrefHeight(200);
+>>>>>>> Stashed changes
         descriptionLabel.setStyle("-fx-text-fill: black; -fx-padding: 3px;");
 
         VBox vBox = new VBox();

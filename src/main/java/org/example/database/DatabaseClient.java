@@ -57,7 +57,11 @@ public class DatabaseClient {
             // String content = rs.getString("content");
             // System.out.println("ID: " + id + ", Content: " + content);
             // }
+<<<<<<< Updated upstream
            // System.out.println("db query successful");
+=======
+          //  System.out.println("db query successful");
+>>>>>>> Stashed changes
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -90,7 +94,11 @@ public class DatabaseClient {
             FileOutputStream fos = new FileOutputStream("output.jpg");
             fos.write(imageBytes);
             fos.close();
+<<<<<<< Updated upstream
            // System.out.println("chobi saved");
+=======
+            // System.out.println("chobi saved");
+>>>>>>> Stashed changes
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -140,6 +148,10 @@ public class DatabaseClient {
 
     public static List<Map<String, Object>> fetch(String tableName) {
         String sql = "select * from " + tableName;
+<<<<<<< Updated upstream
+=======
+        // System.out.println(sql);
+>>>>>>> Stashed changes
         ResultSet rs = runSQL(sql);
         List<Map<String, Object>> rl = null;
         try {
@@ -157,12 +169,22 @@ public class DatabaseClient {
             conn.createStatement()
                     .executeUpdate("insert into messages (sender_id, receiver_id, content) values ('"
                             + sender + "', '" + receiver + "','" + message + "')");
+<<<<<<< Updated upstream
             } catch (Exception e) {
+=======
+            // System.out.println("insert into messages (sender_id, receiver_id, content) values ('"
+                    // + sender + "', '" + receiver + "','" + message + "')");
+        } catch (Exception e) {
+>>>>>>> Stashed changes
             e.printStackTrace();
         }
     }
 
     public static List<Pair<String, String>> fetchMessage(String receiver) {
+<<<<<<< Updated upstream
+=======
+        // System.out.println("select * from messages  where receiver_id = " + receiver);
+>>>>>>> Stashed changes
         var rs = runSQL("select * from messages  where receiver_id = " + receiver);
         List<Pair<String, String>> ret = new ArrayList<>();
         try {
@@ -183,6 +205,10 @@ public class DatabaseClient {
         List<Map<String, Object>> rl = null;
         try {
             String sql = "SELECT * FROM " + tableName + " WHERE " + whereClause;
+<<<<<<< Updated upstream
+=======
+            // System.out.println(sql);
+>>>>>>> Stashed changes
             Statement stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
             rl = resultSetToArray(rs);
@@ -194,6 +220,10 @@ public class DatabaseClient {
 
     public static void insert(String tableName, String fields, String values) {
         String sql = "insert into " + tableName + "(" + fields + ") Values (" + values + ")";
+<<<<<<< Updated upstream
+=======
+        // System.out.println(sql);
+>>>>>>> Stashed changes
         try {
             conn.createStatement().executeUpdate(sql);
 
