@@ -1,0 +1,246 @@
+@startuml
+class IndoorSpace {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class Cottage {
+}
+class Dining {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class Lounge {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class DoubleRoom {
++ int getCost()
++ ArrayList<String> getAmenities()
++ String getDescription()
+}
+
+class Cabin {
+}
+class SingleRoom {
++ int getCost()
++ ArrayList<String> getAmenities()
++ String getDescription()
+}
+
+class HotelSystem {
++ {static} void main(String[])
+}
+
+class CheckInandOut {
+- String checkin
+- int totalCost
+- boolean payment
+- String[] dateOfCheckIn
+- String[] dateOfCheckOut
+# int checkinYear
+- int[] days
++ String getCheckin()
++ String getCheckout()
++ void setTotalDays()
++ void setPayment(boolean)
++ boolean getPayment()
++ void setTotalCost(int)
++ int getTotalCost()
++ int getTotalDays()
+}
+
+
+class Management {
+- ArrayList<Area> areaList
++ void addArea()
++ ArrayList<Area> getAreaList()
++ Area getAreabyName(String)
+}
+
+
+interface CommonSpace {
++ {abstract}ArrayList<String> getAmenities()
++ {abstract}int getCost()
+}
+
+abstract class OutdoorDecorator {
+- CommonSpace decoOutdoorSpace
++ int getCost()
++ ArrayList<String> getAmenities()
+}
+
+
+abstract class IndoorDecorator {
+- CommonSpace decoIndoorSpace
++ int getCost()
++ ArrayList<String> getAmenities()
+}
+
+
+class AirConditioner {
+~ Room room
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+
+abstract class Room {
+- String bedSize
+- int allowedPersons
++ {abstract}int getCost()
++ {abstract}ArrayList<String> getAmenities()
++ void setCost(int)
++ void setAllowedPerson(int)
++ int getAllowedPerson()
++ String getBedSize()
++ void setBedSize(String)
+}
+
+
+abstract class RoomDecorator {
+}
+class OutdoorSpace {
++ String getDescription()
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class House {
+# CommonSpace indoorSpace
+# CommonSpace outdoorSpace
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+
+class AttachedBath {
+~ Room room
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+
+class LargeRoom {
++ int getCost()
++ ArrayList<String> getAmenities()
++ String getDescription()
+}
+
+class Garage {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class Patio {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class Area {
+- String districtName
+- ArrayList<Hotel> hotelLists
+- ArrayList<Hotel> hotelListOfOneType
+- HashMap<Integer,String> allhotelList
++ void addHotelID(int,String)
++ HashMap<Integer,String> getHotelIDList()
++ void addHotel(Hotel)
++ String getDistrictName()
++ ArrayList<Hotel> getHotelListOfOneType()
++ ArrayList<Hotel> getHotelOfOneType(String)
+}
+
+
+class Villa {
+}
+class Kitchen {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class AFrames {
+}
+class SwimmingPool {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+abstract class Hotel {
++ {static} int lastHotelID
+- int hotelID
+- String ownerID
+- String address
+- String district
+- String roomDetails
+- String comSpaceDetails
+- String specifications
+- String additionalDescription
+- String name
+- HashMap<Client,CheckInandOut> bookings
+- String type
+- ArrayList<Room> rooms
+- House house
+- int costPerNight
+- double sqft
++ ArrayList<String> getRoomDescription(int)
++ ArrayList<String> getOutdoorAmenities()
++ ArrayList<String> getIndoorAmenities()
++ void addBookings(Client,CheckInandOut)
++ void removeBooking(Client)
++ void addRoom(Room)
++ void calculateCostForRooms()
++ void calculateCostForOtherFacilities()
++ void writeRoomDetails()
++ void writeComSpaceDetails()
++ boolean vacantHotels(String,String)
+}
+
+class Yard {
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+class Balcony {
+~ Room room
++ ArrayList<String> getAmenities()
++ int getCost()
+}
+
+
+class Client {
+- String name
++ void setName(String)
++ void setEmailAddress(String)
++ String getName()
++ String getEmailAddress()
+}
+
+
+
+
+CommonSpace <|.. IndoorSpace
+Hotel <|-- Cottage
+IndoorDecorator <|-- Dining
+IndoorDecorator <|-- Lounge
+Room <|-- DoubleRoom
+Hotel <|-- Cabin
+Room <|-- SingleRoom
+CommonSpace <|.. OutdoorDecorator
+CommonSpace <|.. IndoorDecorator
+RoomDecorator <|-- AirConditioner
+Room <|-- RoomDecorator
+CommonSpace <|.. OutdoorSpace
+CommonSpace <|.. House
+RoomDecorator <|-- AttachedBath
+Room <|-- LargeRoom
+OutdoorDecorator <|-- Garage
+OutdoorDecorator <|-- Patio
+Hotel <|-- Villa
+IndoorDecorator <|-- Kitchen
+Hotel <|-- AFrames
+OutdoorDecorator <|-- SwimmingPool
+OutdoorDecorator <|-- Yard
+RoomDecorator <|-- Balcony
+@enduml

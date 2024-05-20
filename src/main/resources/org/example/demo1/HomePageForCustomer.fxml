@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +11,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.control.Button?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForCustomerController">
    <top>
       <HBox prefHeight="70.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
@@ -22,7 +27,7 @@
                   <Insets />
                </HBox.margin>
                <children>
-                  <ImageView fx:id="amiLogo" fitHeight="35.0" fitWidth="94.0" layoutX="7.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="amiLogo" fitHeight="61.0" fitWidth="100.0" layoutX="7.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@homePage/28267842_7.png" />
                      </image>
@@ -61,12 +66,12 @@
             </AnchorPane>
             <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="131.0" styleClass="transparent" stylesheets="@styles.css">
                <children>
-                  <ImageView fitHeight="36.0" fitWidth="41.0" layoutX="47.0" layoutY="9.0" onMouseClicked="#handleChatButton" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="settingsButton" fitHeight="36.0" fitWidth="41.0" layoutX="47.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@homePage/8170725.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="profileChobiEbongButton" fitHeight="39.0" fitWidth="39.0" layoutX="88.0" layoutY="6.0" onMouseClicked="#handleProfile" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="profileChobiEbongButton" fitHeight="39.0" fitWidth="39.0" layoutX="88.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@homePage/4402438.png" />
                      </image>
@@ -81,9 +86,9 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane prefHeight="441.0" prefWidth="600.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="365.0" prefWidth="600.0" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="homePageVbox" prefHeight="1044.0" prefWidth="584.0">
+            <VBox fx:id="homePageVbox" prefHeight="342.0" prefWidth="584.0">
                <children>
 <!--                  <HBox spacing="5">-->
 <!--                     <VBox spacing="5" fx:id="hotelBox" onMouseClicked="#handleRectangleClick">-->
