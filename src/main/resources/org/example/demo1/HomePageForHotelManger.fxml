@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.HomePageForHotelManagerController">
+   <top>
+      <HBox prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
+         <children>
+            <AnchorPane prefHeight="53.0" prefWidth="96.0" styleClass="transparent" stylesheets="@styles.css">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <children>
+                  <ImageView fx:id="amiLogo" fitHeight="36.0" fitWidth="86.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/28267842_7.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="53.0" prefWidth="370.0" styleClass="transparent" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+               <children>
+                  <TextField fx:id="hotelSearchBox" layoutX="10.0" layoutY="11.0" prefHeight="33.0" prefWidth="334.0" promptText="Search For Hotels" styleClass="homeSearchBar" stylesheets="@styles.css" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="44.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="53.0" prefWidth="131.0" styleClass="transparent" stylesheets="@styles.css">
+               <children>
+                  <ImageView fitHeight="36.0" fitWidth="41.0" layoutX="47.0" layoutY="9.0" onMouseClicked="#handleChatButton" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/8170725.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="profileChobiEbongButton" fitHeight="39.0" fitWidth="39.0" layoutX="88.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/4402438.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="addPostBtn" fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="11.0" onMouseClicked="#handleAddPost" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/New%20Project.png" />
+                     </image></ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="-30.0" layoutY="11.0" onMouseClicked="#handleLogout" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@login/images.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane prefHeight="347.0" prefWidth="600.0">
+         <content>
+            <AnchorPane prefHeight="345.0" prefWidth="585.0">
+               <children>
+                  <ImageView fx:id="managerDp" fitHeight="150.0" fitWidth="200.0" layoutX="215.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@homePage/4402438.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="managerName" layoutX="238.0" layoutY="164.0" text="Hayre Manosh">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Line endX="100.0" layoutX="291.0" layoutY="195.0" startX="-100.0" stroke="#949494" />
+                  <VBox layoutX="198.0" layoutY="203.0" prefHeight="141.0" prefWidth="193.0">
+                     <children>
+                        <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Email:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="managerEmail" text="manosh@gmail.com">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Phone No:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="managerPhone" text="0116132">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Address:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="managerAddress" text="Shonar Bangladesh">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Date of Birth:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="managerDob" text="69/69/6969">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="24.0" prefWidth="193.0" spacing="3.0">
+                           <children>
+                              <Label text="Account Type:">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Hotel Manager">
+                                 <font>
+                                    <Font name="Jara Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

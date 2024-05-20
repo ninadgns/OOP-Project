@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.hotelClickedController">
+    <top>
+        <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="609.0" styleClass="garo-nil" stylesheets="@styles.css">
+            <children>
+                <AnchorPane prefHeight="53.0" prefWidth="96.0" styleClass="transparent" stylesheets="@styles.css">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <children>
+                        <ImageView fx:id="amiLogo" fitHeight="32.0" fitWidth="94.0" layoutX="12.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@homePage/28267842_7.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+            <AnchorPane prefHeight="53.0" prefWidth="192.0" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="188.0" styleClass="whiteText" text="Hotel Details" textAlignment="CENTER">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font></Label>
+            <AnchorPane prefHeight="53.0" prefWidth="270.0" />
+            </children>
+        </HBox>
+    </top>
+    <center>
+      <ScrollPane>
+         <content>
+            <VBox prefHeight="539.0" prefWidth="597.0">
+               <children>
+                  <AnchorPane prefHeight="187.0" prefWidth="597.0">
+                     <children>
+                        <Label fx:id="hotelName" layoutX="34.0" layoutY="17.0" prefHeight="30.0" prefWidth="476.0" text="Hotel Name" wrapText="true">
+                           <font>
+                              <Font name="DejaVu Sans Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <HBox fx:id="imageVbox" alignment="CENTER" layoutX="7.0" layoutY="44.0" prefHeight="130.0" prefWidth="583.0" />
+                     </children>
+                  </AnchorPane>
+                  <HBox prefHeight="342.0" prefWidth="597.0">
+                     <children>
+                        <AnchorPane prefHeight="350.0" prefWidth="360.0">
+                           <children>
+                              <VBox layoutX="14.0" layoutY="8.0" prefHeight="573.0" prefWidth="343.0">
+                                 <children>
+                                    <VBox prefHeight="97.0" prefWidth="224.0">
+                                       <children>
+                                          <Label fx:id="type" alignment="TOP_LEFT" prefHeight="26.0" prefWidth="224.0" text="Type" wrapText="true">
+                                             <font>
+                                                <Font name="Andika Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="29.0" prefWidth="224.0" />
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="174.0" prefWidth="343.0" spacing="4.0">
+                                       <children>
+                                          <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
+                                             <rotationAxis>
+                                                <Point3D />
+                                             </rotationAxis>
+                                          </Line>
+                                          <Label text="About This Place">
+                                             <font>
+                                                <Font name="DejaVu Sans Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="additionDescription" alignment="TOP_LEFT" prefHeight="92.0" prefWidth="343.0" text="Description" wrapText="true" />
+                                          <Label alignment="TOP_LEFT" prefHeight="0.0" prefWidth="59.0" text="Address" wrapText="true">
+                                             <font>
+                                                <Font name="Andika Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="address" alignment="TOP_LEFT" prefHeight="97.0" prefWidth="343.0" text="District" />
+                                       </children>
+                                    </VBox>
+                                    <VBox fx:id="bairerVbox">
+                                       <children>
+                                          <VBox fx:id="vitorerVbox" prefHeight="81.0" prefWidth="343.0" spacing="4.0">
+                                             <children>
+                                                <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
+                                                   <rotationAxis>
+                                                      <Point3D />
+                                                   </rotationAxis>
+                                                </Line>
+                                                <Label text="What this place offers">
+                                                   <font>
+                                                      <Font name="DejaVu Sans Bold" size="13.0" />
+                                                   </font>
+                                                </Label>
+                                                <HBox prefHeight="45.0" prefWidth="260.0" spacing="4.0">
+                                                   <children>
+                                                      <ImageView fitHeight="44.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@homePage/images.jpeg" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <VBox prefHeight="45.0" prefWidth="295.0">
+                                                         <children>
+                                                            <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="156.0" text="Indoor Space">
+                                                               <font>
+                                                                  <Font name="Andika Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="indoor" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="296.0" text="Label" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="45.0" prefWidth="260.0" spacing="4.0">
+                                                   <children>
+                                                      <ImageView fitHeight="44.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@hotelClicked/Pasted%20image.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                      <VBox prefHeight="45.0" prefWidth="295.0">
+                                                         <children>
+                                                            <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="168.0" text="Outdoor Space">
+                                                               <font>
+                                                                  <Font name="Andika Bold" size="13.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <Label fx:id="outdoor" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="23.0" prefWidth="296.0" text="Label" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="180.0" prefWidth="343.0">
+                                       <children>
+                                          <Line endX="219.29286193847656" endY="0.2928321957588196" startX="-100.0" stroke="#9d9d9d">
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </Line>
+                                          <Label text="Meet your Host">
+                                             <font>
+                                                <Font name="DejaVu Sans Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox alignment="TOP_CENTER" prefHeight="192.0" prefWidth="343.0" spacing="5.0">
+                                             <children>
+                                                <HBox prefHeight="117.0" prefWidth="260.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                                                      <AnchorPane>
+                                                         <children>
+                                                            <ImageView fx:id="hostImage" fitHeight="87.0" fitWidth="94.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@homePage/4402438.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                            <Label fx:id="hostName" layoutY="87.0" text="Manager Name" />
+                                                         </children>
+                                                      </AnchorPane>
+                                                      <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="77.0" prefWidth="338.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="76.0" prefWidth="30.0" />
+                                                      <VBox spacing="5.0">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-33-00.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <Label fx:id="hostPhone" text="Phone No" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-33-23.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <Label fx:id="hostEmail" text="Email" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                               <children>
+                                                                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                                     <image>
+                                                                        <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-33-32.png" />
+                                                                     </image>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </ImageView>
+                                                                  <Label fx:id="hostAddress" text="Address" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <ImageView fx:id="chatManager" fitHeight="38.0" fitWidth="153.0" onMouseClicked="#handleChatManager" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@hotelClicked/Screenshot%20from%202024-05-18%2018-45-00.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="10.0" top="25.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="581.0" prefWidth="267.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="4.0" layoutY="11.0" prefHeight="303.0" prefWidth="211.0">
+                                 <children>
+                                    <HBox prefHeight="22.0" prefWidth="193.0">
+                                       <children>
+                                          <Label fx:id="kata" styleClass="strike" stylesheets="@styles.css" />
+                                          <Label fx:id="taka" text="Cost">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <padding>
+                                                <Insets left="2.0" />
+                                             </padding></Label>
+                                          <Label text=" /night">
+                                             <padding>
+                                                <Insets top="3.0" />
+                                             </padding>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <VBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="220.0">
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                       <children>
+                                          <HBox prefHeight="25.0" prefWidth="193.0">
+                                             <children>
+                                                <DatePicker fx:id="checkIn" prefHeight="27.0" prefWidth="107.0" promptText="Check In" />
+                                                <DatePicker fx:id="checkOut" prefHeight="27.0" prefWidth="108.0" promptText="Check Out" />
+                                             </children>
+                                          </HBox>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <Label text="Guests" />
+                                                <ChoiceBox fx:id="guestCheckBox" prefHeight="27.0" prefWidth="209.0">
+                                                   <VBox.margin>
+                                                      <Insets top="3.0" />
+                                                   </VBox.margin>
+                                                </ChoiceBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="calculate" mnemonicParsing="false" onAction="#handleCalculate" stylesheets="@styles.css" text="Calculate Cost">
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Label text="You won't be charged yet">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <VBox prefHeight="92.0" prefWidth="211.0">
+                                       <children>
+                                          <HBox prefHeight="50.0" prefWidth="211.0">
+                                             <children>
+                                                <VBox prefHeight="70.0" prefWidth="129.0" spacing="2.0">
+                                                   <children>
+                                                      <Label text="Hotel Cost" />
+                                                      <Label text="BookStay Cost" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </VBox>
+                                                <VBox alignment="TOP_RIGHT" prefHeight="98.0" prefWidth="83.0" spacing="2.0">
+                                                   <children>
+                                                      <Label fx:id="takaa" />
+                                                      <Label alignment="TOP_RIGHT" text="150" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                          <Line endX="80.435791015625" endY="-21.786334991455078" startX="-124.85710144042969" startY="-21.78592300415039" stroke="#9d9d9d" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0">
+                                             <children>
+                                                <Label prefHeight="18.0" prefWidth="246.0" text="Total Cost Before Tax" />
+                                                <Label fx:id="total" alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="181.0" text="" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="reserve" layoutX="46.0" layoutY="120.0" mnemonicParsing="false" onAction="#handleReserveBtn" styleClass="login-signin" stylesheets="@styles.css" text="Reserve" />
+                                 </children>
+                              </VBox>
+                           </children></AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+    </center>
+</BorderPane>

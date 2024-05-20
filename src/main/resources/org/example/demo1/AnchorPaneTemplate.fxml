@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="49.0" prefWidth="162.0" styleClass="messageThumbnail" stylesheets="@styles.css" xmlns="http://javafx.com/javafx">
+    <children>
+        <VBox prefHeight="49.0" prefWidth="162.0">
+            <!-- You can add any specific layout or styling here if needed -->
+            <!-- This is where the Text node will be added dynamically -->
+        </VBox>
+    </children>
+</AnchorPane>

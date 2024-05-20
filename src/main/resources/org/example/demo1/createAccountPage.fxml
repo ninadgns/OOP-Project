@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo1.CreateAccountController">
+   <right>
+      <ScrollPane hbarPolicy="NEVER" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="490.0" prefWidth="374.0">
+               <Text layoutX="28.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Account" textAlignment="CENTER" wrappingWidth="317.1969757080078">
+                  <font>
+                     <Font name="System Bold" size="28.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="fname" layoutX="27.0" layoutY="97.0" prefHeight="27.0" prefWidth="143.0" promptText="First Name" styleClass="login-email" stylesheets="@styles.css">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+               <Button fx:id="signUpBtn" layoutX="124.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleCreateAccount" styleClass="login-signin" stylesheets="@styles.css" text="Sign Up" />
+               <TextField fx:id="email" layoutX="29.0" layoutY="321.0" prefHeight="27.0" prefWidth="328.0" promptText="Email" styleClass="login-email" stylesheets="@styles.css">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="lname" layoutX="192.0" layoutY="97.0" prefHeight="27.0" prefWidth="158.0" promptText="Last Name" styleClass="login-email" stylesheets="@styles.css">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="pwd" layoutX="29.0" layoutY="361.0" prefHeight="27.0" prefWidth="330.0" promptText="Password" styleClass="login-email" stylesheets="@styles.css">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+               <DatePicker fx:id="dob" layoutX="27.0" layoutY="189.0" promptText="Date of Birth" styleClass="date-picker" stylesheets="@styles.css" />
+               <TextField fx:id="confirmPwd" layoutX="28.0" layoutY="402.0" prefHeight="27.0" prefWidth="330.0" promptText="Confirm Password" styleClass="login-email" stylesheets="@styles.css">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+               <TextField fx:id="phoneNo" layoutX="29.0" layoutY="278.0" prefHeight="27.0" prefWidth="328.0" promptText="Phone" styleClass="login-email" stylesheets="@styles.css">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+               <HBox alignment="CENTER_LEFT" layoutX="29.0" layoutY="227.0" prefHeight="39.0" prefWidth="264.0">
+                  <children>
+                     <Button fx:id="choosePhotoBtn" mnemonicParsing="false" onAction="#handleChoosePhoto" text="Choose a photo" />
+                     <Label fx:id="choosePhotoLabel" prefHeight="18.0" prefWidth="122.0" text="No image chosen">
+                        <padding>
+                           <Insets left="5.0" />
+                        </padding>
+                        <HBox.margin>
+                           <Insets left="5.0" />
+                        </HBox.margin>
+                     </Label>
+                  </children>
+               </HBox>
+               <ImageView fx:id="formImage" fitHeight="83.0" fitWidth="84.0" layoutX="271.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" />
+               <RadioButton fx:id="isCustomerRadio" layoutX="29.0" layoutY="160.0" mnemonicParsing="false" selected="true" text="Customer">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="isCustomerToggle" />
+                  </toggleGroup>
+               </RadioButton>
+               <RadioButton fx:id="isHotelManagerRadio" layoutX="131.0" layoutY="160.0" mnemonicParsing="false" text="Hotel Manager" toggleGroup="$isCustomerToggle" />
+               <Label layoutX="30.0" layoutY="137.0" text="Select Account Type:">
+                  <font>
+                     <Font name="System Bold" size="13.0" />
+                  </font>
+               </Label>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </right>
+   <left>
+      <AnchorPane prefHeight="546.0" prefWidth="236.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="530.0" fitWidth="254.0" layoutY="16.0" pickOnBounds="true">
+               <image>
+                  <Image url="@login/rightImage.jpg" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="43.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in to your account" textAlignment="CENTER" wrappingWidth="167.02084350585938">
+               <font>
+                  <Font name="Ubuntu Regular" size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="gotoSignInBtn" layoutX="58.0" layoutY="306.0" mnemonicParsing="false" onAction="#handleGotoSignIn" styleClass="login-signup" stylesheets="@styles.css" text="Sign In" />
+            <Text fill="WHITE" layoutX="1.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already Have an Account?" textAlignment="CENTER" wrappingWidth="250.39697265625">
+               <font>
+                  <Font name="System Bold" size="27.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
