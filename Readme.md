@@ -1,115 +1,162 @@
-# Habijabi Workspace
+# OOP-Project
 
-This workspace contains multiple projects and applications developed for various purposes including web development, object-oriented programming, music applications, and utility tools.
+A Java-based client-server application with chat functionality and database integration built using Maven.
 
-## Projects Overview
+## 🚀 Features
 
-### 📁 [musical-chair-music-player](musical-chair-music-player/)
-A Python-based music player that mimics the musical chairs game by playing random segments of MP3 files for varying durations.
+- **Client-Server Architecture**: Real-time communication between multiple clients and server
+- **Chat Functionality**: Interactive messaging system with real-time updates
+- **Database Integration**: Network-hosted database for persistent data storage
+- **GUI Interface**: User-friendly graphical interface for client applications
+- **Modular Design**: Well-structured Java packages for easy maintenance and scalability
 
-**Features:**
-- Random playback duration (10-50 seconds) using normal distribution
-- Remembers playback position for each song
-- Interactive controls for continuing or replaying songs
-- Uses pygame for audio playback
+## 📁 Project Structure
 
-**Requirements:** Python 3.x, pygame, numpy
-
-### 📁 [OOP-Project](OOP-Project/)
-A Java-based client-server application with chat functionality and database integration.
-
-**Components:**
-- Server application with chat server functionality
-- Client application with GUI interface
-- Network-hosted database integration
-- Real-time messaging capabilities
-
-**Requirements:** Java, Maven, Network connection
-
-### 📁 [DLD Lab Cover](DLD%20Lab%20Cover/)
-Flask web application for generating academic lab covers and documents.
-
-**Features:**
-- Document generation (DLD, Physics lab covers)
-- Web interface using Flask
-- Static file serving
-- Template-based document creation
-
-### 📁 [LappySearch](LappySearch/)
-Product search and data processing utility with Excel integration.
-
-**Components:**
-- HTML/CSV processing capabilities
-- Product data management
-- Excel file integration
-- Node.js based application
-
-### 📁 [Scanner for TEMS](Scanner%20for%20TEMS/)
-Specialized scanning utility for TEMS (Transmission Electron Microscopy System).
-
-### 📁 [POS](POS/)
-Point of Sale system implementation.
-
-### 📁 [Ray Tracing in a Weekend](Ray%20Tracing%20in%20a%20Weekend/)
-Computer graphics project implementing ray tracing algorithms.
-
-### 📁 [my-app](my-app/)
-General application development project.
-
-### 📁 [JZS](JZS/)
-Collection of C++ and JavaScript utilities and experiments.
-
-**Contents:**
-- C++ hello world implementation
-- JavaScript modules
-- Compiled executables
-- Text processing utilities
-
-## Individual Files
-
-- `tyf.cpp` - C++ source file
-- `code_1.85.1-1702462158_amd64.deb` - VS Code Debian package
-- `2 september fixed.zip` - Archive file
-
-## Getting Started
-
-### Prerequisites
-Depending on the project you want to work with, you may need:
-- Python 3.x with pygame and numpy
-- Java Development Kit (JDK)
-- Node.js and npm/pnpm
-- Flask framework
-- C++ compiler
-- Visual Studio Code
-
-### General Setup
-1. Clone or download this workspace
-2. Navigate to the specific project directory
-3. Follow the individual project's setup instructions
-4. Install required dependencies for each project
-
-## Project Structure
 ```
-Habijabi/
-├── musical-chair-music-player/    # Python music player
-├── OOP-Project/                   # Java client-server app
-├── DLD Lab Cover/                 # Flask document generator
-├── LappySearch/                   # Product search utility
-├── Scanner for TEMS/              # TEMS scanning tool
-├── POS/                          # Point of Sale system
-├── Ray Tracing in a Weekend/      # Graphics programming
-├── my-app/                       # General application
-├── JZS/                          # C++/JS utilities
-├── tyf.cpp                       # Individual C++ file
-└── README.md                     # This file
+OOP-Project/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   ├── module-info.java           # Java module configuration
+│       │   └── org/
+│       │       └── example/
+│       │           ├── database/          # Database connection and operations
+│       │           ├── demo1/             # Demo applications and examples
+│       │           └── Manage/            # Management and utility classes
+│       └── resources/                     # Application resources
+├── target/                                # Compiled classes and build artifacts
+├── pom.xml                               # Maven project configuration
+├── mvnw                                  # Maven wrapper (Unix)
+├── mvnw.cmd                             # Maven wrapper (Windows)
+├── ERD.png                              # Entity Relationship Diagram
+├── f.puml                               # PlantUML diagram file
+├── umlo.puml                           # UML diagram file
+└── README.md                           # This file
 ```
 
-## Contributing
-Each project may have its own contribution guidelines. Please refer to individual project documentation for specific requirements.
+## 🛠️ Technology Stack
 
-## License
-Individual projects may have different licenses. Please check each project's license file for details.
+- **Language**: Java
+- **Build Tool**: Maven
+- **Module System**: Java Platform Module System (JPMS)
+- **Documentation**: PlantUML for diagrams
+- **IDE**: IntelliJ IDEA (configuration included)
+
+## 📋 Prerequisites
+
+- Java Development Kit (JDK) 11 or higher
+- Maven 3.6+ (or use included Maven wrapper)
+- Network connection for database functionality
+- IntelliJ IDEA (recommended) or any Java IDE
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+```bash
+git clone <repository-url>
+cd OOP-Project
+```
+
+### 2. Build the Project
+Using Maven wrapper (recommended):
+```bash
+# On Windows
+mvnw.cmd clean compile
+
+# On Unix/Linux/macOS
+./mvnw clean compile
+```
+
+Or using system Maven:
+```bash
+mvn clean compile
+```
+
+### 3. Run the Application
+```bash
+# Using Maven wrapper
+./mvnw exec:java
+
+# Or using system Maven
+mvn exec:java
+```
+
+## 📊 Database Setup
+
+This project requires a network-hosted database. Ensure you have:
+
+1. Database server running and accessible
+2. Proper connection credentials configured
+3. Required database schema and tables created
+
+*Note: Check the `org.example.database` package for database configuration details.*
+
+## 🏗️ Architecture Overview
+
+### Core Components
+
+- **Server Module**: Handles client connections and message routing
+- **Client Module**: Provides GUI interface and handles user interactions
+- **Database Module**: Manages data persistence and retrieval
+- **Management Module**: Utility classes and application management
+
+### Design Patterns Used
+
+- Client-Server Pattern
+- MVC (Model-View-Controller)
+- Observer Pattern for real-time updates
+- Factory Pattern for object creation
+
+## 📈 Development
+
+### Building from Source
+```bash
+# Clean and compile
+./mvnw clean compile
+
+# Run tests (if available)
+./mvnw test
+
+# Package the application
+./mvnw package
+```
+
+### IDE Setup
+The project includes IntelliJ IDEA configuration files in the `.idea/` directory for seamless development experience.
+
+## 📋 UML Diagrams
+
+The project includes UML diagrams for better understanding:
+- `ERD.png` - Entity Relationship Diagram showing database structure
+- `f.puml` - PlantUML source file
+- `umlo.puml` - Additional UML diagram source
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is part of an educational Object-Oriented Programming course. Please refer to your institution's guidelines for usage and distribution.
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Build Failures**: Ensure JDK version compatibility with `module-info.java`
+2. **Database Connection**: Verify network connectivity and database credentials
+3. **Port Conflicts**: Check if required ports are available for server functionality
+
+### Getting Help
+
+- Check the `org.example.demo1` package for example implementations
+- Review PlantUML diagrams for system architecture understanding
+- Ensure all dependencies are properly resolved via Maven
 
 ---
 
-*This workspace represents a collection of diverse programming projects showcasing various technologies and methodologies.*
+*This project demonstrates client-server architecture, real-time communication, and database integration using Java and Maven.*
