@@ -1,53 +1,86 @@
-# OOP-Project
+# BookStay - Hotel Booking Management System
 
-A Java-based client-server application with chat functionality and database integration built using Maven.
+A comprehensive hotel booking and management system built with JavaFX and PostgreSQL, implementing Object-Oriented Programming principles including the Decorator and Factory design patterns.
 
-## 🚀 Features
+## 🏨 Overview
 
-- **Client-Server Architecture**: Real-time communication between multiple clients and server
-- **Chat Functionality**: Interactive messaging system with real-time updates
-- **Database Integration**: Network-hosted database for persistent data storage
-- **GUI Interface**: User-friendly graphical interface for client applications
-- **Modular Design**: Well-structured Java packages for easy maintenance and scalability
+BookStay is a desktop application that enables users to search, view, and book accommodations while providing hotel managers with tools to manage their properties. The system features a modern JavaFX interface with real-time chat functionality and comprehensive booking management.
 
-## 📁 Project Structure
+## ✨ Features
 
+### For Customers
+- **User Registration & Authentication**: Create accounts with profile photos and personal information
+- **Hotel Search & Discovery**: Browse hotels by location, type, and amenities
+- **Detailed Hotel Views**: View comprehensive hotel information including images, amenities, and pricing
+- **Booking System**: Select dates, calculate costs, and make reservations
+- **Real-time Messaging**: Chat with hotel managers directly
+- **Profile Management**: View and manage personal information and bookings
+
+### For Hotel Managers
+- **Property Management**: Create and manage hotel listings with detailed information
+- **Room Configuration**: Add different room types with various amenities using the Decorator pattern
+- **Booking Management**: View and manage customer reservations
+- **Customer Communication**: Respond to customer inquiries via integrated chat
+- **Revenue Tracking**: Monitor booking costs and revenue
+
+### System Features
+- **Multi-user Authentication**: Separate interfaces for customers and hotel managers
+- **Image Management**: Upload and display multiple hotel images
+- **Date Validation**: Prevent double bookings and invalid date selections
+- **Cost Calculation**: Automatic pricing based on duration, room type, and amenities
+- **Database Integration**: Persistent data storage with PostgreSQL
+
+## 🏗️ Architecture
+
+### Design Patterns Implemented
+- **Decorator Pattern**: Used for room amenities (AirConditioner, Balcony, AttachedBath)
+- **Factory Pattern**: Hotel type creation (Villa, Cabin, Cottage, AFrames)
+- **Strategy Pattern**: Different user types (Customer, HotelManager) with specific behaviors
+- **Observer Pattern**: Real-time chat messaging system
+
+### Project Structure
 ```
-OOP-Project/
-├── src/
-│   └── main/
-│       ├── java/
-│       │   ├── module-info.java           # Java module configuration
-│       │   └── org/
-│       │       └── example/
-│       │           ├── database/          # Database connection and operations
-│       │           ├── demo1/             # Demo applications and examples
-│       │           └── Manage/            # Management and utility classes
-│       └── resources/                     # Application resources
-├── target/                                # Compiled classes and build artifacts
-├── pom.xml                               # Maven project configuration
-├── mvnw                                  # Maven wrapper (Unix)
-├── mvnw.cmd                             # Maven wrapper (Windows)
-├── ERD.png                              # Entity Relationship Diagram
-├── f.puml                               # PlantUML diagram file
-├── umlo.puml                           # UML diagram file
-└── README.md                           # This file
+src/
+├── main/java/
+│   ├── org/example/
+│   │   ├── demo1/                 # JavaFX Controllers & UI Logic
+│   │   │   ├── HelloApplication.java
+│   │   │   ├── SignInPageController.java
+│   │   │   ├── HomePageForCustomerController.java
+│   │   │   ├── HomePageForHotelManagerController.java
+│   │   │   ├── hotelClickedController.java
+│   │   │   ├── createPostController.java
+│   │   │   └── otherClasses/      # Model Classes
+│   │   ├── Manage/                # Business Logic & Patterns
+│   │   │   ├── Hotel.java         # Abstract Hotel Class
+│   │   │   ├── Room.java          # Abstract Room Class
+│   │   │   ├── Villa.java, Cabin.java, Cottage.java
+│   │   │   ├── AirConditioner.java, Balcony.java
+│   │   │   └── CheckInandOut.java # Booking Management
+│   │   └── database/              # Data Access Layer
+│   │       ├── DatabaseClient.java
+│   │       ├── Tables.java
+│   │       └── ChatServer.java
+│   └── resources/                 # FXML Files & Assets
+└── target/                        # Compiled Classes
 ```
 
 ## 🛠️ Technology Stack
 
-- **Language**: Java
+- **Frontend**: JavaFX 22 with FXML
+- **Backend**: Java 17+
+- **Database**: PostgreSQL (Supabase)
 - **Build Tool**: Maven
-- **Module System**: Java Platform Module System (JPMS)
-- **Documentation**: PlantUML for diagrams
-- **IDE**: IntelliJ IDEA (configuration included)
+- **UI Styling**: CSS
+- **Image Processing**: Base64 encoding/decoding
+- **Chat System**: Socket programming
 
 ## 📋 Prerequisites
 
-- Java Development Kit (JDK) 11 or higher
-- Maven 3.6+ (or use included Maven wrapper)
-- Network connection for database functionality
-- IntelliJ IDEA (recommended) or any Java IDE
+- Java 17 or higher
+- Maven 3.6+
+- PostgreSQL database access
+- JavaFX SDK (if not using Maven JavaFX plugin)
 
 ## 🚀 Getting Started
 
@@ -57,106 +90,127 @@ git clone <repository-url>
 cd OOP-Project
 ```
 
-### 2. Build the Project
-Using Maven wrapper (recommended):
-```bash
-# On Windows
-mvnw.cmd clean compile
+### 2. Database Setup
+The application connects to a PostgreSQL database hosted on Supabase. The database includes the following tables:
+- `accountinfo` - User accounts and profiles
+- `hotels` - Hotel listings and details
+- `rooms` - Room configurations and amenities
+- `bookings` - Reservation records
+- `messages` - Chat communications
 
-# On Unix/Linux/macOS
-./mvnw clean compile
-```
-
-Or using system Maven:
+### 3. Build and Run
 ```bash
+# Compile the project
 mvn clean compile
+
+# Run the application
+mvn javafx:run
 ```
 
-### 3. Run the Application
+Alternatively, run the main class directly:
 ```bash
-# Using Maven wrapper
-./mvnw exec:java
-
-# Or using system Maven
-mvn exec:java
+java -cp "target/classes;path/to/javafx/lib/*;path/to/postgresql/driver" org.example.demo1.HelloApplication
 ```
 
-## 📊 Database Setup
+## 🎯 Usage
 
-This project requires a network-hosted database. Ensure you have:
+### Customer Workflow
+1. **Sign Up/Sign In**: Create a new account or log in with existing credentials
+2. **Browse Hotels**: Search for hotels by district or browse all available properties
+3. **View Details**: Click on any hotel to see detailed information, images, and amenities
+4. **Make Booking**: Select check-in/check-out dates, number of guests, and confirm reservation
+5. **Chat with Manager**: Use the integrated messaging system to communicate with property owners
 
-1. Database server running and accessible
-2. Proper connection credentials configured
-3. Required database schema and tables created
+### Hotel Manager Workflow
+1. **Sign Up as Manager**: Create an account and select "Hotel Manager" account type
+2. **Create Listing**: Add your property with details, images, and amenities
+3. **Configure Rooms**: Set up different room types with various facilities
+4. **Manage Bookings**: View and respond to customer reservations
+5. **Customer Support**: Respond to customer inquiries via the chat system
 
-*Note: Check the `org.example.database` package for database configuration details.*
+## 🏛️ Database Schema
 
-## 🏗️ Architecture Overview
+### Key Tables
+- **accountinfo**: User profiles with authentication details
+- **hotels**: Property listings with images and descriptions
+- **rooms**: Room configurations with amenity arrays
+- **bookings**: Reservation tracking with dates and costs
+- **messages**: Real-time chat communications
 
-### Core Components
+## 🔧 Configuration
 
-- **Server Module**: Handles client connections and message routing
-- **Client Module**: Provides GUI interface and handles user interactions
-- **Database Module**: Manages data persistence and retrieval
-- **Management Module**: Utility classes and application management
+### Database Connection
+Update the database connection string in `DatabaseClient.java`:
+```java
+conn = DriverManager.getConnection(
+    "jdbc:postgresql://your-database-url:port/database?user=username&password=password"
+);
+```
 
-### Design Patterns Used
+### Image Storage
+Images are stored as Base64 encoded strings in the database. The system handles:
+- Image upload and encoding
+- Automatic resizing for display
+- Multiple image support per hotel
 
-- Client-Server Pattern
-- MVC (Model-View-Controller)
-- Observer Pattern for real-time updates
-- Factory Pattern for object creation
+## 🎨 UI Components
 
-## 📈 Development
+The application features a modern, user-friendly interface with:
+- **Responsive Design**: Adaptable layouts for different screen sizes
+- **Custom Styling**: CSS-styled components for professional appearance
+- **Image Galleries**: Scrollable hotel image displays
+- **Form Validation**: Real-time input validation and error messaging
+- **Date Pickers**: Intuitive date selection for bookings
 
-### Building from Source
+## 🧪 Testing
+
+The project includes JUnit test dependencies for unit testing:
 ```bash
-# Clean and compile
-./mvnw clean compile
-
-# Run tests (if available)
-./mvnw test
-
-# Package the application
-./mvnw package
+mvn test
 ```
-
-### IDE Setup
-The project includes IntelliJ IDEA configuration files in the `.idea/` directory for seamless development experience.
-
-## 📋 UML Diagrams
-
-The project includes UML diagrams for better understanding:
-- `ERD.png` - Entity Relationship Diagram showing database structure
-- `f.puml` - PlantUML source file
-- `umlo.puml` - Additional UML diagram source
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
+## 📝 Design Patterns in Detail
 
-This project is part of an educational Object-Oriented Programming course. Please refer to your institution's guidelines for usage and distribution.
+### Decorator Pattern (Room Amenities)
+```java
+Room room = new SingleRoom();
+room = new AirConditioner(room);
+room = new Balcony(room);
+// Dynamic feature addition without modifying base classes
+```
 
-## 🐛 Troubleshooting
+### Factory Pattern (Hotel Types)
+```java
+Hotel villa = new Villa(address, district, name, sqft);
+Hotel cabin = new Cabin(address, district, name, sqft);
+// Consistent hotel creation with type-specific features
+```
 
-### Common Issues
+## 🔮 Future Enhancements
 
-1. **Build Failures**: Ensure JDK version compatibility with `module-info.java`
-2. **Database Connection**: Verify network connectivity and database credentials
-3. **Port Conflicts**: Check if required ports are available for server functionality
+- **Payment Integration**: Add payment gateway support
+- **Mobile App**: Extend to mobile platforms
+- **Advanced Search**: Filters for price range, ratings, and amenities
+- **Review System**: Customer feedback and rating system
+- **Analytics Dashboard**: Business intelligence for hotel managers
+- **Multi-language Support**: Internationalization capabilities
 
-### Getting Help
+## 📄 License
 
-- Check the `org.example.demo1` package for example implementations
-- Review PlantUML diagrams for system architecture understanding
-- Ensure all dependencies are properly resolved via Maven
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Authors
+
+Developed as an Object-Oriented Programming project demonstrating real-world application of design patterns and software engineering principles.
 
 ---
 
-*This project demonstrates client-server architecture, real-time communication, and database integration using Java and Maven.*
+**BookStay** - Connecting travelers with their perfect accommodation! 🏨✈️
